@@ -6,7 +6,7 @@
 ?>
 <html>
 <h1> Welcome DB world! Sibal </h1>
-Test
+Test2
 <form method="post">
 	<button name="button">pull</button>
 </form>
