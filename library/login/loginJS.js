@@ -18,7 +18,6 @@ function signIn() {
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             let dataPW = this.responseText;
-            alert(dataPW);
             if (pw === dataPW) { // 비밀번호가 매칭이 되었을 경우
                 xhttp.open("GET", loginStr + "moveMain.php?", true);
                 xhttp.send();
