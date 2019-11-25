@@ -1,7 +1,7 @@
-let xhttp = new XMLHttpRequest();
 let loginStr = "http://112.166.141.161/library/login/";
 
 function initLoad() {
+    let xhttp = new XMLHttpRequest();
     xhttp.open("GET", loginStr + "initLogin.php?", true);
     xhttp.send();
 }
@@ -13,12 +13,14 @@ function signIn() {
         alert("Enter your username or password");
         return;
     }
+    let xhttp = new XMLHttpRequest();
     xhttp.open("GET", loginStr + "loadPW.php?id=" + id, true);
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             let dataPW = this.responseText;
             if (pw === dataPW) { // 비밀번호가 매칭이 되었을 경우
+                let xhttp = new XMLHttpRequest();
                 xhttp.open("GET", loginStr + "moveMain.php?", true);
                 xhttp.send();
                 location.reload();
@@ -36,13 +38,14 @@ function signUp() {
     let phone = document.getElementById("phoneSignUpBox");
     let classification = document.getElementById("classificationSignUpBox");
 
+    let xhttp = new XMLHttpRequest();
     xhttp.open("GET", loginStr + "checkID.php?id=" + id, true);
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             let chk = this.responseText;
-            alert(chk);
-            if (chk === true) {
+            if (chk === 1) {
+                let xhttp = new XMLHttpRequest();
                 xhttp.open("GET", loginStr + "signUp.php?" +
                     "id=" + id
                     + "pw=" + pw
