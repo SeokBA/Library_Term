@@ -20,10 +20,7 @@ function signIn() {
         if (this.readyState === 4 && this.status === 200) {
             let dataPW = this.responseText;
             if (pw === dataPW) { // 비밀번호가 매칭이 되었을 경우
-                let xhttp = new XMLHttpRequest();
-                xhttp.open("GET", loginStr + "moveMain.php?", true);
-                xhttp.send();
-                location.reload();
+                location.href="/library/main/todoList.html";
             } else // 매칭되지 않았을 경우
                 alert(("Incorrect username or password"));
         }
@@ -83,10 +80,3 @@ window.onclick = function (event) {
 };
 
 initLoad();
-
-function hi() {
-    let xhttp = new XMLHttpRequest();
-    xhttp.open("GET", loginStr + "moveMain.php?", true);
-    xhttp.send();
-    location.reload();
-}
