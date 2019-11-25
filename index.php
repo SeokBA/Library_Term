@@ -1,2 +1,2 @@
 <?php
-Header("Location: /login/login.html");
+Header("Location: /library/login/login.html");
