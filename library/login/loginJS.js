@@ -13,12 +13,12 @@ function signIn() {
         alert("Enter your username or password");
         return;
     }
+    alert(id);
     xhttp.open("GET", loginStr + "loadPW.php?id=" + id, true);
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             let dataPW = this.responseText;
-            alert(dataPW)
             if (pw === dataPW) { // 비밀번호가 매칭이 되었을 경우
                 xhttp.open("GET", loginStr + "moveMain.php?", true);
                 xhttp.send();
