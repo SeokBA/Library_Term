@@ -39,8 +39,8 @@ function signUp() {
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
-            let dataPW = this.responseText;
-            if (pw === dataPW) {
+            let chk = this.responseText;
+            if (chk === true) {
                 xhttp.open("GET", "http://112.166.141.161/library/signUp.php?" +
                     "id=" + id
                     +"pw=" + pw
@@ -51,29 +51,11 @@ function signUp() {
                 xhttp.send();
                 alert("complete");
                 location.reload();
-            } else
-                alert(("아이디 또는 패스워드가 틀립니다."));
+            }
+            else
+                alert("중복된 아이디입니다.");
         }
     };
-
-    if (id === "" || pw === "") {
-        alert("아이디 또는 패스워드를 입력해주세요.");
-    } else {
-        while (!feof($file)) {
-            $dataString = fgets($file);
-            $dataID = strtok($dataString, "|");
-            ;
-            if ($id == $dataID) {
-                echo
-                "이미 존재하는 아이디가 있습니다.";
-                return;
-            }
-        }
-        fwrite($file, "{$id}|{$pw}\n");
-        fclose($file);
-        echo
-        "성공적으로 저장되었습니다.";
-    }
 }
 
 function initSignUp() {

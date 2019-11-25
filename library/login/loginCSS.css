@@ -132,7 +132,7 @@
 }
 
 .modal-content:not(#statOutput) {
-    background-color: #EFE0B9;
+    /*background-color: #EFE0B9;*/
     border: 3px solid #643B0F;
     border-radius: 10px;
     position: fixed;
@@ -144,7 +144,7 @@
     margin-left: -250px;
     margin-top: -100px;
     padding: 40px;
-    color: #643B0F;
+    /*color: #643B0F;*/
 }
 
 /*#statOutput{*/
