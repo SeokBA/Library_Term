@@ -10,14 +10,14 @@
     <link rel="stylesheet" href="loginCSS.css">
 </head>
 <body>
-    <form method="post">
+    <form method="get">
         <p>ID <input type="text" id="idTextBox" name="idTextBox"></p>
         <p>Password <input type="password" id="pwTextBox" name="pwTextBox"></p>
         <input type="button" value="Sign In" onclick="signIn()">
         <input type="button" value="Sign Up" onclick="initSignUp()">
     </form>
     <div id="signUpModal" class="modal">
-        <form id='signUpContent' class="modal-content" method="post">
+        <form id='signUpContent' class="modal-content" method="get">
             <p>ID <input type="text" id="idSignUpBox" name="idSignUpBox" placeholder="input id" required></p>
             <p>Password <input type="text" id="pwSignUpBox" name="pwSignUpBox" placeholder="input password" required></p>
             <p>Name <input type="text" id="nameSignUpBox" name="nameSignUpBox" placeholder="input name" required></p>
