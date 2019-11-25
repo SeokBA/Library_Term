@@ -9,7 +9,7 @@ function Login() {
     let id = document.getElementById("idTextBox").value;
     let pw = document.getElementById("pwTextBox").value;
     if (id === "" || pw === "") { // 항목이 비어있을 경우
-        alert("아이디 또는 패스워드를 입력해주세요.");
+        alert("Enter your username or password");
         return;
     }
     xhttp.open("GET", "http://112.166.141.161/library/loadPW.php?id=" + id, true);
@@ -22,7 +22,7 @@ function Login() {
                 xhttp.send();
                 location.reload();
             } else // 매칭되지 않았을 경우
-                alert(("아이디 또는 패스워드가 틀립니다."));
+                alert(("Incorrect username or password"));
         }
     };
 }
