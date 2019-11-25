@@ -1,24 +1,25 @@
 let xhttp = new XMLHttpRequest();
+let loginStr = "http://112.166.141.161/library/login/";
 
 function initLoad() {
-    xhttp.open("GET", "http://112.166.141.161/library/initLogin.php?", true);
+    xhttp.open("GET", loginStr + "initLogin.php?", true);
     xhttp.send();
 }
 
-function Login() {
+function signIn() {
     let id = document.getElementById("idTextBox").value;
     let pw = document.getElementById("pwTextBox").value;
     if (id === "" || pw === "") { // 항목이 비어있을 경우
         alert("Enter your username or password");
         return;
     }
-    xhttp.open("GET", "http://112.166.141.161/library/loadPW.php?id=" + id, true);
+    xhttp.open("GET", loginStr + "loadPW.php?id=" + id, true);
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             let dataPW = this.responseText;
             if (pw === dataPW) { // 비밀번호가 매칭이 되었을 경우
-                xhttp.open("GET", "http://112.166.141.161/library/moveMain.php?", true);
+                xhttp.open("GET", loginStr + "moveMain.php?", true);
                 xhttp.send();
                 location.reload();
             } else // 매칭되지 않았을 경우
@@ -35,24 +36,25 @@ function signUp() {
     let phone = document.getElementById("phoneSignUpBox");
     let classification = document.getElementById("classificationSignUpBox");
 
-    xhttp.open("GET", "http://112.166.141.161/library/checkID.php?id=" + id, true);
+    xhttp.open("GET", loginStr + "checkID.php?id=" + id, true);
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             let chk = this.responseText;
+            alert(chk);
             if (chk === true) {
-                xhttp.open("GET", "http://112.166.141.161/library/signUp.php?" +
+                xhttp.open("GET", loginStr + "signUp.php?" +
                     "id=" + id
-                    +"pw=" + pw
-                    +"name=" + name
-                    +"email=" + email
-                    +"phone=" + phone
-                    +"classification=" + classification, true);
+                    + "pw=" + pw
+                    + "name=" + name
+                    + "email=" + email
+                    + "phone=" + phone
+                    + "classification=" + classification, true);
                 xhttp.send();
                 alert("complete");
                 location.reload();
-            }
-            else
+                cancelSignUp();
+            } else
                 alert("중복된 아이디입니다.");
         }
     };
@@ -73,9 +75,8 @@ function cancelSignUp() {
 }
 
 window.onclick = function (event) {
-    if (event.target === document.getElementById("signUpModal")) {
+    if (event.target === document.getElementById("signUpModal"))
         cancelSignUp();
-    }
 };
 
 initLoad();
