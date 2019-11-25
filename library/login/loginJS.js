@@ -13,7 +13,7 @@ function signIn() {
         alert("Enter your username or password");
         return;
     }
-    xhttp.open("GET", loginStr + "loadPW.php?id=" + id, true);
+    xhttp.open("POST", loginStr + "loadPW.php?id=" + id, true);
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
@@ -37,7 +37,7 @@ function signUp() {
     let phone = document.getElementById("phoneSignUpBox");
     let classification = document.getElementById("classificationSignUpBox");
 
-    xhttp.open("GET", loginStr + "checkID.php?id=" + id, true);
+    xhttp.open("POST", loginStr + "checkID.php?id=" + id, true);
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
