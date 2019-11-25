@@ -13,8 +13,8 @@
     <form method="post">
         <p>ID <input type="text" id="idTextBox" name="idTextBox"></p>
         <p>Password <input type="text" id="pwTextBox" name="pwTextBox"></p>
-        <input type="submit" value="Sign In" onclick="Login()">
-        <input type="submit" value="Sign Up" onclick="initSignUp()">
+        <input type="button" value="Sign In" onclick="Login()">
+        <input type="button" value="Sign Up" onclick="initSignUp()">
     </form>
     <div id="signUpModal" class="modal">
         <form id='signUpContent' class="modal-content" method="post">
@@ -30,8 +30,8 @@
                     <option value="대학원"></option>
                     <option value="교직원"></option>
                 </datalist></p>
-            <input type="submit" value="Cancel" onclick="cancelSignUp()">
-            <input type="submit" value="Done" onclick="signUp()">
+            <input type="button" value="Cancel" onclick="cancelSignUp()">
+            <input type="button" value="Done" onclick="signUp()">
         </form>
     </div>
     <script src="loginJS.js"></script>
