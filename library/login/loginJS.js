@@ -83,3 +83,10 @@ window.onclick = function (event) {
 };
 
 initLoad();
+
+function hi() {
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("GET", loginStr + "moveMain.php?", true);
+    xhttp.send();
+    location.reload();
+}
