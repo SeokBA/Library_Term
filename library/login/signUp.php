@@ -17,4 +17,4 @@ else {
     $result = mysqli_query($conn, $sql);
     echo "<script> alert('Done') </script>";
 }
-header('location:'.$_SERVER['HTTP_REFERER']);
+echo "<script>location.href=\"".$_SERVER['HTTP_REFERER']."\"</script>";
