@@ -39,32 +39,32 @@ function signUp() {
     let phone = document.getElementById("phoneSignUpBox").value;
     let classification = document.getElementById("classificationSignUpBox").value;
 
-    if(id.match("")){
+    if(id == ""){
         alert("Enter your ID");
         return;
     }
 
-    if(pw.match("")){
+    if(pw == ""){
         alert("Enter your Password");
         return;
     }
 
-    if(name.match("")){
+    if(name == ""){
         alert("Enter your Name");
         return;
     }
 
-    if(email.match("") || email.match(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i)){
+    if(emai == "" || email.match(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i)){
         alert("Incorrect your E-mail");
         return;
     }
 
-    if(phone.match("") || phone.match(/^[0-9]{3}[-]+[0-9]{4}[-]+[0-9]{4}$/)){
+    if(phone == "" || phone.match(/^[0-9]{3}[-]+[0-9]{4}[-]+[0-9]{4}$/)){
         alert("Incorrect your Phone Number");
         return;
     }
 
-    if(classification.match("") || !classification.match("학부") || !classification.match("대학원") || !classification.match("교직원")){
+    if(classification == "" || !classification.match("학부") || !classification.match("대학원") || !classification.match("교직원")){
         alert("Incorrect your Classification");
         return;
     }
