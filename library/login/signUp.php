@@ -13,7 +13,7 @@ $row = mysqli_fetch_array($result);
 if($result->num_rows == 1)
     echo 0;
 else {
-    $sql = "INSERT INTO User_Account(id, password, name, email, phone, classification) VALUES ('{$id}', '{$pw}', '{$name}', '{$email}', '{$phone}', '{$classification}');";
+    $sql = "INSERT INTO User_Account(id, password, name, email, phone, classification) VALUES ('{$id}', '{$pw}', '{$name}', '{$email}', '{$phone}', '{$classification}', 0);";
     $result = mysqli_query($conn, $sql);
     echo 1;
 }
