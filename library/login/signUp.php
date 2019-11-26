@@ -6,8 +6,9 @@ $name = $_REQUEST["nameSignUpBox"];
 $email = $_REQUEST["emailSignUpBox"];
 $phone = $_REQUEST["phoneSignUpBox"];
 $classification = $_GET["classificationSignUpBox"];
+echo $id;
 
-$sql = "SELECT * FROM User_Account WHERE id = {$id};";
+$sql = "SELECT * FROM User_Account WHERE id = '{$id}';";
 $result = mysqli_query($_SESSION['conn'], $sql);
 if ($row != null)
     echo ("<script> alert('Duplicate ID') </script>");
