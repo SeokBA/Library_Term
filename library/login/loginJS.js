@@ -8,7 +8,7 @@ function signIn() {
         return;
     }
     let xhttp = new XMLHttpRequest();
-    xhttp.open("GET", loginStr+"loadPW.php?id=" + id, true);
+    xhttp.open("GET", loginStr+"chkPW.php?id=" + id, true);
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
@@ -38,7 +38,8 @@ function signUp() {
     let email = document.getElementById("emailSignUpBox");
     let phone = document.getElementById("phoneSignUpBox");
     let classification = document.getElementById("classificationSignUpBox");
-    alert("jo");
+
+    let xhttp = new XMLHttpRequest();
     xhttp.open("GET", loginStr + "signUp.php?" +
         "id=" + id
         + "&pw=" + pw
