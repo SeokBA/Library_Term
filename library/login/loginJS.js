@@ -27,38 +27,38 @@ function signIn() {
     };
 }
 
-function signUp() {
-    let id = document.getElementById("idSignUpBox");
-    let pw = document.getElementById("pwSignUpBox");
-    let name = document.getElementById("nameSignUpBox");
-    let email = document.getElementById("emailSignUpBox");
-    let phone = document.getElementById("phoneSignUpBox");
-    let classification = document.getElementById("classificationSignUpBox");
-
-    let xhttp = new XMLHttpRequest();
-    xhttp.open("GET", loginStr + "checkID.php?id=" + id, true);
-    xhttp.send();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            let chk = this.responseText;
-            if (chk === 1) {
-                let xhttp = new XMLHttpRequest();
-                xhttp.open("GET", loginStr + "signUp.php?" +
-                    "id=" + id
-                    + "pw=" + pw
-                    + "name=" + name
-                    + "email=" + email
-                    + "phone=" + phone
-                    + "classification=" + classification, true);
-                xhttp.send();
-                alert("complete");
-                location.reload();
-                cancelSignUp();
-            } else
-                alert("중복된 아이디입니다.");
-        }
-    };
-}
+// function signUp() {
+//     let id = document.getElementById("idSignUpBox");
+//     let pw = document.getElementById("pwSignUpBox");
+//     let name = document.getElementById("nameSignUpBox");
+//     let email = document.getElementById("emailSignUpBox");
+//     let phone = document.getElementById("phoneSignUpBox");
+//     let classification = document.getElementById("classificationSignUpBox");
+//
+//     let xhttp = new XMLHttpRequest();
+//     xhttp.open("GET", loginStr + "checkID.php?id=" + id, true);
+//     xhttp.send();
+//     xhttp.onreadystatechange = function () {
+//         if (this.readyState === 4 && this.status === 200) {
+//             let chk = this.responseText;
+//             if (chk === 1) {
+//                 let xhttp = new XMLHttpRequest();
+//                 xhttp.open("GET", loginStr + "signUp.php?" +
+//                     "id=" + id
+//                     + "pw=" + pw
+//                     + "name=" + name
+//                     + "email=" + email
+//                     + "phone=" + phone
+//                     + "classification=" + classification, true);
+//                 xhttp.send();
+//                 alert("complete");
+//                 location.reload();
+//                 cancelSignUp();
+//             } else
+//                 alert("중복된 아이디입니다.");
+//         }
+//     };
+// }
 
 function initSignUp() {
     document.getElementById("idSignUpBox").value = "";
