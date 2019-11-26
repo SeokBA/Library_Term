@@ -12,7 +12,7 @@ $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($result);
 var_dump($result->num_rows);
 echo "<h1>hi</h1>";
-echo "<h2>$result</h2>";
+echo "<h2>$result['num_rows']</h2>";
 echo "<h3>$row</h3>";
 
 //$sql = "INSERT INTO 'LB_DB'.'User_Account' ('id', 'password', 'name', 'email', 'phone', 'classification') VALUES ('{$id}', '{$pw}', '{$name}', '{$email}', '{$phone}', '{$classification}');";
