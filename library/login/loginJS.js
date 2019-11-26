@@ -59,7 +59,7 @@ function signUp() {
         return;
     }
 
-    if(phone === "" || phone.match(/^[0-9]{3}[-]+[0-9]{4}[-]+[0-9]{4}$/) == null){
+    if(phone === "" || phone.match(/^[0-9][0-9]?([0-9])-[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$/) == null){
         alert("Incorrect your Phone Number");
         return;
     }
