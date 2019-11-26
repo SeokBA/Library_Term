@@ -2,7 +2,7 @@ let loginStr = "http://112.166.141.161/library/login/";
 
 function initLoad() {
     let xhttp = new XMLHttpRequest();
-    xhttp.open("GET", loginStr + "initLogin.php?", true);
+    xhttp.open("GET", "http://112.166.141.161/library/login/initLogin.php?", true);
     xhttp.send();
 }
 
@@ -14,7 +14,7 @@ function signIn() {
         return;
     }
     let xhttp = new XMLHttpRequest();
-    xhttp.open("GET", loginStr + "loadPW.php?id=" + id, true);
+    xhttp.open("GET", "http://112.166.141.161/library/login/loadPW.php?id=" + id, true);
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
