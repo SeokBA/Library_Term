@@ -38,7 +38,7 @@ function signUp() {
     let email = document.getElementById("emailSignUpBox");
     let phone = document.getElementById("phoneSignUpBox");
     let classification = document.getElementById("classificationSignUpBox");
-
+    alert("jo");
     xhttp.open("GET", loginStr + "signUp.php?" +
         "id=" + id
         + "&pw=" + pw
