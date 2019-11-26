@@ -31,6 +31,34 @@ function initSignUp() {
     document.getElementById("signUpModal").style.display = "block";
 }
 
+function signUp() {
+    let id = document.getElementById("idSignUpBox");
+    let pw = document.getElementById("pwSignUpBox");
+    let name = document.getElementById("nameSignUpBox");
+    let email = document.getElementById("emailSignUpBox");
+    let phone = document.getElementById("phoneSignUpBox");
+    let classification = document.getElementById("classificationSignUpBox");
+
+    xhttp.open("GET", loginStr + "signUp.php?" +
+        "id=" + id
+        + "pw=" + pw
+        + "name=" + name
+        + "email=" + email
+        + "phone=" + phone
+        + "classification=" + classification, true);
+    xhttp.send();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            let chk = this.responseText;
+            if (chk === 1) {
+                alert("complete");
+                closeSignUp();
+            } else
+                alert("Duplication ID");
+        }
+    };
+}
+
 function closeSignUp() {
     document.getElementById("signUpModal").style.display = "none";
 }
