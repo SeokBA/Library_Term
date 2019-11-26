@@ -54,12 +54,12 @@ function signUp() {
         return;
     }
 
-    if(email === "" || email.match(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i)){
+    if(email === "" || email.match(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i) == null){
         alert("Incorrect your E-mail");
         return;
     }
 
-    if(phone === "" || phone.match(/^[0-9]{3}[-]+[0-9]{4}[-]+[0-9]{4}$/)){
+    if(phone === "" || phone.match(/^[0-9]{3}[-]+[0-9]{4}[-]+[0-9]{4}$/) == null){
         alert("Incorrect your Phone Number");
         return;
     }
