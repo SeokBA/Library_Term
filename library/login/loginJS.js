@@ -14,7 +14,7 @@ function signIn() {
         if (this.readyState === 4 && this.status === 200) {
             let dataPW = this.responseText;
             if (pw === dataPW) { // 비밀번호가 매칭이 되었을 경우
-                location.href="/library/main/todoList.html";
+                location.href="/library/main/libraryMain.html";
             } else // 매칭되지 않았을 경우
                 alert("Incorrect username or password");
         }
