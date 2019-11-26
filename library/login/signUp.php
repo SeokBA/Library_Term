@@ -11,9 +11,9 @@ $sql = "SELECT * FROM User_Account WHERE id = '{$id}';";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($result);
 if($result->num_rows == 1)
-    echo "<script>alert('Duplicate ID')</script>";
+    echo 0;
 else {
     $sql = "INSERT INTO 'LB_DB'.'User_Account' ('id', 'password', 'name', 'email', 'phone', 'classification') VALUES ('{$id}', '{$pw}', '{$name}', '{$email}', '{$phone}', '{$classification}');";
     $result = mysqli_query($conn, $sql);
-    echo "<script> alert('Done') </script>";
+    echo 1;
 }

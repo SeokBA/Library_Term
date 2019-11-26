@@ -50,7 +50,7 @@ function signUp() {
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             let chk = this.responseText;
-            if (chk === 1) {
+            if (chk === "1") {
                 alert("complete");
                 closeSignUp();
             } else
