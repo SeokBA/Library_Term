@@ -44,27 +44,27 @@ function signUp() {
         return;
     }
 
-    if(pw === ""){
+    else if(pw === ""){
         alert("Enter your Password");
         return;
     }
 
-    if(name === ""){
+    else if(name === ""){
         alert("Enter your Name");
         return;
     }
 
-    if(email === "" || email.match(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i) == null){
+    else if(email === "" || email.match(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i) == null){
         alert("Incorrect your E-mail");
         return;
     }
 
-    if(phone === "" || phone.match(/^[0-9][0-9]?([0-9])-[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$/) == null){
+    else if(phone === "" || phone.match(/^[0-9][0-9]?([0-9])-[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$/) == null){
         alert("Incorrect your Phone Number");
         return;
     }
 
-    if(classification === "" || !(classification.match("학부") || classification.match("대학원") || classification.match("교직원"))){
+    else if(classification === "" || !(classification.match("학부") || classification.match("대학원") || classification.match("교직원"))){
         alert("Incorrect your Classification");
         return;
     }
