@@ -40,12 +40,12 @@ function signUp() {
     let classification = document.getElementById("classificationSignUpBox");
 
     xhttp.open("GET", loginStr + "signUp.php?" +
-        "id=" + id
-        + "pw=" + pw
-        + "name=" + name
-        + "email=" + email
-        + "phone=" + phone
-        + "classification=" + classification, true);
+        "&id=" + id
+        + "&pw=" + pw
+        + "&name=" + name
+        + "&email=" + email
+        + "&phone=" + phone
+        + "&classification=" + classification, true);
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
