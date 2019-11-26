@@ -1,11 +1,5 @@
 let loginStr = "http://112.166.141.161/library/login/";
 
-function initLoad() {
-    let xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "http://112.166.141.161/library/login/initLogin.php?", true);
-    xhttp.send();
-}
-
 function signIn() {
     let id = document.getElementById("idTextBox").value;
     let pw = document.getElementById("pwTextBox").value;
@@ -27,39 +21,6 @@ function signIn() {
     };
 }
 
-// function signUp() {
-//     let id = document.getElementById("idSignUpBox");
-//     let pw = document.getElementById("pwSignUpBox");
-//     let name = document.getElementById("nameSignUpBox");
-//     let email = document.getElementById("emailSignUpBox");
-//     let phone = document.getElementById("phoneSignUpBox");
-//     let classification = document.getElementById("classificationSignUpBox");
-//
-//     let xhttp = new XMLHttpRequest();
-//     xhttp.open("GET", loginStr + "checkID.php?id=" + id, true);
-//     xhttp.send();
-//     xhttp.onreadystatechange = function () {
-//         if (this.readyState === 4 && this.status === 200) {
-//             let chk = this.responseText;
-//             if (chk === 1) {
-//                 let xhttp = new XMLHttpRequest();
-//                 xhttp.open("GET", loginStr + "signUp.php?" +
-//                     "id=" + id
-//                     + "pw=" + pw
-//                     + "name=" + name
-//                     + "email=" + email
-//                     + "phone=" + phone
-//                     + "classification=" + classification, true);
-//                 xhttp.send();
-//                 alert("complete");
-//                 location.reload();
-//                 cancelSignUp();
-//             } else
-//                 alert("중복된 아이디입니다.");
-//         }
-//     };
-// }
-
 function initSignUp() {
     document.getElementById("idSignUpBox").value = "";
     document.getElementById("pwSignUpBox").value = "";
@@ -70,13 +31,11 @@ function initSignUp() {
     document.getElementById("signUpModal").style.display = "block";
 }
 
-function cancelSignUp() {
+function closeSignUp() {
     document.getElementById("signUpModal").style.display = "none";
 }
 
 window.onclick = function (event) {
     if (event.target === document.getElementById("signUpModal"))
-        cancelSignUp();
+        closeSignUp();
 };
-
-initLoad();
