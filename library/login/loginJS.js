@@ -32,12 +32,12 @@ function initSignUp() {
 }
 
 function signUp() {
-    let id = document.getElementById("idSignUpBox");
-    let pw = document.getElementById("pwSignUpBox");
-    let name = document.getElementById("nameSignUpBox");
-    let email = document.getElementById("emailSignUpBox");
-    let phone = document.getElementById("phoneSignUpBox");
-    let classification = document.getElementById("classificationSignUpBox");
+    let id = document.getElementById("idSignUpBox").value;
+    let pw = document.getElementById("pwSignUpBox").value;
+    let name = document.getElementById("nameSignUpBox").value;
+    let email = document.getElementById("emailSignUpBox").value;
+    let phone = document.getElementById("phoneSignUpBox").value;
+    let classification = document.getElementById("classificationSignUpBox").value;
 
     let xhttp = new XMLHttpRequest();
     xhttp.open("GET", loginStr + "signUp.php?" +
