@@ -8,7 +8,7 @@ function signIn() {
         return;
     }
     let xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "http://112.166.141.161/library/login/loadPW.php?id=" + id, true);
+    xhttp.open("GET", loginStr+"loadPW.php?id=" + id, true);
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
@@ -16,7 +16,7 @@ function signIn() {
             if (pw === dataPW) { // 비밀번호가 매칭이 되었을 경우
                 location.href="/library/main/todoList.html";
             } else // 매칭되지 않았을 경우
-                alert(("Incorrect username or password"));
+                alert("Incorrect username or password");
         }
     };
 }
