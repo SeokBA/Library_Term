@@ -40,7 +40,7 @@ function signUp() {
     let classification = document.getElementById("classificationSignUpBox");
 
     xhttp.open("GET", loginStr + "signUp.php?" +
-        "&id=" + id
+        "id=" + id
         + "&pw=" + pw
         + "&name=" + name
         + "&email=" + email
