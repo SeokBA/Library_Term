@@ -1,31 +1,37 @@
-var Borrowlist = document.getElementById("borrowList");
-var Searchbook = document.getElementById("searchBook");
-var Reservebook = document.getElementById("reserveBook");
+var bookList = document.getElementById("bookList");
+var returnbook = document.getElementById("returnBook");
+var Manage = document.getElementById("Manage");
 
 function OnChange(){
-    if( event.target.id == "borrow" ){
-        Borrowlist.style.display = "block";
-        Searchbook.style.display = "none";
-        Reservebook.style.display ="none";
+    if( event.target.id == "bookList" ){
+        bookList.style.display = "block";
+        returnbook.style.display = "none";
+        Manage.style.display ="none";
     }
-    else if( event.target.id == "search"){
-        Borrowlist.style.display = "none";
-        Searchbook.style.display = "block";
-        Reservebook.style.display ="none";
+    else if( event.target.id == "returnBook"){
+        bookList.style.display = "none";
+        returnbook.style.display = "block";
+        Manage.style.display ="none";
     }
-    else if(event.target.id == "reserve"){
-        Borrowlist.style.display = "none";
-        Searchbook.style.display = "none";
-        Reservebook.style.display ="block";
+    else if(event.target.id == "Manage"){
+        bookList.style.display = "none";
+        returnbook.style.display = "none";
+        Manage.style.display ="block";
     }
 }
 
-function clickModal() {
-    document.getElementById("infoModal").style.display = "block";
-
+function clickRegister() {
+    document.getElementById("registerModal").style.display = "block";
 }
 
-function closeModal() {
-    document.getElementById("infoModal").style.display = "none";
+function clickModify() {
+    document.getElementById("modifyModal").style.display = "block";
+}
 
+function closeRegister() {
+    document.getElementById("registerModal").style.display = "none";
+}
+
+function closeModify() {
+    document.getElementById("modifyModal").style.display = "none";
 }

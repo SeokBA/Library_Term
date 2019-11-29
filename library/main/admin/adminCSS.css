@@ -32,14 +32,14 @@ caption{
     font-weight: bold;
 }
 
-#borrowList{
+#bookList{
     display: block;
 }
-#searchBook{
+#returnBook{
     display: none;
 }
 
-#reserveBook{
+#Manage{
     display: none;
 }
 
