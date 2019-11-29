@@ -15,9 +15,9 @@ function signIn() {
             let dataPW = this.responseText;
             if (pw === dataPW) { // 비밀번호가 매칭이 되었을 경우
                 if(id === "admin") // 관리자
-                    location.href="../main/admin/adminPage.php";
+                    location.href="../main/admin/adminPage.php?id="+id;
                 else // 사용
-                    location.href="../main/user/userPage.php";
+                    location.href="../main/user/userPage.php?id="+id;
             } else // 매칭되지 않았을 경우
                 alert("Incorrect username or password");
         }
