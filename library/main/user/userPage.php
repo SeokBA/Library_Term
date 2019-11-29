@@ -10,7 +10,11 @@
 
 <div>
     <h1 align="center">User Main Page</h1>
-    <p align="right">id ~~~~<input type="button" value="정보수정" onclick="clickModal()"> </p>
+    <?php
+    session_start();
+    $_SESSION['id'] = $_REQUEST['id'];
+    echo "<p align='right'>{$_SESSION['id']}<input type='button' value='정보수정' onclick='clickModal'()> </p>";
+    ?>
 </div>
 <div class = "sidebar" style="width:13%">
     <input type="button" class = "bar-item" value ="대출목록" id ="borrow" onclick="OnChange()">
