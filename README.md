@@ -15,3 +15,5 @@ You can use that this site : "http://112.166.141.161"
   - 김석호 :  
     * adminPage를 위한 php 파일 추가
     * enter로 login 기능 추가
+  - 배재홍 :  
+    * adminPage 추가
