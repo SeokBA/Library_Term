@@ -28,6 +28,17 @@
         <tr>
             <td width="40%">책 이름</td> <td width="25%">예약일</td> <td width="25%"> 반납일 </td> <td width="10%"> 반납 </td>
         </tr>
+	    <?php
+		$db_conn = mysqli_connect( '112.166.141.161', 'root', 'kylin1q2w3e4r', 'LB_DB');
+		$db_sql = "SELECT * FROM Borrow_Information WHERE id = \"". $_SESSION['id'] ."\";";
+		$db_result = mysqli_query( $db_conn, $db_sql );
+		while( $db_row = mysqli_fetch_array( $db_result) ){
+			$book_sql = "SELECT * FROM Book_Information where ISBN = (select ISBN from Book_Statement where book_id = ". $db_row['book_id'] .");" ;
+			$book_result = mysqli_query( $db_conn, $book_sql);
+			$book_row = mysqli_fetch_array( $book_result);
+			echo "<tr> <td>". $book_row[ 'name'] ."</td><td>".$db_row['start_date']."</td><td>".$db_row['end_date']."</td><td>반납</td>"; #반납여부 고치기
+		}
+	    ?>
     </table>
 </div>
 
