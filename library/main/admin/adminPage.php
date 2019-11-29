@@ -13,7 +13,7 @@
     <?php
     session_start();
     $_SESSION['id'] = $_REQUEST['id'];
-    echo "<p align='right'>{$_SESSION['id']}<input type='button' value='정보수정' onclick='clickModal'()> </p>";
+    echo "<p align='right'>id : {$_SESSION['id']} <input type='button' value='정보수정' onclick='clickModal'()> </p>";
     ?>
 </div>
 <div class = "sidebar" style="width:13%">

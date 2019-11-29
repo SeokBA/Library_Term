@@ -11,8 +11,8 @@
 </head>
 <body>
     <form method="get">
-        <p>ID <input type="text" id="idTextBox" name="idTextBox"></p>
-        <p>Password <input type="password" id="pwTextBox" name="pwTextBox"></p>
+        <p>ID <input type="text" id="idTextBox" name="idTextBox" onkeydown="enterKeyDown(event)"></p>
+        <p>Password <input type="password" id="pwTextBox" name="pwTextBox" onkeydown="enterKeyDown(event)"></p>
         <input type="button" value="Sign In" onclick="signIn()">
         <input type="button" value="Sign Up" onclick="initSignUp()">
     </form>

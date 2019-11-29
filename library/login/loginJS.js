@@ -101,3 +101,9 @@ window.onclick = function (event) {
     if (event.target === document.getElementById("signUpModal"))
         closeSignUp();
 };
+
+function enterKeyDown(e){
+    if(e.keyCode === 13){
+        signIn();
+    }
+}
