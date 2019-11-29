@@ -102,8 +102,8 @@ window.onclick = function (event) {
         closeSignUp();
 };
 
-function enterKeyDown(e){
-    if(e.keyCode === 13){
+function enterKeyDown(event){
+    if(event.keyCode === 13){
         signIn();
     }
 }
