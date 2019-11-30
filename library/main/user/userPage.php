@@ -31,36 +31,24 @@
 </div>
 
 <div id="borrowList" style="margin-left:15%">
-    <table>
+    <table id ="borrowTable">
         <caption align="center"> 대출 목록 </caption>
         <tr>
             <td width="10%">책 번호 </td><td width="30%">책 이름</td> <td width="25%">예약일</td> <td width="25%"> 반납일 </td> <td width="10%"> 반납 </td>
         </tr>
 	    <?php
-	#	$db_conn = mysqli_connect( '112.166.141.161', 'root', 'kylin1q2w3e4r', 'LB_DB');
-		$db_sql = "SELECT * FROM Borrow_Information WHERE id = \"". $_SESSION['id'] ."\";";
-		$db_result = mysqli_query( $db_conn, $db_sql );
+        #	$db_conn = mysqli_connect( '112.166.141.161', 'root', 'kylin1q2w3e4r', 'LB_DB');
+        $db_sql = "SELECT * FROM Borrow_Information WHERE id = \"". $_SESSION['id'] ."\";";
+        $db_result = mysqli_query( $db_conn, $db_sql );
 
-		while( $db_row = mysqli_fetch_array( $db_result) ){
-			$book_sql = "SELECT * FROM Book_Information where ISBN = (select ISBN from Book_Statement where book_id = ". $db_row['book_id'] .");" ;
-			$book_result = mysqli_query( $db_conn, $book_sql);
-			$book_row = mysqli_fetch_array( $book_result);
-			echo "<tr> <td>".$db_row['book_id'] ."</td> <td>". $book_row[ 'name'] ."</td><td>".$db_row['start_date']."</td><td>".$db_row['end_date']."</td><td>반납</td>"; #반납시 onclick으로 호출하는부분
-		}
+        while( $db_row = mysqli_fetch_array( $db_result) ){
+            $book_sql = "SELECT * FROM Book_Information where ISBN = (select ISBN from Book_Statement where book_id = ". $db_row['book_id'] .");" ;
+            $book_result = mysqli_query( $db_conn, $book_sql);
+            $book_row = mysqli_fetch_array( $book_result);
+            echo "<tr> <td>".$db_row['book_id'] ."</td> <td>". $book_row[ 'name'] ."</td><td>".$db_row['start_date']."</td><td>".$db_row['end_date']."</td><td onclick='returnRequest()'>반납</td>"; #반납시 onclick으로 호출하는부분
+        }
 	    ?>
-		<?php
-			$db_sql = "delete from Borrow_information where book_id = ". 2 ."order by reservation_date asc limit 1;";
-			#$db_result = mysqli_query( $db_conn, $db_sql);	
-			$db_sql = "select id from Reservation_Information where book_id = ". 2 ." order by reservation_date asc limit 1;"; #book_id 가져오기
-			$db_result = mysqli_query( $db_conn, $db_sql );
-			if(  mysqli_num_rows($db_result) != 0 ){
-				$reservation_id = mysqli_fetch_array($db_result)[0];
-			 	$db_sql = "delete from Reservation_information where book_id = ". 2 ."order by reservation_date asc limit 1;";
-				#$db_result = mysqli_query( $db_conn, $db_sql); 	
-				#$db_sql = "insert into Borrow_Information ( id, book_id, start_date, end_date ) VALUES(\"". $reservation_id ."\" ,\"". 2 . "\" ,from_unixtime(unix_timestamp()), from_unixtime(unix_timestamp() + 864000 ))" ;
-	
-			}
-		?>
+
 
     </table>
 </div>
@@ -76,16 +64,16 @@
 </div>
 
 <div id ="searchBook" style="margin-left: 15%">
-    <form>
-        <p>ISBN: <input type="text"> </p>
-        <p>도서이름: <input type="text"> </p>
-        <p> <input type="button" value="검색"></p>
-    </form>
-    <table>
-        <caption align="center"> 검색 결과 </caption>
-        <tr>
-            <td width="30%">ISBN </td> <td width="30%"> 책 제목 </td>
-            <td width="15%"> 작가</td> <td width="10%"> 출판사</td>
+                <form>
+                    <p>ISBN: <input type="text"> </p>
+                    <p>도서이름: <input type="text"> </p>
+                    <p> <input type="button" value="검색"></p>
+                </form>
+                <table>
+                    <caption align="center"> 검색 결과 </caption>
+                    <tr>
+                        <td width="30%">ISBN </td> <td width="30%"> 책 제목 </td>
+                        <td width="15%"> 작가</td> <td width="10%"> 출판사</td>
             <td width="10%"> 대출 여부</td> <td width="5%">예약</td>
         </tr>
     </table>

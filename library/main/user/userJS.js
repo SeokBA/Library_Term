@@ -22,10 +22,26 @@ function OnChange(){
 
 function clickModal() {
     document.getElementById("infoModal").style.display = "block";
-
 }
 
 function closeModal() {
     document.getElementById("infoModal").style.display = "none";
+}
 
+function returnRequest() {
+    var tr = document.getElementById(event.target.id).parentElement;
+    var bookId = tr.childNodes[0].text; // 책 번호
+    document.getElementById("borrowTable").removeChild(tr);
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "returnBook.php?"+"bookId="+bookId, true);
+    xhttp.send();
+
+    xhttp.onreadystatechange = function () {
+        if(this.readyState === 4 && this.status === 200){
+            let chk = this.responseText;
+            if(chk === "1"){
+                alert("complete")
+            }
+        }
+    }
 }
