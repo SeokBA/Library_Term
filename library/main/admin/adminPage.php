@@ -82,10 +82,12 @@
 </div>
 
 <div id="userManage" style="margin-left:15%">
-    <caption align="center">회원관리</caption>
     <table>
-        <caption align="left">Admin</caption>
+        <caption align="center">회원관리</caption>
         <thead>
+        <tr>
+            <td colspan="9">Admin</td>
+        </tr>
         <tr>
             <td width="15%">ID</td>
             <td width="10%">Password</td>
@@ -122,8 +124,10 @@
     </table>
 
     <table>
-        <caption align="left">User</caption>
         <thead>
+        <tr>
+            <td colspan="9">User</td>
+        </tr>
         <tr>
             <td width="15%">ID</td>
             <td width="10%">Password</td>
