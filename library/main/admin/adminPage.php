@@ -25,7 +25,7 @@
 <div id="bookList" style="margin-left:15%">
     <input type="button" value="등록" onclick="clickRegister()">
     <table>
-        <caption align="center"> 도서 목록</caption>
+        <caption align="center">도서 목록</caption>
         <thead>
         <tr>
             <td width="40%">책 이름</td>
@@ -86,13 +86,13 @@
         <caption align="center">회원관리</caption>
         <thead>
         <tr>
-            <th colspan="9">Admin</th>
+            <th colspan="9" width="auto">Admin</th>
         </tr>
         <tr>
             <th width="15%">ID</th>
             <th width="10%">Password</th>
             <th width="15%">Name</th>
-            <th width="20%">E-Mail</th>
+            <th width="20%" colspan="2">E-Mail</th>
             <th width="15%">Phone-Number</th>
             <th width="10%">Classification</th>
             <th width="5%">Total Borrow</th>
@@ -111,12 +111,12 @@
                     <td>{$userRow['id']}</td>
                     <td>{$userRow['password']}</td>
                     <td>{$userRow['name']}</td>
-                    <td>{$userRow['email']}</td>
+                    <td colspan='2'>{$userRow['email']}</td>
                     <td>{$userRow['phone']}</td>
                     <td>{$userRow['classification']}</td>
                     <td>{$userRow['total_borrow']}</td>
                     <td class='button-td'><input type='button' value='수정'></td>
-                    <td class='button-td'><input type='button' value='탈퇴'></td>
+                    <td></td>
                 </tr>";
         }
         ?>
@@ -126,13 +126,13 @@
     <table>
         <thead>
         <tr>
-            <th colspan="9">User</th>
+            <th colspan="9" width="auto">User</th>
         </tr>
         <tr>
             <th width="15%">ID</th>
             <th width="10%">Password</th>
             <th width="15%">Name</th>
-            <th width="20%">E-Mail</th>
+            <th width="20%" colspan="2">E-Mail</th>
             <th width="15%">Phone-Number</th>
             <th width="10%">Classification</th>
             <th width="5%">Total Borrow</th>
@@ -151,12 +151,12 @@
                     <td>{$userRow['id']}</td>
                     <td>{$userRow['password']}</td>
                     <td>{$userRow['name']}</td>
-                    <td>{$userRow['email']}</td>
+                    <td colspan='2'>{$userRow['email']}</td>
                     <td>{$userRow['phone']}</td>
                     <td>{$userRow['classification']}</td>
                     <td>{$userRow['total_borrow']}</td>
                     <td class='button-td'><input type='button' value='수정'></td>
-                    <td class='button-td'><input type='button' value='탈퇴'></td>
+                    <td class='button-td'><input type='button' value='탈퇴' onclick='clickWithdraw()'></td>
                 </tr>";
         }
         ?>
@@ -167,10 +167,10 @@
 
 <div id="registerModal" class="modal">
     <form id='registerContent' class="modal-content" method="get">
-        <p> 제목 <input type="text" id="title"></p>
-        <p> ISBN <input type="text" id="ISBN"></p>
-        <p> 저자 <input type="text" id="author"></p>
-        <p> 출판사 <input type="text" id="publisher"></p>
+        <p>제목<input type="text" id="title"></p>
+        <p>ISBN<input type="text" id="ISBN"></p>
+        <p>저자<input type="text" id="author"></p>
+        <p>출판사<input type="text" id="publisher"></p>
         <input type="button" value="Done" onclick="clickRegister()">
         <input type="button" value="Cancel" onclick="closeRegister()">
     </form>
@@ -178,10 +178,10 @@
 
 <div id="modifyBook" class="modal">
     <form id='Book' class="modal-content" method="get">
-        <p> 제목 <input type="text" id="title"></p>
-        <p> ISBN <input type="text" id="ISBN"></p>
-        <p> 저자 <input type="text" id="author"></p>
-        <p> 출판사 <input type="text" id="publisher"></p>
+        <p>제목<input type="text" id="title"></p>
+        <p>ISBN<input type="text" id="ISBN"></p>
+        <p>저자<input type="text" id="author"></p>
+        <p>출판사<input type="text" id="publisher"></p>
         <input type="button" value="Done" onclick="clickBook()">
         <input type="button" value="Cancel" onclick="closeBook()">
     </form>
@@ -190,10 +190,10 @@
 <div id="borrowRank" class="modal">
     <div id="Rank" class="modal-content">
         <table>
-            <caption class="modal-caption" align="center"> 대출 TOP 10</caption>
+            <caption class="modal-caption" align="center">대출 TOP 10</caption>
             <tr>
-                <td> 이름</td>
-                <td> 대출 수</td>
+                <td>이름</td>
+                <td>대출 수</td>
             </tr>
         </table>
         <input type="button" value="Close" onclick="closeRank()">
@@ -203,11 +203,11 @@
 
 <div id="modifyUser" class="modal">
     <form id="User" class="modal-content" method="get">
-        <p> ID <input type="text" id="userID"></p>
-        <p> password <input type="text" id="modifypassword" placeholder="modify pw" required></p>
-        <p> Name <input type="text" id="modifyName" placeholder="modify id" required></p>
-        <p> E-Mail <input type="email" id="modifyEmail" placeholder="modify email" required></p>
-        <p> Phone Number<input type="text" id="modifyPhone" placeholder="modify phone" required></p>
+        <p>ID<input type="text" id="userID"></p>
+        <p>password<input type="text" id="modifypassword" placeholder="modify pw" required></p>
+        <p>Name<input type="text" id="modifyName" placeholder="modify id" required></p>
+        <p>E-Mail<input type="email" id="modifyEmail" placeholder="modify email" required></p>
+        <p>Phone Number<input type="text" id="modifyPhone" placeholder="modify phone" required></p>
         <input type="button" value="sumbit">
         <input type="button" value="cancle" onclick="closeUser()">
     </form>
@@ -215,7 +215,7 @@
 
 <div id="withdrawUser" class="modal">
     <div id="withdraw" class="modal-content">
-        <p> 탈퇴 하겠습니까? </p>
+        <p>탈퇴 하겠습니까?</p>
         <input type="button" value="OK" id="withdraw">
         <input type="button" value="Cancle" onclick="closeWithdraw()">
     </div>
