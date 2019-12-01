@@ -2,6 +2,31 @@ var bookList = document.getElementById("bookList");
 var returnbook = document.getElementById("returnBook");
 var ManagePage = document.getElementById("ManagePage");
 
+function bookUpdate(name, isbn, author, publisher) {
+    // onclick='bookUpdate(\"" . $bookInformation['name'] . "\", \"" . $bookInformation['ISBN'] . "\", \"" . $bookInformation['author'] . "\", \"" . $bookInformation['publisher'] . "\");'
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("GET", loginStr + "updateBook.php?id=" + id, true);
+    xhttp.send();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            let data = this.responseText;
+        }
+    };
+}
+
+function bookRemove(bookId) {
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("GET", loginStr + "removeBook.php?book_idd=" + bookId, true);
+    xhttp.send();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            if (this.responseText === "1")
+                alert("Remove Complete");
+            else
+                alert("Remove Error");
+        }
+    };
+}
 function OnChange(){
     if( event.target.id == "booklist" ){
         bookList.style.display = "block";
