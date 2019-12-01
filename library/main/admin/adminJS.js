@@ -1,6 +1,17 @@
-var bookList = document.getElementById("bookList");
-var returnbook = document.getElementById("returnBook");
-var Manage = document.getElementById("Manage");
+let bookList = document.getElementById("bookList");
+let returnbook = document.getElementById("returnBook");
+let Manage = document.getElementById("Manage");
+
+
+
+
+
+
+
+
+
+
+
 
 function OnChange(){
     if( event.target.id == "bookList" ){
