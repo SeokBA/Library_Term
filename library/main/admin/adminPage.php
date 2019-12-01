@@ -43,6 +43,7 @@
         $rowNum = $result->num_rows;
         for ($i = 0; $i < $rowNum; $i += 1) {
             $isbn = $bookStateRow[$i];
+            echo "<p>hi{$isbn}hi</p>";
             $sql = "SELECT * FROM Book_Information WHERE ISBN = {$isbn};";
             $result = mysqli_query($_SESSION['conn'], $sql);
             $bookInformation = mysqli_fetch_array($result);
