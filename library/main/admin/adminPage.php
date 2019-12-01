@@ -82,8 +82,9 @@
 </div>
 
 <div id="userManage" style="margin-left:15%">
+    <caption align="center">회원관리</caption>
     <table>
-        <caption align="center"> 회원관리</caption>
+        <caption align="left">Admin</caption>
         <thead>
         <tr>
             <td width="15%">ID</td>
@@ -103,6 +104,7 @@
         $result = mysqli_query($_SESSION['conn'], $sql);
         $rowNum = $result->num_rows;
         while (($userRow = mysqli_fetch_array($result)) != null) {
+            if ($userRow['name'] == "admin")
             echo "<tr>
                     <td>{$userRow['id']}</td>
                     <td>{$userRow['password']}</td>
@@ -118,7 +120,45 @@
         ?>
         </tbody>
     </table>
-    <input type="button" id="rankUser" value="대출 TOP 10 회원 보기" onclick="clickRank()">
+
+    <table>
+        <caption align="left">User</caption>
+        <thead>
+        <tr>
+            <td width="15%">ID</td>
+            <td width="10%">Password</td>
+            <td width="15%">Name</td>
+            <td width="20%">E-Mail</td>
+            <td width="15%">Phone-Number</td>
+            <td width="10%">Classification</td>
+            <td width="5%">Total Borrow</td>
+            <td width="5%">수정</td>
+            <td width="5%">탈퇴</td>
+        </tr>
+        </thead>
+        <tbody>
+        <?php
+        $sql = "SELECT * FROM User_Account";
+        $result = mysqli_query($_SESSION['conn'], $sql);
+        $rowNum = $result->num_rows;
+        while (($userRow = mysqli_fetch_array($result)) != null) {
+            if ($userRow['name'] != "admin")
+                echo "<tr>
+                    <td>{$userRow['id']}</td>
+                    <td>{$userRow['password']}</td>
+                    <td>{$userRow['name']}</td>
+                    <td>{$userRow['email']}</td>
+                    <td>{$userRow['phone']}</td>
+                    <td>{$userRow['classification']}</td>
+                    <td>{$userRow['total_borrow']}</td>
+                    <td class='button-td'><input type='button' value='수정'></td>
+                    <td class='button-td'><input type='button' value='탈퇴'></td>
+                </tr>";
+        }
+        ?>
+        </tbody>
+    </table>
+    <input type="button" id="rankUser" value="대출 TOP 10 회원" onclick="clickRank()">
 </div>
 
 <div id="registerModal" class="modal">
