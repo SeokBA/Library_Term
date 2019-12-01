@@ -52,7 +52,7 @@
                     <td>{$bookInformation['author']}</td>
                     <td>{$bookInformation['publisher']}</td>
                     <td class='button-td'><input type='button' value='수정' onclick='bookUpdate({$bookInformation['name']}, {$bookInformation['ISBN']}, {$bookInformation['author']}, {$bookInformation['publisher']})'></td>
-                    <td class='button-td'><input type='button' value='삭' onclick='bookRemove({$bookStateRow['book_id']};)'></td>
+                    <td class='button-td'><input type='button' value='삭' onclick='bookRemove('{$bookStateRow['book_id']}')'></td>
                 </tr>";
         }
         ?>
