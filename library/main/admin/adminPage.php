@@ -28,12 +28,14 @@
     <table>
         <caption align="center"> 도서 목록</caption>
         <thead>
-        <td width="40%">책 이름</td>
-        <td width="25%">ISBN</td>
-        <td width="15%">저자</td>
-        <td width="10%">출판사</td>
-        <td width="5%">수정</td>
-        <td width="5%">삭제</td>
+        <tr>
+            <td width="40%">책 이름</td>
+            <td width="25%">ISBN</td>
+            <td width="15%">저자</td>
+            <td width="10%">출판사</td>
+            <td width="5%">수정</td>
+            <td width="5%">삭제</td>
+        </tr>
         </thead>
         <tbody>
         <?php
@@ -44,12 +46,14 @@
             $sql = "SELECT * FROM Book_Information WHERE ISBN = {$bookStateRow['ISBN']};";
             $bookInformation = mysqli_query($_SESSION['conn'], $sql);
             $bookInformation = mysqli_fetch_array($bookInformation);
-            echo "<td>{$bookInformation['name']}</td>
+            echo "<tr>
+                    <td>{$bookInformation['name']}</td>
                     <td>{$bookInformation['ISBN']}</td>
                     <td>{$bookInformation['author']}</td>
                     <td>{$bookInformation['publisher']}</td>
                     <td></td>
-                    <td></td>";
+                    <td></td>
+                </tr>";
         }
         ?>
         </tbody>
