@@ -41,6 +41,7 @@
         $result = mysqli_query($_SESSION['conn'], $sql);
         $bookStateRow = mysqli_fetch_array($result);
         $rowNum = $result->num_rows;
+        var_dump($bookStateRow);
         for ($i = 0; $i < $rowNum; $i += 1) {
             $isbn = $bookStateRow[$i];
             echo "<p>hi{$isbn}hi{$i}hi{$rowNum}</p>";
