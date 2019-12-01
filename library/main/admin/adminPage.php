@@ -92,7 +92,7 @@
             <th width="15%">ID</th>
             <th width="10%">Password</th>
             <th width="15%">Name</th>
-            <th width="20%" colspan="2">E-Mail</th>
+            <th width="20%">E-Mail</th>
             <th width="15%">Phone-Number</th>
             <th width="10%">Classification</th>
             <th width="5%">Total Borrow</th>
@@ -111,7 +111,7 @@
                     <td>{$userRow['id']}</td>
                     <td>{$userRow['password']}</td>
                     <td>{$userRow['name']}</td>
-                    <td colspan='2'>{$userRow['email']}</td>
+                    <td>{$userRow['email']}</td>
                     <td>{$userRow['phone']}</td>
                     <td>{$userRow['classification']}</td>
                     <td>{$userRow['total_borrow']}</td>
@@ -132,7 +132,7 @@
             <th width="15%">ID</th>
             <th width="10%">Password</th>
             <th width="15%">Name</th>
-            <th width="20%" colspan="2">E-Mail</th>
+            <th width="20%">E-Mail</th>
             <th width="15%">Phone-Number</th>
             <th width="10%">Classification</th>
             <th width="5%">Total Borrow</th>
@@ -151,7 +151,7 @@
                     <td>{$userRow['id']}</td>
                     <td>{$userRow['password']}</td>
                     <td>{$userRow['name']}</td>
-                    <td colspan='2'>{$userRow['email']}</td>
+                    <td>{$userRow['email']}</td>
                     <td>{$userRow['phone']}</td>
                     <td>{$userRow['classification']}</td>
                     <td>{$userRow['total_borrow']}</td>
