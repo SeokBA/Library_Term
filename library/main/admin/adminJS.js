@@ -3,6 +3,7 @@ let returnbook = document.getElementById("returnBook");
 let Manage = document.getElementById("Manage");
 
 function bookUpdate(name, isbn, author, publisher){
+    alert("hello");
     alert(name);
     alert(isbn);
     alert(author);
