@@ -30,15 +30,15 @@ function bookRemove(bookId) {
 
 
 function OnChange() {
-    if (event.target.id == "bookList") {
+    if (event.target.id === "bookList") {
         bookList.style.display = "block";
         returnbook.style.display = "none";
         Manage.style.display = "none";
-    } else if (event.target.id == "returnBook") {
+    } else if (event.target.id === "returnBook") {
         bookList.style.display = "none";
         returnbook.style.display = "block";
         Manage.style.display = "none";
-    } else if (event.target.id == "Manage") {
+    } else if (event.target.id === "Manage") {
         bookList.style.display = "none";
         returnbook.style.display = "none";
         Manage.style.display = "block";
