@@ -16,11 +16,12 @@
     $_SESSION['conn'] = mysqli_connect('112.166.141.161', 'root', 'kylin1q2w3e4r', 'LB_DB');
     echo "<p align='right'>id : {$_SESSION['id']} <input type='button' value='정보수정' onclick='clickModal'()> </p>";
     ?>
-    <?php$sql = "SELECT * FROM Book_Statement WHERE reservation_chk = 0";
+    <?php
+    $sql = "SELECT * FROM Book_Statement WHERE reservation_chk = 0";
     $result = mysqli_query($_SESSION['conn'], $sql);
     $bookStateRow = mysqli_fetch_array($result);
     $rowNum = $result->num_rows;
-    echo "<p>hi{$rowNum}hi</p>"
+    echo "<p>hi{$rowNum}hi</p>";
     ?>
 </div>
 <div class="sidebar" style="width:13%">
