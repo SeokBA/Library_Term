@@ -2,41 +2,46 @@ let bookList = document.getElementById("bookList");
 let returnbook = document.getElementById("returnBook");
 let Manage = document.getElementById("Manage");
 
-function bookUpdate(name, isbn, author, publisher){
-    alert("hello");
-    alert(name);
-    alert(isbn);
-    alert(author);
-    alert(publisher);
+function bookUpdate(name, isbn, author, publisher) {
+    // onclick='bookUpdate(\"" . $bookInformation['name'] . "\", \"" . $bookInformation['ISBN'] . "\", \"" . $bookInformation['author'] . "\", \"" . $bookInformation['publisher'] . "\");'
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("GET", loginStr + "updateBook.php?id=" + id, true);
+    xhttp.send();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            let data = this.responseText;
+        }
+    };
 }
 
 function bookRemove(bookId) {
-    alert("hi");
-    alert(bookId);
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("GET", loginStr + "removeBook.php?book_idd=" + bookId, true);
+    xhttp.send();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            if (this.responseText === "1")
+                alert("Remove Complete");
+            else
+                alert("Remove Error");
+        }
+    };
 }
 
 
-
-
-
-
-
-
-function OnChange(){
-    if( event.target.id == "bookList" ){
+function OnChange() {
+    if (event.target.id == "bookList") {
         bookList.style.display = "block";
         returnbook.style.display = "none";
-        Manage.style.display ="none";
-    }
-    else if( event.target.id == "returnBook"){
+        Manage.style.display = "none";
+    } else if (event.target.id == "returnBook") {
         bookList.style.display = "none";
         returnbook.style.display = "block";
-        Manage.style.display ="none";
-    }
-    else if(event.target.id == "Manage"){
+        Manage.style.display = "none";
+    } else if (event.target.id == "Manage") {
         bookList.style.display = "none";
         returnbook.style.display = "none";
-        Manage.style.display ="block";
+        Manage.style.display = "block";
     }
 }
 
