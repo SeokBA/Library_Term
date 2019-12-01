@@ -33,8 +33,8 @@
             <td width="25%">ISBN</td>
             <td width="15%">저자</td>
             <td width="10%">출판사</td>
-            <td width="5%">수정</td>
-            <td width="5%">삭제</td>
+            <td >수정</td>
+            <td >삭제</td>
         </tr>
         </thead>
         <tbody>
