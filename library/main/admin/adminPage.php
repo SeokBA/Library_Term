@@ -52,7 +52,7 @@
                     <td>{$bookInformation['author']}</td>
                     <td>{$bookInformation['publisher']}</td>
                     <td class='button-td'><input type='button' value='수정' onclick='bookUpdate(" . $bookInformation['name'] . ", " . $bookInformation['ISBN'] . ", " . $bookInformation['author'] . ", " . $bookInformation['publisher'] . ")' ></td >
-                    <td class='button - td'><input type='button' value='삭제' onclick='bookRemove()' ></td >
+                    <td class='button - td'><input type='button' value='삭제' onclick='bookRemove();'></td >
                 </tr > ";
         }
         ?>
@@ -106,8 +106,6 @@
         <input type="button" value="Cancel" onclick="closeModify()">
     </form>
 </div>
-
-
-<script src="adminJS . js"></script>
+<script src="adminJS.js"></script>
 </body>
 </html>
