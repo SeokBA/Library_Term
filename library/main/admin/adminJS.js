@@ -1,22 +1,22 @@
 var bookList = document.getElementById("bookList");
 var returnbook = document.getElementById("returnBook");
-var Manage = document.getElementById("Manage");
+var ManagePage = document.getElementById("ManagePage");
 
 function OnChange(){
     if( event.target.id == "booklist" ){
         bookList.style.display = "block";
         returnbook.style.display = "none";
-        Manage.style.display ="none";
+        ManagePage.style.display ="none";
     }
     else if( event.target.id == "returnbook"){
         bookList.style.display = "none";
         returnbook.style.display = "block";
-        Manage.style.display ="none";
+        ManagePage.style.display ="none";
     }
     else if(event.target.id == "manage"){
         bookList.style.display = "none";
         returnbook.style.display = "none";
-        Manage.style.display ="block";
+        ManagePage.style.display ="block";
     }
 }
 

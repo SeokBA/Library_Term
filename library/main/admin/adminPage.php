@@ -44,14 +44,14 @@
     </table>
 </div>
 
-<div id="Manage" style="margin-left:15%">
-    <table>
-        <caption align="center"> 회원관리 </caption>
-        <tr>
-            <td width="20%">이름</td> <td width="20%">ID</td> <td width="25%">현재 대출 수</td> <td width="15%">회원 종류</td>  <td width="10%">수정</td> <td width="10%">탈퇴</td>
-        </tr>
-    </table>
-    <input type="button" id="rankUser" value="대출 TOP 10 회원 보기" onclick="clickRank()">
+<div id="Managepage" style="margin-left:15%">
+<table>
+    <caption align="center"> 회원관리 </caption>
+    <tr>
+        <td width="20%">이름</td> <td width="20%">ID</td> <td width="25%">현재 대출 수</td> <td width="15%">회원 종류</td>  <td width="10%">수정</td> <td width="10%">탈퇴</td>
+    </tr>
+</table>
+<input type="button" id="rankUser" value="대출 TOP 10 회원 보기" onclick="clickRank()">
 </div>
 
 <div id="registerModal" class="modal">
