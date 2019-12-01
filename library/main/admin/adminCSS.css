@@ -4,7 +4,7 @@
     background-color: #fff;
     position: fixed !important;
     z-index: 1;
-    overflow: auto
+    overflow: auto;
 }
 
 .bar-item {
@@ -13,9 +13,8 @@
     width: 100%;
     border: none;
     display: block;
-    outline: 0
+    outline: 0;
 }
-
 
 table {
     width: 100%;
@@ -46,6 +45,11 @@ caption {
     display: none;
 }
 
+#rankUser {
+    width: 100px;
+    height: 50px;
+}
+
 .modal {
     display: none;
     position: fixed;
@@ -72,8 +76,4 @@ caption {
     margin-top: -100px;
     padding: 40px;
     /*color: #643B0F;*/
-}
-
-.button-td {
-    margin: 0;
 }
