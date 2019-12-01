@@ -81,17 +81,17 @@
     </table>
 </div>
 
-<div id="userManage" style="margin-left:15%">
-    <table>
-        <caption align="center"> 회원관리</caption>
+<div id="Managepage" style="margin-left:15%">
+<table>
+    <caption align="center"> 회원관리 </caption>
         <thead>
         <tr>
-            <td width="40%"> 이름</td>
-            <td width="25%"> 대출 수</td>
-            <td width="25%"> 시작일</td>
-            <td width="10%"> 종료일</td>
+            <td width="40%">이름</td>
+            <td width="25%">대출 수</td>
+            <td width="25%">시작일</td>
+            <td width="10%">종료일</td>
             <td width="5%">수정</td>
-            <td width="5%">삭제</td>
+            <td width="5%">탈퇴</td>
         </tr>
         </thead>
         <tbody>
@@ -117,6 +117,7 @@
         ?>
         </tbody>
     </table>
+  <input type="button" id="rankUser" value="대출 TOP 10 회원 보기" onclick="clickRank()">
 </div>
 
 <div id="registerModal" class="modal">
@@ -130,15 +131,48 @@
     </form>
 </div>
 
-<div id="modifyModal" class="modal">
-    <form id='infoContent' class="modal-content" method="get">
-        <p> 제목 <input type="text" id="title"></p>
-        <p> ISBN <input type="text" id="ISBN"></p>
-        <p> 저자 <input type="text" id="author"></p>
-        <p> 출판사 <input type="text" id="publisher"></p>
-        <input type="button" value="Done" onclick="clickModify()">
-        <input type="button" value="Cancel" onclick="closeModify()">
+<div id="modifyBook" class="modal">
+    <form id='Book' class="modal-content" method="get">
+        <p> 제목 <input type="text" id ="title" ></p>
+        <p> ISBN <input type="text" id ="ISBN"></p>
+        <p> 저자  <input type="text" id ="author"></p>
+        <p> 출판사 <input type="text" id="publisher" ></p>
+        <input type="button" value="Done" onclick="clickBook()">
+        <input type="button" value="Cancel" onclick="closeBook()">
     </form>
+</div>
+
+<div id = "borrowRank" class="modal">
+    <div id="Rank" class="modal-content">
+        <table>
+            <caption class = "modal-caption" align="center"> 대출 TOP 10 </caption>
+            <tr>
+                <td> 이름 </td><td> 대출 수</td>
+            </tr>
+        </table>
+        <input type="button" value = "Close" onclick="closeRank()">
+    </div>
+</div>
+
+
+<div id = "modifyUser" class="modal">
+    <form id="User" class="modal-content" method="get">
+        <p> ID <input type="text" id ="userID"></p>
+        <p> password <input type="text" id="modifypassword" placeholder="modify pw" required></p>
+        <p> Name <input type="text" id="modifyName" placeholder="modify id" required></p>
+        <p> E-Mail <input type="email" id="modifyEmail" placeholder="modify email" required> </p>
+        <p> Phone Number<input type="text" id="modifyPhone" placeholder="modify phone" required></p>
+        <input type="button" value="sumbit">
+        <input type="button" value="cancle" onclick="closeUser()">
+    </form>
+</div>
+
+<div id="withdrawUser" class="modal">
+    <div id="withdraw" class="modal-content">
+        <p> 탈퇴 하겠습니까? </p>
+        <input type="button" value="OK" id="withdraw">
+        <input type="button" value="Cancle" onclick="closeWithdraw()">
+    </div>
 </div>
 <script src="adminJS.js"></script>
 </body>

@@ -20,12 +20,31 @@ function OnChange(){
     }
 }
 
-function clickModal() {
-    document.getElementById("infoModal").style.display = "block";
-
+function clickInfo() {
+    document.getElementById("infomodify").style.display = "block";
+    var idtext = document.getElementById("userName").textContent.split(":")[1];
+    document.getElementById("modifyid").value = idtext.trim();
+    document.getElementById("modifyid").readOnly = true;
 }
 
-function closeModal() {
-    document.getElementById("infoModal").style.display = "none";
+function closeInfo() {
+    document.getElementById("infomodify").style.display = "none";
+}
 
+function returnRequest() {
+    var tr = (event.target).parentElement;
+    var bookId = tr.childNodes[1].textContent; // 책 번호
+    document.getElementById("borrowTable").removeChild(tr);
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "returnBook.php?"+"bookId="+bookId, true);
+    xhttp.send();
+
+    xhttp.onreadystatechange = function () {
+        if(this.readyState === 4 && this.status === 200){
+            let chk = this.responseText;
+            if(chk === "1"){
+                alert("complete")
+            }
+        }
+    }
 }
