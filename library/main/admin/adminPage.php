@@ -51,7 +51,7 @@
                     <td>{$bookInformation['ISBN']}</td>
                     <td>{$bookInformation['author']}</td>
                     <td>{$bookInformation['publisher']}</td>
-                    <td><input type='button' value='수정' onclick='bookUpdate({$bookInformation['name']},; {$bookInformation['ISBN']},; {$bookInformation['author']},; {$bookInformation['publisher']};)'></td>
+                    <td><input type='button' value='수정' onclick='bookUpdate({$bookInformation['name']}, {$bookInformation['ISBN']}, {$bookInformation['author']}, {$bookInformation['publisher']})'></td>
                     <td></td>
                 </tr>";
         }
