@@ -81,7 +81,7 @@
     </table>
 </div>
 
-<div id="Manage" style="margin - left:15 % ">
+<div id="userManage" style="margin - left:15 % ">
     <table>
         <caption align="center"> 회원관리</caption>
         <thead>
