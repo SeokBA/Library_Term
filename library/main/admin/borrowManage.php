@@ -10,4 +10,6 @@ $sql = "SELECT * FROM Reservation_Information WHERE book_id = {$book_id}";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($result);
 
-if ($row["reservatoin_chk"] == 1)
+if ($row["reservatoin_chk"] == 1){
+
+}

@@ -1,4 +1,4 @@
-.sidebar {
+.sideBar {
     height: 100%;
     width: 200px;
     background-color: #fff;
@@ -7,7 +7,7 @@
     overflow: auto;
 }
 
-.bar-item {
+.barItem {
     padding: 8px 16px;
     float: left;
     width: 100%;
@@ -35,7 +35,7 @@ caption {
 
 #bookList{display: block;}
 #returnBook{display: none;}
-#Manage{display: none;}
+#userManage{display: none;}
 #rankUser{width: 100px;height: 50px;}
 
 .modal {

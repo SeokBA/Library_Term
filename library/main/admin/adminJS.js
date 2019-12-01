@@ -1,6 +1,6 @@
-var bookList = document.getElementById("bookList");
-var returnbook = document.getElementById("returnBook");
-var ManagePage = document.getElementById("ManagePage");
+let bookList = document.getElementById("bookList");
+let returnBook = document.getElementById("returnBook");
+let userManage = document.getElementById("userManage");
 
 function bookUpdate(name, isbn, author, publisher) {
     // onclick='bookUpdate(\"" . $bookInformation['name'] . "\", \"" . $bookInformation['ISBN'] . "\", \"" . $bookInformation['author'] . "\", \"" . $bookInformation['publisher'] . "\");'
@@ -28,20 +28,20 @@ function bookRemove(bookId) {
     };
 }
 function OnChange(){
-    if( event.target.id == "booklist" ){
+    if( event.target.id === "bookListSideBar" ){
         bookList.style.display = "block";
-        returnbook.style.display = "none";
-        ManagePage.style.display ="none";
+        returnBook.style.display = "none";
+        userManage.style.display ="none";
     }
-    else if( event.target.id == "returnbook"){
+    else if( event.target.id === "returnBookSideBar"){
         bookList.style.display = "none";
-        returnbook.style.display = "block";
-        ManagePage.style.display ="none";
+        returnBook.style.display = "block";
+        userManage.style.display ="none";
     }
-    else if(event.target.id == "manage"){
+    else if(event.target.id === "userManageSideBar"){
         bookList.style.display = "none";
-        returnbook.style.display = "none";
-        ManagePage.style.display ="block";
+        returnBook.style.display = "none";
+        userManage.style.display ="block";
     }
 }
 

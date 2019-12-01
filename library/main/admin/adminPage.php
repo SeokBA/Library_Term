@@ -17,10 +17,10 @@
     echo "<p align='right'>id : " . $_SESSION['id'] . " <input type='button' value='정보수정' onclick='clickUser()'></p>";
     ?>
 </div>
-<div class="sidebar" style="width:13%">
-    <input type="button" class="bar-item" value="도서목록" id="booklist" onclick="OnChange()">
-    <input type="button" class="bar-item" value="도서반납" id="returnbook" onclick="OnChange()">
-    <input type="button" class="bar-item" value="회원관리" id="manage" onclick="OnChange()">
+<div class="sideBar" style="width:13%">
+    <input type="button" class="barItem" value="도서목록" id="bookListSideBar" onclick="OnChange()">
+    <input type="button" class="barItem" value="도서반납" id="returnBookSideBar" onclick="OnChange()">
+    <input type="button" class="barItem" value="회원관리" id="userManageSideBar" onclick="OnChange()">
 </div>
 <div id="bookList" style="margin-left:15%">
     <input type="button" value="등록" onclick="clickRegister()">
@@ -81,7 +81,7 @@
     </table>
 </div>
 
-<div id="Managepage" style="margin-left:15%">
+<div id="userManage" style="margin-left:15%">
     <table>
         <caption align="center"> 회원관리</caption>
         <thead>
