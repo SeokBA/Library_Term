@@ -1,59 +1,62 @@
-.sidebar{
-    height:100%;
-    width:200px;
-    background-color:#fff;
-    position:fixed!important;
-    z-index:1;
-    overflow:auto}
+.sidebar {
+    height: 100%;
+    width: 200px;
+    background-color: #fff;
+    position: fixed !important;
+    z-index: 1;
+    overflow: auto
+}
 
-.bar-item{
-    padding:8px 16px;
-    float:left;
-    width:100%;
-    border:none;
-    display:block;
-    outline:0}
+.bar-item {
+    padding: 8px 16px;
+    float: left;
+    width: 100%;
+    border: none;
+    display: block;
+    outline: 0
+}
 
 
-table{
+table {
     width: 100%;
     border-collapse: collapse;
     table-layout: fixed;
 }
 
-td, th{
+td, th {
     border: 1px solid #dddddd;
     padding: 8px;
     text-align: center;
 }
 
-caption{
+caption {
     font-size: 30px;
     font-weight: bold;
 }
 
-#bookList{
+#bookList {
     display: block;
 }
-#returnBook{
+
+#returnBook {
     display: none;
 }
 
-#Manage{
+#Manage {
     display: none;
 }
 
 .modal {
     display: none;
-    position:fixed;
-    top:0;
-    bottom:0;
-    left:0;
-    right:0;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     z-index: 1;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content:not(#statOutput) {
@@ -69,4 +72,8 @@ caption{
     margin-top: -100px;
     padding: 40px;
     /*color: #643B0F;*/
+}
+
+.button-td {
+    margin: 0;
 }
