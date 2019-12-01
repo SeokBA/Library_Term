@@ -28,12 +28,12 @@ function bookRemove(bookId) {
     };
 }
 function OnChange(){
-    if( event.target.id === "booklist" ){
+    if( event.target.id === "bookList" ){
         bookList.style.display = "block";
         returnbook.style.display = "none";
         userManage.style.display ="none";
     }
-    else if( event.target.id === "returnbook"){
+    else if( event.target.id === "returnBook"){
         bookList.style.display = "none";
         returnbook.style.display = "block";
         userManage.style.display ="none";

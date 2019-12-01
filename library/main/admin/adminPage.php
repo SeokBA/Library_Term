@@ -14,7 +14,7 @@
     session_start();
     $_SESSION['id'] = $_REQUEST['id'];
     $_SESSION['conn'] = mysqli_connect('112.166.141.161', 'root', 'kylin1q2w3e4r', 'LB_DB');
-    echo "<p align='right'>id : " . $_SESSION['id'] . " <input type='button' value='정보수정' onclick='clickModal()'> </p>";
+    echo "<p align='right'>id : " . $_SESSION['id'] . " <input type='button' value='정보수정' onclick='clickModal()'></p>";
     ?>
 </div>
 <div class="sidebar" style="width:13%">
@@ -53,7 +53,7 @@
                     <td>{$bookInformation['publisher']}</td>
                     <td class='button-td'><input type='button' value='수정'></td>
                     <td class='button - td'><input type='button' value='삭제' onclick='bookRemove(" . $bookStateRow['book_id'] . ")'></td>
-                </tr > ";
+                </tr>";
             }
         }
         ?>
@@ -109,7 +109,7 @@
                     <td>{$bookInformation['publisher']}</td>
                     <td class='button-td'><input type='button' value='수정'></td>
                     <td class='button - td'><input type='button' value='삭제' onclick='bookRemove(" . $bookStateRow['book_id'] . ")'></td>
-                </tr > ";
+                </tr>";
             }
         }
         ?>
