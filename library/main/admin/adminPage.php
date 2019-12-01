@@ -38,21 +38,21 @@
         </tr>
         </thead>
         <tbody>
-<?php
-$sql = "SELECT ISBN FROM Book_Statement WHERE reservation_chk = 0;";
-$result = mysqli_query($_SESSION['conn'], $sql);
-$rowNum = $result->num_rows;
-while (($bookStateRow = mysqli_fetch_array($result)) != null) {
-    $sql = "SELECT * FROM Book_Information WHERE ISBN = {$bookStateRow['ISBN']};";
-    $bookInformation = mysqli_query($_SESSION['conn'], $sql);
-    $bookInformation = mysqli_fetch_array($bookInformation);
-    echo "<tr>
+        <?php
+        $sql = "SELECT ISBN FROM Book_Statement WHERE reservation_chk = 0;";
+        $result = mysqli_query($_SESSION['conn'], $sql);
+        $rowNum = $result->num_rows;
+        while (($bookStateRow = mysqli_fetch_array($result)) != null) {
+            $sql = "SELECT * FROM Book_Information WHERE ISBN = {$bookStateRow['ISBN']};";
+            $bookInformation = mysqli_query($_SESSION['conn'], $sql);
+            $bookInformation = mysqli_fetch_array($bookInformation);
+            echo "<tr>
                     <td>{$bookInformation['name']}</td>
                     <td>{$bookInformation['ISBN']}</td>
                     <td>{$bookInformation['author']}</td>
                     <td>{$bookInformation['publisher']}</td>
                     <td class='button-td'><input type='button' value='수정' onclick='bookUpdate(" . $bookInformation['name'] . ", " . $bookInformation['ISBN'] . ", " . $bookInformation['author'] . ", " . $bookInformation['publisher'] . ")'></td>
-                    <td class='button - td'><input type='button' value='삭' onclick='bookRemove(" . $bookStateRow['book_id'] . ")'' ></td >
+                    <td class='button - td'><input type='button' value='삭제' onclick='bookRemove('" . $bookStateRow['book_id'] . "')'' ></td >
                 </tr > ";
         }
         ?>
