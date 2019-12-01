@@ -2,12 +2,12 @@ let bookList = document.getElementById("bookList");
 let returnbook = document.getElementById("returnBook");
 let Manage = document.getElementById("Manage");
 
-function bookUpdate(name, isbn, author, publisher){
+function bookUpdate(name){
     alert("hello");
     alert(name);
-    alert(isbn);
-    alert(author);
-    alert(publisher);
+    // alert(isbn);
+    // alert(author);
+    // alert(publisher);
 }
 
 function bookRemove(bookId) {
