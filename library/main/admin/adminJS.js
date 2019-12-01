@@ -2,7 +2,9 @@ let bookList = document.getElementById("bookList");
 let returnbook = document.getElementById("returnBook");
 let Manage = document.getElementById("Manage");
 
-
+function bookUpdate(name, isbn, author, publisher){
+    alert(name, isbn, author, publisher);
+}
 
 
 
