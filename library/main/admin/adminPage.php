@@ -86,18 +86,18 @@
         <caption align="center">회원관리</caption>
         <thead>
         <tr>
-            <td colspan="9">Admin</td>
+            <th colspan="9">Admin</th>
         </tr>
         <tr>
-            <td width="15%">ID</td>
-            <td width="10%">Password</td>
-            <td width="15%">Name</td>
-            <td width="20%">E-Mail</td>
-            <td width="15%">Phone-Number</td>
-            <td width="10%">Classification</td>
-            <td width="5%">Total Borrow</td>
-            <td width="5%">수정</td>
-            <td width="5%">탈퇴</td>
+            <th width="15%">ID</th>
+            <th width="10%">Password</th>
+            <th width="15%">Name</th>
+            <th width="20%">E-Mail</th>
+            <th width="15%">Phone-Number</th>
+            <th width="10%">Classification</th>
+            <th width="5%">Total Borrow</th>
+            <th width="5%">수정</th>
+            <th width="5%">탈퇴</th>
         </tr>
         </thead>
         <tbody>
@@ -126,18 +126,18 @@
     <table>
         <thead>
         <tr>
-            <td colspan="9">User</td>
+            <th colspan="9">User</th>
         </tr>
         <tr>
-            <td width="15%">ID</td>
-            <td width="10%">Password</td>
-            <td width="15%">Name</td>
-            <td width="20%">E-Mail</td>
-            <td width="15%">Phone-Number</td>
-            <td width="10%">Classification</td>
-            <td width="5%">Total Borrow</td>
-            <td width="5%">수정</td>
-            <td width="5%">탈퇴</td>
+            <th width="15%">ID</th>
+            <th width="10%">Password</th>
+            <th width="15%">Name</th>
+            <th width="20%">E-Mail</th>
+            <th width="15%">Phone-Number</th>
+            <th width="10%">Classification</th>
+            <th width="5%">Total Borrow</th>
+            <th width="5%">수정</th>
+            <th width="5%">탈퇴</th>
         </tr>
         </thead>
         <tbody>
