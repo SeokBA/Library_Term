@@ -45,7 +45,7 @@
             $isbn = $bookStateRow[$i];
             echo "<p>hi{$i}hi</p>";
             echo "<p>hi{$isbn}hi</p>";
-            $sql = "SELECT * FROM Book_Information WHERE ISBN = '{$isbn}'";
+            $sql = "SELECT * FROM Book_Information WHERE ISBN = {$isbn};";
             $bookInformation = mysqli_query($_SESSION['conn'], $sql);
             echo "<td>{$bookInformation['name']}</td>
                     <td>{$bookInformation['ISBN']}</td>
