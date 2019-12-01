@@ -66,11 +66,11 @@
         <caption align="center"> 도서 반납</caption>
         <thead>
         <tr>
-            <td width="40 % ">책 이름</td>
-            <td width="25 % ">예약자</td>
-            <td width="15 % "> 대출일</td>
-            <td width="15 % "> 반납일</td>
-            <td width="5 % "> 반납</td>
+            <td width="40%">책 이름</td>
+            <td width="25%">예약자</td>
+            <td width="15%"> 대출일</td>
+            <td width="15%"> 반납일</td>
+            <td width="5% "> 반납</td>
         </tr>
         </thead>
         <tbody>
@@ -86,10 +86,10 @@
         <caption align="center"> 회원관리</caption>
         <thead>
         <tr>
-            <td width="40 % "> 이름</td>
-            <td width="25 % "> 대출 수</td>
-            <td width="25 % "> 시작일</td>
-            <td width="10 % "> 종료일</td>
+            <td width="40%"> 이름</td>
+            <td width="25%"> 대출 수</td>
+            <td width="25%"> 시작일</td>
+            <td width="10%"> 종료일</td>
             <td width="5%">수정</td>
             <td width="5%">삭제</td>
         </tr>
