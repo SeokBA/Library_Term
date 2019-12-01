@@ -39,16 +39,11 @@
         <?php
         $sql = "SELECT ISBN FROM Book_Statement WHERE reservation_chk = 0;";
         $result = mysqli_query($_SESSION['conn'], $sql);
-        $bookStateRow = mysqli_fetch_array($result);
         $rowNum = $result->num_rows;
-        var_dump($bookStateRow);
-        for ($i = 0; $i < $rowNum; $i += 1) {
-            $isbn = $bookStateRow[$i];
-            echo "<p>hi{$isbn}hi{$i}hi{$rowNum}</p>";
-            $sql = "SELECT * FROM Book_Information WHERE ISBN = {$isbn};";
-            $result = mysqli_query($_SESSION['conn'], $sql);
-            $bookInformation = mysqli_fetch_array($result);
-            echo "<p>hi{$bookInformation}hi</p>";
+        while (($bookStateRow = mysqli_fetch_array($result)) != null) {
+            $sql = "SELECT * FROM Book_Information WHERE ISBN = {$bookStateRow['ISBN']};";
+            $bookInformation = mysqli_query($_SESSION['conn'], $sql);
+            $bookInformation = mysqli_fetch_array($bookInformation);
             echo "<td>{$bookInformation['name']}</td>
                     <td>{$bookInformation['ISBN']}</td>
                     <td>{$bookInformation['author']}</td>
