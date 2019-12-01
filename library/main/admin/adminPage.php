@@ -13,8 +13,8 @@
     <?php
     session_start();
     $_SESSION['id'] = $_REQUEST['id'];
-    $_SESSION['conn'] = mysqli_connect('112.166.141.161', 'root', 'kylin1q2w3e4r','LB_DB');
-    echo "<p align='right'>id : ".$_SESSION['id']." <input type='button' value='정보수정' onclick='clickModal()'> </p>";
+    $_SESSION['conn'] = mysqli_connect('112.166.141.161', 'root', 'kylin1q2w3e4r', 'LB_DB');
+    echo "<p align='right'>id : " . $_SESSION['id'] . " <input type='button' value='정보수정' onclick='clickModal()'> </p>";
     ?>
 </div>
 <div class="sidebar" style="width:13%">
@@ -22,7 +22,6 @@
     <input type="button" class="bar-item" value="도서반납" id="returnbook" onclick="OnChange()">
     <input type="button" class="bar-item" value="회원관리" id="manage" onclick="OnChange()">
 </div>
-
 <div id="bookList" style="margin-left:15%">
     <input type="button" value="등록" onclick="clickRegister()">
     <table>
