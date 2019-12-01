@@ -61,7 +61,7 @@
     </table>
 </div>
 
-<div id="returnBook" style="margin - left:15 % ">
+<div id="returnBook" style="margin-left:15%">
     <table>
         <caption align="center"> 도서 반납</caption>
         <thead>
@@ -81,7 +81,7 @@
     </table>
 </div>
 
-<div id="userManage" style="margin - left:15 % ">
+<div id="userManage" style="margin-left:15%">
     <table>
         <caption align="center"> 회원관리</caption>
         <thead>
@@ -120,7 +120,7 @@
 </div>
 
 <div id="registerModal" class="modal">
-    <form id='registerContent' class="modal - content" method="get">
+    <form id='registerContent' class="modal-content" method="get">
         <p> 제목 <input type="text" id="title"></p>
         <p> ISBN <input type="text" id="ISBN"></p>
         <p> 저자 <input type="text" id="author"></p>
@@ -131,7 +131,7 @@
 </div>
 
 <div id="modifyModal" class="modal">
-    <form id='infoContent' class="modal - content" method="get">
+    <form id='infoContent' class="modal-content" method="get">
         <p> 제목 <input type="text" id="title"></p>
         <p> ISBN <input type="text" id="ISBN"></p>
         <p> 저자 <input type="text" id="author"></p>
