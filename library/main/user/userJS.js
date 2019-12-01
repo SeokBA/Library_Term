@@ -29,8 +29,8 @@ function closeModal() {
 }
 
 function returnRequest() {
-    var tr = document.getElementById(event.target.id).parentElement;
-    var bookId = tr.childNodes[0].text; // 책 번호
+    var tr = (event.target).parentElement;
+    var bookId = tr.childNodes[1].textContent; // 책 번호
     document.getElementById("borrowTable").removeChild(tr);
     let xhttp = new XMLHttpRequest();
     xhttp.open("GET", "returnBook.php?"+"bookId="+bookId, true);
