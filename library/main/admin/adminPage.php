@@ -38,55 +38,55 @@
         </tr>
         </thead>
         <tbody>
-        <?php
-        $sql = "SELECT ISBN FROM Book_Statement WHERE reservation_chk = 0;";
-        $result = mysqli_query($_SESSION['conn'], $sql);
-        $rowNum = $result->num_rows;
-        while (($bookStateRow = mysqli_fetch_array($result)) != null) {
-            $sql = "SELECT * FROM Book_Information WHERE ISBN = {$bookStateRow['ISBN']};";
-            $bookInformation = mysqli_query($_SESSION['conn'], $sql);
-            $bookInformation = mysqli_fetch_array($bookInformation);
-            echo "<tr>
+<?php
+$sql = "SELECT ISBN FROM Book_Statement WHERE reservation_chk = 0;";
+$result = mysqli_query($_SESSION['conn'], $sql);
+$rowNum = $result->num_rows;
+while (($bookStateRow = mysqli_fetch_array($result)) != null) {
+    $sql = "SELECT * FROM Book_Information WHERE ISBN = {$bookStateRow['ISBN']};";
+    $bookInformation = mysqli_query($_SESSION['conn'], $sql);
+    $bookInformation = mysqli_fetch_array($bookInformation);
+    echo "<tr>
                     <td>{$bookInformation['name']}</td>
                     <td>{$bookInformation['ISBN']}</td>
                     <td>{$bookInformation['author']}</td>
                     <td>{$bookInformation['publisher']}</td>
-                    <td class='button-td'><input type='button' value='수정' onclick='bookUpdate({$bookInformation['name']}, {$bookInformation['ISBN']}, {$bookInformation['author']}, {$bookInformation['publisher']})'></td>
-                    <td class='button-td'><input type='button' value='삭' onclick='bookRemove('{$bookStateRow['book_id']}')'></td>
-                </tr>";
+                    <td class='button-td'><input type='button' value='수정' onclick='bookUpdate(" . $bookInformation['name'] . ", " . $bookInformation['ISBN'] . ", " . $bookInformation['author'] . ", " . $bookInformation['publisher'] . ")'></td>
+                    <td class='button - td'><input type='button' value='삭' onclick='bookRemove(" . $bookStateRow['book_id'] . ")'' ></td >
+                </tr > ";
         }
         ?>
         </tbody>
     </table>
 </div>
 
-<div id="returnBook" style="margin-left:15%">
+<div id="returnBook" style="margin - left:15 % ">
     <table>
         <caption align="center"> 도서 반납</caption>
         <tr>
-            <td width="40%">책 이름</td>
-            <td width="25%">예약자</td>
-            <td width="15%"> 대출일</td>
-            <td width="15%"> 반납일</td>
-            <td width="5%"> 반납</td>
+            <td width="40 % ">책 이름</td>
+            <td width="25 % ">예약자</td>
+            <td width="15 % "> 대출일</td>
+            <td width="15 % "> 반납일</td>
+            <td width="5 % "> 반납</td>
         </tr>
     </table>
 </div>
 
-<div id="Manage" style="margin-left:15%">
+<div id="Manage" style="margin - left:15 % ">
     <table>
         <caption align="center"> 회원관리</caption>
         <tr>
-            <td width="40%"> 이름</td>
-            <td width="25%"> 대출 수</td>
-            <td width="25%"> 시작일</td>
-            <td width="10%"> 종료일</td>
+            <td width="40 % "> 이름</td>
+            <td width="25 % "> 대출 수</td>
+            <td width="25 % "> 시작일</td>
+            <td width="10 % "> 종료일</td>
         </tr>
     </table>
 </div>
 
 <div id="registerModal" class="modal">
-    <form id='registerContent' class="modal-content" method="get">
+    <form id='registerContent' class="modal - content" method="get">
         <p> 제목 <input type="text" id="title"></p>
         <p> ISBN <input type="text" id="ISBN"></p>
         <p> 저자 <input type="text" id="author"></p>
@@ -97,7 +97,7 @@
 </div>
 
 <div id="modifyModal" class="modal">
-    <form id='infoContent' class="modal-content" method="get">
+    <form id='infoContent' class="modal - content" method="get">
         <p> 제목 <input type="text" id="title"></p>
         <p> ISBN <input type="text" id="ISBN"></p>
         <p> 저자 <input type="text" id="author"></p>
@@ -108,6 +108,6 @@
 </div>
 
 
-<script src="adminJS.js"></script>
+<script src="adminJS . js"></script>
 </body>
 </html>
