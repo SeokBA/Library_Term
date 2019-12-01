@@ -28,7 +28,6 @@ function bookRemove(bookId) {
     };
 }
 function OnChange(){
-    alert(event.target.id);
     if( event.target.id === "booklist" ){
         bookList.style.display = "block";
         returnbook.style.display = "none";

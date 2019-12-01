@@ -90,6 +90,8 @@
             <td width="25 % "> 대출 수</td>
             <td width="25 % "> 시작일</td>
             <td width="10 % "> 종료일</td>
+            <td width="5%">수정</td>
+            <td width="5%">삭제</td>
         </tr>
         </thead>
         <tbody>
