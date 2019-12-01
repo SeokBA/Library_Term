@@ -16,14 +16,14 @@
     $_SESSION['conn'] = mysqli_connect('112.166.141.161', 'root', 'kylin1q2w3e4r', 'LB_DB');
     echo "<p align='right'>id : {$_SESSION['id']} <input type='button' value='정보수정' onclick='clickModal'()> </p>";
     ?>
+    <?php
+    echo "<p>hi{$_SESSION['conn']}hi</p>"
+    ?>
 </div>
 <div class="sidebar" style="width:13%">
     <input type="button" class="bar-item" value="도서목록" id="booklist" onclick="OnChange()">
     <input type="button" class="bar-item" value="도서반납" id="returnbook" onclick="OnChange()">
     <input type="button" class="bar-item" value="회원관리" id="manage" onclick="OnChange()">
-    <?php
-    echo "<p>{$_SESSION['conn']}</p>"
-    ?>
 </div>
 
 <div id="bookList" style="margin-left:15%">
