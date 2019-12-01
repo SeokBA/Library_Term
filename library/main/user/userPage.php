@@ -21,7 +21,7 @@
     <?php
     session_start();
     $_SESSION['id'] = $_REQUEST['id'];
-    echo "<p align='right'>id : {$_SESSION['id']} <input type='button' value='정보수정' onclick='clickModal'()> </p>";
+    echo "<p id='userName' align='right'>id : {$_SESSION['id']} <input type='button' value='정보수정' onclick='clickinfo()'> </p>";
     ?>
 </div>
 <div class = "sidebar" style="width:13%">
@@ -80,22 +80,15 @@
 </div>
 
 
-<div id="infoModal" class="modal">
-    <form id='infoContent' class="modal-content" method="get">
-        <p>ID <input type="text" id="idSignUpBox" name="idSignUpBox" placeholder="input id" required></p>
-        <p>Password <input type="text" id="pwSignUpBox" name="pwSignUpBox" placeholder="input password" required></p>
-        <p>Name <input type="text" id="nameSignUpBox" name="nameSignUpBox" placeholder="input name" required></p>
-        <p>E-Mail <input type="email" id="emailSignUpBox" name="emailSignUpBox" placeholder="input e-mail" required></p>
-        <p>Phone Number <input type="text" id="phoneSignUpBox" placeholder="000-0000-0000" name="phoneSignUpBox" required></p>
-        <p>Classification
-            <input type="text" id="classificationSignUpBox" name="classificationSignUpBox" placeholder="choice" list="choices" required>
-            <datalist id="choices">
-                <option value="학부"></option>
-                <option value="대학원"></option>
-                <option value="교직원"></option>
-            </datalist></p>
+<div id="infomodify" class="modal">
+    <form id='modifyContent' class="modal-content" method="get">
+        <p>ID <input type="text" id="modifyid" name="id"></p>
+        <p>Password <input type="text" id="pwmodify" name="pwModify" placeholder="input password" required></p>
+        <p>Name <input type="text" id="namemodify" name="namemodify" placeholder="input name" required></p>
+        <p>E-Mail <input type="email" id="emailmodify" name="emailmodify" placeholder="input e-mail" required></p>
+        <p>Phone Number <input type="text" id="phonemodify" placeholder="000-0000-0000" name="phonemodify" required></p>
         <input type="button" value="Done">
-        <input type="button" value="Cancel" onclick="closeModal()">
+        <input type="button" value="Cancel" onclick="closeInfo()">
     </form>
 </div>
 
