@@ -51,7 +51,7 @@ function clickWithdraw(){document.getElementById("withdrawUser").style.display =
 function clickBook() {document.getElementById("modifyBook").style.display = "block";}
 function clickUser() {
     document.getElementById("modifyUser").style.display = "block";
-    var userid = (document.getElementById(event.target).parentElement).parentElement
+    let userid = (document.getElementById(event.target).parentElement).parentElement;
     document.getElementById("userID").value = userid.childNodes[3].textContent;
     document.getElementById("userID").readOnly = true;
 }

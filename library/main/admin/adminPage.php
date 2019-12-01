@@ -14,7 +14,7 @@
     session_start();
     $_SESSION['id'] = $_REQUEST['id'];
     $_SESSION['conn'] = mysqli_connect('112.166.141.161', 'root', 'kylin1q2w3e4r', 'LB_DB');
-    echo "<p align='right'>id : " . $_SESSION['id'] . " <input type='button' value='정보수정' onclick='clickModal()'></p>";
+    echo "<p align='right'>id : " . $_SESSION['id'] . " <input type='button' value='정보수정' onclick='clickUser()'></p>";
     ?>
 </div>
 <div class="sidebar" style="width:13%">
@@ -52,7 +52,7 @@
                     <td>{$bookInformation['author']}</td>
                     <td>{$bookInformation['publisher']}</td>
                     <td class='button-td'><input type='button' value='수정'></td>
-                    <td class='button - td'><input type='button' value='삭제' onclick='bookRemove(" . $bookStateRow['book_id'] . ")'></td>
+                    <td class='button-td'><input type='button' value='삭제' onclick='bookRemove(" . $bookStateRow['book_id'] . ")'></td>
                 </tr>";
             }
         }
@@ -63,14 +63,14 @@
 
 <div id="returnBook" style="margin-left:15%">
     <table>
-        <caption align="center"> 도서 반납</caption>
+        <caption align="center">도서 반납</caption>
         <thead>
         <tr>
             <td width="40%">책 이름</td>
             <td width="25%">예약자</td>
-            <td width="15%"> 대출일</td>
-            <td width="15%"> 반납일</td>
-            <td width="5% "> 반납</td>
+            <td width="15%">대출일</td>
+            <td width="15%">반납일</td>
+            <td width="5% ">반납</td>
         </tr>
         </thead>
         <tbody>
@@ -82,42 +82,43 @@
 </div>
 
 <div id="Managepage" style="margin-left:15%">
-<table>
-    <caption align="center"> 회원관리 </caption>
+    <table>
+        <caption align="center"> 회원관리</caption>
         <thead>
         <tr>
-            <td width="40%">이름</td>
-            <td width="25%">대출 수</td>
-            <td width="25%">시작일</td>
-            <td width="10%">종료일</td>
-            <td width="5%">수정</td>
-            <td width="5%">탈퇴</td>
+            <td width="12%">ID</td>
+            <td width="12%">Password</td>
+            <td width="12%">Name</td>
+            <td width="12%">E-Mail</td>
+            <td width="12%">Phone-Number</td>
+            <td width="12%">Classification</td>
+            <td width="12%">Total Borrow</td>
+            <td width="8%">수정</td>
+            <td width="8%">탈퇴</td>
         </tr>
         </thead>
         <tbody>
         <?php
-        $sql = "SELECT ISBN, book_id FROM Book_Statement WHERE reservation_chk = 0;";
+        $sql = "SELECT * FROM User_Account";
         $result = mysqli_query($_SESSION['conn'], $sql);
         $rowNum = $result->num_rows;
-        while (($bookStateRow = mysqli_fetch_array($result)) != null) {
-            if ($bookStateRow['reservation_id'] == 0) {
-                $sql = "SELECT * FROM Book_Information WHERE ISBN = {$bookStateRow['ISBN']};";
-                $bookInformation = mysqli_query($_SESSION['conn'], $sql);
-                $bookInformation = mysqli_fetch_array($bookInformation);
-                echo "<tr>
-                    <td>{$bookInformation['name']}</td>
-                    <td>{$bookInformation['ISBN']}</td>
-                    <td>{$bookInformation['author']}</td>
-                    <td>{$bookInformation['publisher']}</td>
+        while (($userRow = mysqli_fetch_array($result)) != null) {
+            echo "<tr>
+                    <td>{$userRow['id']}</td>
+                    <td>{$userRow['password']}</td>
+                    <td>{$userRow['name']}</td>
+                    <td>{$userRow['email']}</td>
+                    <td>{$userRow['phone']}</td>
+                    <td>{$userRow['classification']}</td>
+                    <td>{$userRow['total_borrow']}</td>
                     <td class='button-td'><input type='button' value='수정'></td>
-                    <td class='button - td'><input type='button' value='삭제' onclick='bookRemove(" . $bookStateRow['book_id'] . ")'></td>
+                    <td class='button-td'><input type='button' value='탈퇴'></td>
                 </tr>";
-            }
         }
         ?>
         </tbody>
     </table>
-  <input type="button" id="rankUser" value="대출 TOP 10 회원 보기" onclick="clickRank()">
+    <input type="button" id="rankUser" value="대출 TOP 10 회원 보기" onclick="clickRank()">
 </div>
 
 <div id="registerModal" class="modal">
@@ -133,34 +134,35 @@
 
 <div id="modifyBook" class="modal">
     <form id='Book' class="modal-content" method="get">
-        <p> 제목 <input type="text" id ="title" ></p>
-        <p> ISBN <input type="text" id ="ISBN"></p>
-        <p> 저자  <input type="text" id ="author"></p>
-        <p> 출판사 <input type="text" id="publisher" ></p>
+        <p> 제목 <input type="text" id="title"></p>
+        <p> ISBN <input type="text" id="ISBN"></p>
+        <p> 저자 <input type="text" id="author"></p>
+        <p> 출판사 <input type="text" id="publisher"></p>
         <input type="button" value="Done" onclick="clickBook()">
         <input type="button" value="Cancel" onclick="closeBook()">
     </form>
 </div>
 
-<div id = "borrowRank" class="modal">
+<div id="borrowRank" class="modal">
     <div id="Rank" class="modal-content">
         <table>
-            <caption class = "modal-caption" align="center"> 대출 TOP 10 </caption>
+            <caption class="modal-caption" align="center"> 대출 TOP 10</caption>
             <tr>
-                <td> 이름 </td><td> 대출 수</td>
+                <td> 이름</td>
+                <td> 대출 수</td>
             </tr>
         </table>
-        <input type="button" value = "Close" onclick="closeRank()">
+        <input type="button" value="Close" onclick="closeRank()">
     </div>
 </div>
 
 
-<div id = "modifyUser" class="modal">
+<div id="modifyUser" class="modal">
     <form id="User" class="modal-content" method="get">
-        <p> ID <input type="text" id ="userID"></p>
+        <p> ID <input type="text" id="userID"></p>
         <p> password <input type="text" id="modifypassword" placeholder="modify pw" required></p>
         <p> Name <input type="text" id="modifyName" placeholder="modify id" required></p>
-        <p> E-Mail <input type="email" id="modifyEmail" placeholder="modify email" required> </p>
+        <p> E-Mail <input type="email" id="modifyEmail" placeholder="modify email" required></p>
         <p> Phone Number<input type="text" id="modifyPhone" placeholder="modify phone" required></p>
         <input type="button" value="sumbit">
         <input type="button" value="cancle" onclick="closeUser()">
