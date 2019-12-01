@@ -6,8 +6,9 @@ function bookUpdate(name, isbn, author, publisher){
     alert(name, isbn, author, publisher);
 }
 
-function bookRemove() {
+function bookRemove(bookId) {
     alert("hi");
+    alert(bookId);
 }
 
 
