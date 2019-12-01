@@ -48,9 +48,10 @@
     <table>
         <caption align="center"> 회원관리 </caption>
         <tr>
-            <td width="40%"> 이름 </td> <td width="25%"> 대출 수 </td> <td width="25%"> 시작일 </td> <td width="10%"> 종료일 </td>
+            <td width="40%">이름</td> <td width="25%">현재 대출 수</td> <td width="15%">회원 종류</td>  <td width="10%">수정</td> <td width="10%">탈퇴</td>
         </tr>
     </table>
+    <input type="button" id="rankUser" value="대출 TOP 10 회원 보기" onclick="clickRank()">
 </div>
 
 <div id="registerModal" class="modal">
@@ -72,6 +73,31 @@
         <p> 출판사 <input type="text" id="publisher" ></p>
         <input type="button" value="Done" onclick="clickModify()">
         <input type="button" value="Cancel" onclick="closeModify()">
+    </form>
+</div>
+
+<div id = "borrowRank" class="modal">
+    <div id="Rank" class="modal-content">
+        <table>
+            <caption class = "modal-caption" align="center"> 대출 TOP 10 </caption>
+            <tr>
+                <td> 이름 </td><td> 대출 수</td>
+            </tr>
+        </table>
+        <input type="button" value = "Close" onclick="closeRank()">
+    </div>
+</div>
+
+
+<div id = "modifyUser" class="modal">
+    <form id="User" class="modal-content" method="get">
+        <p> ID <input type="text" ></p>
+        <p> password <input type="text" id="modifypassword" placeholder="modify pw" required></p>
+        <p> Name <input type="text" id="modifyName" placeholder="modify id" required></p>
+        <p> E-Mail <input type="email" id="modifyEmail" placeholder="modify email" required> </p>
+        <p> Phone Number<input type="text" id="modifyPhone" placeholder="modify phone" required></p>
+        <input type="button" value="sumbit">
+        <input type="button" value="cancle" onclick="">
     </form>
 </div>
 

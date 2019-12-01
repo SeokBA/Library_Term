@@ -14,7 +14,6 @@
     display:block;
     outline:0}
 
-
 table{
     width: 100%;
     border-collapse: collapse;
@@ -32,16 +31,10 @@ caption{
     font-weight: bold;
 }
 
-#bookList{
-    display: block;
-}
-#returnBook{
-    display: none;
-}
-
-#Manage{
-    display: none;
-}
+#bookList{display: block;}
+#returnBook{display: none;}
+#Manage{display: none;}
+#rankUser{width: 100px;height: 50px;}
 
 .modal {
     display: none;

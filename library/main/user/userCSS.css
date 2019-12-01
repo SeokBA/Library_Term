@@ -43,6 +43,11 @@ caption{
     display: none;
 }
 
+.modal-caption{
+    font-size: 20px;
+    font-weight: bold;
+}
+
 .modal {
     display: none;
     position:fixed;
