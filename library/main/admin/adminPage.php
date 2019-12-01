@@ -86,12 +86,12 @@
         <caption align="center"> 회원관리</caption>
         <thead>
         <tr>
-            <td width="20%">ID</td>
-            <td width="5%">Password</td>
-            <td width="20%">Name</td>
-            <td width="25%">E-Mail</td>
-            <td width="10%">Phone-Number</td>
-            <td width="5%">Classification</td>
+            <td width="15%">ID</td>
+            <td width="10%">Password</td>
+            <td width="15%">Name</td>
+            <td width="20%">E-Mail</td>
+            <td width="15%">Phone-Number</td>
+            <td width="10%">Classification</td>
             <td width="5%">Total Borrow</td>
             <td width="5%">수정</td>
             <td width="5%">탈퇴</td>
