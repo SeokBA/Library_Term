@@ -37,22 +37,22 @@
         </thead>
         <tbody>
         <?php
-            $sql = "SELECT * FROM Book_Statement WHERE reservation_chk = 0";
-            $result = mysqli_query($_SESSION['conn'], $sql);
-            $bookStateRow = mysqli_fetch_array($result);
-            $rowNum = $result->num_rows;
-            for($i = 0; $i < $rowNum; $i++) {
-                echo "<p>hi{$i}hi</p>";
-                $isbn = $bookStateRow['ISBN'][$i];
-                $sql = "SELECT * FROM Book_Information WHERE ISBN = '{$isbn}'";
-                $bookInformation = mysqli_query($_SESSION['conn'], $sql);
-                echo "<td>{$bookInformation['name']}</td>
+        $sql = "SELECT * FROM Book_Statement WHERE reservation_chk = 0";
+        $result = mysqli_query($_SESSION['conn'], $sql);
+        $bookStateRow = mysqli_fetch_array($result);
+        $rowNum = $result->num_rows;
+        for ($i = 0; $i < $rowNum; $i += 1) {
+            echo "<p>hi{$i}hi</p>";
+            $isbn = $bookStateRow['ISBN'][$i];
+            $sql = "SELECT * FROM Book_Information WHERE ISBN = '{$isbn}'";
+            $bookInformation = mysqli_query($_SESSION['conn'], $sql);
+            echo "<td>{$bookInformation['name']}</td>
                     <td>{$bookInformation['ISBN']}</td>
                     <td>{$bookInformation['author']}</td>
                     <td>{$bookInformation['publisher']}</td>
                     <td></td>
                     <td></td>";
-            }
+        }
         ?>
         </tbody>
     </table>
