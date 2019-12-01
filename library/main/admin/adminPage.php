@@ -37,12 +37,12 @@
         </thead>
         <tbody>
         <?php
-        $sql = "SELECT * FROM Book_Statement WHERE reservation_chk = 0";
+        $sql = "SELECT ISBN FROM Book_Statement WHERE reservation_chk = 0";
         $result = mysqli_query($_SESSION['conn'], $sql);
         $bookStateRow = mysqli_fetch_array($result);
         $rowNum = $result->num_rows;
         for ($i = 0; $i < $rowNum; $i += 1) {
-            $isbn = $bookStateRow['ISBN'];
+            $isbn = $bookStateRow[$i];
             echo "<p>hi{$i}hi</p>";
             echo "<p>hi{$isbn}hi</p>";
             $sql = "SELECT * FROM Book_Information WHERE ISBN = '{$isbn}'";
