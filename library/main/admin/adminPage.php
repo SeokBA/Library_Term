@@ -75,7 +75,21 @@
         </thead>
         <tbody>
         <?php
-
+        $sql = "SELECT * FROM Borrow_Information WHERE reservation_chk > 1";
+        $result = mysqli_query($_SESSION['conn'], $sql);
+        $rowNum = $result->num_rows;
+        while (($borrowRow = mysqli_fetch_array($result)) != null) {
+            $sql = "SELECT * FROM Book_Information WHERE book_id = {$borrowRow['book_id']}";
+            $bookRow = mysqli_query($_SESSION['conn'], $sql);
+                echo "<tr>
+                    <td>{$bookRow['name']}</td>
+                    <td>{$borrowRow['name']}</td>
+                    <td>{$borrowRow['start_day']}</td>
+                    <td>{$borrowRow['end_day']}</td>
+                    <td class='button-td'><input type='button' value='반납'></td>
+                    <td></td>
+                </tr>";
+        }
         ?>
         </tbody>
     </table>
