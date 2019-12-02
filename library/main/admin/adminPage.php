@@ -40,7 +40,6 @@
         <?php
         $sql = "SELECT ISBN, book_id FROM Book_Statement WHERE reservation_chk = 0;";
         $result = mysqli_query($_SESSION['conn'], $sql);
-        $rowNum = $result->num_rows;
         while (($bookStateRow = mysqli_fetch_array($result)) != null) {
             if ($bookStateRow['reservation_id'] == 0) {
                 $sql = "SELECT * FROM Book_Information WHERE ISBN = {$bookStateRow['ISBN']};";
@@ -77,17 +76,16 @@
         <?php
         $sql = "SELECT * FROM Borrow_Information WHERE reservation_chk > 1";
         $result = mysqli_query($_SESSION['conn'], $sql);
-        $rowNum = $result->num_rows;
         while (($borrowRow = mysqli_fetch_array($result)) != null) {
             $sql = "SELECT * FROM Book_Information WHERE book_id = {$borrowRow['book_id']}";
             $bookRow = mysqli_query($_SESSION['conn'], $sql);
-                echo "<tr>
+            $bookRow = mysqli_fetch_array($bookRow);
+            echo "<tr>
                     <td>{$bookRow['name']}</td>
                     <td>{$borrowRow['name']}</td>
                     <td>{$borrowRow['start_day']}</td>
                     <td>{$borrowRow['end_day']}</td>
                     <td class='button-td'><input type='button' value='반납'></td>
-                    <td></td>
                 </tr>";
         }
         ?>
@@ -118,10 +116,9 @@
         <?php
         $sql = "SELECT * FROM User_Account";
         $result = mysqli_query($_SESSION['conn'], $sql);
-        $rowNum = $result->num_rows;
         while (($userRow = mysqli_fetch_array($result)) != null) {
             if ($userRow['name'] == "admin")
-            echo "<tr>
+                echo "<tr>
                     <td>{$userRow['id']}</td>
                     <td>{$userRow['password']}</td>
                     <td>{$userRow['name']}</td>
@@ -158,7 +155,6 @@
         <?php
         $sql = "SELECT * FROM User_Account";
         $result = mysqli_query($_SESSION['conn'], $sql);
-        $rowNum = $result->num_rows;
         while (($userRow = mysqli_fetch_array($result)) != null) {
             if ($userRow['name'] != "admin")
                 echo "<tr>
