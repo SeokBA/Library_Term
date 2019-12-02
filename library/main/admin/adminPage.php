@@ -77,7 +77,7 @@
         $sql = "SELECT * FROM Book_Statement WHERE reservation_chk > 1;";
         $result = mysqli_query($_SESSION['conn'], $sql);
         while (($bookStateRow = mysqli_fetch_array($result)) != null) {
-            $sql = "SELECT * FROM Borrow_Information WHRER book_id = {$bookStateRow['book_id']}";
+            $sql = "SELECT * FROM Borrow_Information WHERE book_id = {$bookStateRow['book_id']}";
             $borrowRow = mysqli_query($_SESSION['conn'], $sql);
             $borrowRow = mysqli_fetch_array($borrowRow);
 
