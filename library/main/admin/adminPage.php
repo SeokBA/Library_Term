@@ -74,29 +74,27 @@
         </thead>
         <tbody>
         <?php
-        $sql = "SELECT * FROM Book_Statement;";
+        $sql = "SELECT * FROM Book_Statement WHERE reservation_chk > 1;";
         $result = mysqli_query($_SESSION['conn'], $sql);
         while (($bookStateRow = mysqli_fetch_array($result)) != null) {
-            if ($bookStateRow['reservation_chk'] > 1) {
-                $sql = "SELECT * FROM Borrow_Information WHRER book_id = {$bookStateRow['book_id']}";
-                $borrowRow = mysqli_query($_SESSION['conn'], $sql);
-                $borrowRow = mysqli_fetch_array($borrowRow);
+            $sql = "SELECT * FROM Borrow_Information WHRER book_id = {$bookStateRow['book_id']}";
+            $borrowRow = mysqli_query($_SESSION['conn'], $sql);
+            $borrowRow = mysqli_fetch_array($borrowRow);
 
-                $sql = "SELECT * FROM Book_Information WHERE ISBN = {$bookStateRow['ISBN']};";
-                $bookRow = mysqli_query($_SESSION['conn'], $sql);
-                $bookRow = mysqli_fetch_array($bookRow);
+            $sql = "SELECT * FROM Book_Information WHERE ISBN = {$bookStateRow['ISBN']};";
+            $bookRow = mysqli_query($_SESSION['conn'], $sql);
+            $bookRow = mysqli_fetch_array($bookRow);
 
-                $sql = "SELECT * FROM User_Account WHERE id = '{$borrowRow['id']}';";
-                $userRow = mysqli_query($_SESSION['conn'], $sql);
-                $userRow = mysqli_fetch_array($userRow);
-                echo "<tr>
+            $sql = "SELECT * FROM User_Account WHERE id = '{$borrowRow['id']}';";
+            $userRow = mysqli_query($_SESSION['conn'], $sql);
+            $userRow = mysqli_fetch_array($userRow);
+            echo "<tr>
                     <td>{$bookRow['name']}</td>
                     <td>{$userRow['id']}</td>
                     <td>{$borrowRow['start_date']}</td>
                     <td>{$borrowRow['end_date']}</td>
                     <td class='button-td'><input type='button' value='반납'></td>
                 </tr>";
-            }
         }
         ?>
         </tbody>
