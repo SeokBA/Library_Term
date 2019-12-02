@@ -74,7 +74,7 @@
         </thead>
         <tbody>
         <?php
-        $sql = "SELECT * FROM Borrow_Information WHERE reservation_chk > 1";
+        $sql = "SELECT * FROM Borrow_Information";
         $result = mysqli_query($_SESSION['conn'], $sql);
         while (($borrowRow = mysqli_fetch_array($result)) != null) {
             $sql = "SELECT * FROM Book_Information WHERE book_id = {$borrowRow['book_id']}";
