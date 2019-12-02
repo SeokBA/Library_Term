@@ -74,13 +74,17 @@
         </thead>
         <tbody>
         <?php
-        $sql = "SELECT * FROM Borrow_Information";
-        $result = mysqli_query($_SESSION['conn'], $sql);
-        while (($borrowRow = mysqli_fetch_array($result)) != null) {
-            $sql = "SELECT * FROM Book_Information WHERE book_id = {$borrowRow['book_id']}";
+        $sql = "SELECT * FROM Borrow_Information;";
+        $borrowRow = mysqli_query($_SESSION['conn'], $sql);
+        while (($borrowRow = mysqli_fetch_array($borrowRow)) != null) {
+            $sql = "SELECT ISBN FROM Book_Statement WHERE book_id = {$borrowRow['book_id']};";
             $bookRow = mysqli_query($_SESSION['conn'], $sql);
             $bookRow = mysqli_fetch_array($bookRow);
-            $sql = "SELECT * FROM User_Account WHERE id = '{$borrowRow['id']}'";
+            $sql = "SELECT * FROM Book_Information WHERE ISBN = {$bookRow['ISBN']};";
+            $bookRow = mysqli_query($_SESSION['conn'], $sql);
+            $bookRow = mysqli_fetch_array($bookRow);
+
+            $sql = "SELECT * FROM User_Account WHERE id = '{$borrowRow['id']}';";
             $userRow = mysqli_query($_SESSION['conn'], $sql);
             $userRow = mysqli_fetch_array($userRow);
             echo "<tr>
