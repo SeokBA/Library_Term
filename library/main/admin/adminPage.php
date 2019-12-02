@@ -66,7 +66,7 @@
         <thead>
         <tr>
             <td width="40%">책 이름</td>
-            <td width="25%">예약자</td>
+            <td width="25%">예약자(id)</td>
             <td width="15%">대출일</td>
             <td width="15%">반납일</td>
             <td width="5% ">반납</td>
