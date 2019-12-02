@@ -80,11 +80,14 @@
             $sql = "SELECT * FROM Book_Information WHERE book_id = {$borrowRow['book_id']}";
             $bookRow = mysqli_query($_SESSION['conn'], $sql);
             $bookRow = mysqli_fetch_array($bookRow);
+            $sql = "SELECT * FROM User_Account WHERE id = '{$borrowRow['id']}'";
+            $userRow = mysqli_query($_SESSION['conn'], $sql);
+            $userRow = mysqli_fetch_array($userRow);
             echo "<tr>
                     <td>{$bookRow['name']}</td>
-                    <td>{$borrowRow['name']}</td>
-                    <td>{$borrowRow['start_day']}</td>
-                    <td>{$borrowRow['end_day']}</td>
+                    <td>{$userRow['id']}</td>
+                    <td>{$borrowRow['start_date']}</td>
+                    <td>{$borrowRow['end_date']}</td>
                     <td class='button-td'><input type='button' value='반납'></td>
                 </tr>";
         }
