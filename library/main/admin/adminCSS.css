@@ -36,7 +36,8 @@ caption {
 #bookList{display: block;}
 #returnBook{display: none;}
 #userManage{display: none;}
-#rankUser{width: 100px;height: 50px;}
+#rankUser{margin-left: 45%; margin-right: 45%; wrwidth: 200px;height: 50px;}
+
 
 .modal {
     display: none;
@@ -63,5 +64,22 @@ caption {
     margin-left: -250px;
     margin-top: -100px;
     padding: 40px;
+    background-color: #ffffff;
     /*color: #643B0F;*/
+}
+
+.modalTitle{
+    text-align: center;
+    font-weight: bold;
+}
+
+.modalText{
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.modalButton{
+    display: flex;
+    justify-content: center;
 }
