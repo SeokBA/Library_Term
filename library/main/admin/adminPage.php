@@ -14,7 +14,7 @@
     session_start();
     $_SESSION['id'] = $_REQUEST['id'];
     $_SESSION['conn'] = mysqli_connect('112.166.141.161', 'root', 'kylin1q2w3e4r', 'LB_DB');
-    echo "<p align='right'>id : " . $_SESSION['id'] . " <input type='button' value='정보수정' onclick=''></p>";
+    echo "<p align='right'>id : " . $_SESSION['id'] . " <input type='button' value='정보수정' onclick='clickSelf()'></p>";
     ?>
 </div>
 <div class="sideBar" style="width:13%">
@@ -94,7 +94,7 @@
                     <td>{$userRow['id']}</td>
                     <td>{$borrowRow['start_date']}</td>
                     <td>{$borrowRow['end_date']}</td>
-                    <td class='button-td'><input type='button' value='반납'></td>
+                    <td class='button-td'><input type='button' value='반납' onclick='bookReturn()'></td>
                 </tr>";
         }
         ?>
@@ -103,7 +103,7 @@
 </div>
 
 <div id="userManage" style="margin-left:15%">
-    <table>
+    <table id="adminTable">
         <caption align="center">회원관리</caption>
         <thead>
         <tr>
@@ -135,15 +135,14 @@
                     <td>{$userRow['phone']}</td>
                     <td>{$userRow['classification']}</td>
                     <td>{$userRow['total_borrow']}</td>
-                    <td class='button-td'><input type='button' value='수정' onclick='clickUser()'></td>
-                    <td class='button-td'><input type='button' value='탈퇴' onclick='clickWithdraw()' </td>
+                    <td class='button-td'><input type='button' value='수정' onclick='clickAdmin()'></td>
                 </tr>";
         }
         ?>
         </tbody>
     </table>
 
-    <table>
+    <table id="userTable">
         <thead>
         <tr>
             <th colspan="9" width="auto">User</th>
@@ -187,12 +186,12 @@
 <div id="registerModal" class="modal">
     <form id='registerContent' class="modal-content" method="get">
         <h2 class="modalTitle"> 도서 정보 등록</h2>
-        <p>제목<input type="text" id="title"></p>
-        <p>ISBN<input type="text" id="ISBN"></p>
-        <p>저자<input type="text" id="author"></p>
-        <p>출판사<input type="text" id="publisher"></p>
+        <p>제목: <input type="text" id="title"></p>
+        <p>ISBN: <input type="text" id="ISBN"></p>
+        <p>저자: <input type="text" id="author"></p>
+        <p>출판사: <input type="text" id="publisher"></p>
         <p  class="modalButton" >
-            <input type="button" value="Done" onclick="clickRegister()">
+            <input type="button" value="Done" onclick="bookRegist()">
             <input type="button" value="Cancel" onclick="closeRegister()">
         </p>
     </form>
@@ -201,27 +200,64 @@
 <div id="modifyBook" class="modal">
     <form id='bookContent' class="modal-content" method="get">
         <h2 class="modalTitle"> 도서 정보 수정</h2>
-        <p>제목<input type="text" id="title"></p>
-        <p>ISBN<input type="text" id="ISBN"></p>
-        <p>저자<input type="text" id="author"></p>
-        <p>출판사<input type="text" id="publisher"></p>
-        <p class="modalButton"><input type="button" value="Done" onclick="clickBook()">
-            <input type="button"  value="Cancel" onclick="closeBook()"></p>
+        <p>제목: <input type="text" id="title"></p>
+        <p>ISBN: <input type="text" id="ISBN"></p>
+        <p>저자: <input type="text" id="author"></p>
+        <p>출판사: <input type="text" id="publisher"></p>
+        <p class="modalButton">
+            <input type="button" value="Done" onclick="boo">
+            <input type="button" value="Cancel" onclick="closeBook()"> </p>
     </form>
 </div>
 
 <div id="borrowRank" class="modal">
     <div id="rankContent" class="modal-content">
-        <table>
-            <caption class="modal-caption" align="center">대출 TOP 10</caption>
+        <table id="rankTable">
+            <h2 class="modalTitle"> 대출 TOP 10 회원</h2>
+            <thead>
             <tr>
                 <td>이름</td>
                 <td>대출 수</td>
             </tr>
+            </thead>
         </table>
-        <input type="button" class="modalButton" value="Close" onclick="closeRank()">
+        <p class="modalButton">
+        <input type="button" value="Close" onclick="closeRank()">
     </div>
 </div>
+
+
+<div id="modifySelf" class="modal">
+    <form id="selfContent" class="modal-content" method="get">
+        <h2 class="modalTitle"> 개인 정보 수정</h2>
+        <p>ID<input type="text" id="ID"></p>
+        <p>password<input type="password" id="selfPassword" placeholder="modifyPw" required></p>
+        <p>Name<input type="text" id="selfName" placeholder="modifyId" required></p>
+        <p>E-Mail<input type="email" id="selfEmail" placeholder="modifyEmail"  required></p>
+        <p>Phone Number<input type="text" id="selfPhone" placeholder="000-0000-0000" pattern="(010)-\d{3,4}-\d{4}" required></p>
+        <p class="modalButton">
+            <input type="button" value="sumbit" onclick = "modifySelf()">
+            <input type="button" class="modalButton" value="cancle" onclick="closeSelf()">
+        </p>
+    </form>
+</div>
+
+
+<div id="modifyAdmin" class="modal">
+    <form id="AdminContent" class="modal-content" method="get">
+        <h2 class="modalTitle"> 관리자 정보 수정</h2>
+        <p>ID<input type="text" id="AdminID"></p>
+        <p>password<input type="password" id="modifyPassword" placeholder="modifyPw" required></p>
+        <p>Name<input type="text" id="modifyName" placeholder="modifyId" required></p>
+        <p>E-Mail<input type="email" id="modifyEmail" placeholder="modifyEmail"  required></p>
+        <p>Phone Number<input type="text" id="modifyPhone" placeholder="000-0000-0000" pattern="(010)-\d{3,4}-\d{4}" required></p>
+        <p class="modalButton">
+            <input type="button" value="sumbit" onclick = "modifyAdmin()">
+            <input type="button" class="modalButton" value="cancle" onclick="closeAdmin()">
+        </p>
+    </form>
+</div>
+
 
 
 <div id="modifyUser" class="modal">
@@ -240,7 +276,7 @@
                 <option value="교직원"></option>
             </datalist></p>
         <p class="modalButton">
-            <input type="button" value="sumbit">
+            <input type="button" value="sumbit" onclick = "modifyUser()">
             <input type="button" class="modalButton" value="cancle" onclick="closeUser()">
         </p>
     </form>
@@ -250,7 +286,7 @@
     <div id="withdrawContent" class="modal-content">
         <h2 class="modalTitle"> 회원 탈퇴</h2>
         <p class="modalText">탈퇴 하겠습니까?</p>
-        <input type="button" value="OK" id="withdraw">
+        <input type="button" value="OK" id="withdraw" onclick="withdrawUser()">
         <input type="button" value="Cancle" onclick="closeWithdraw()">
     </div>
 </div>

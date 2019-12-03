@@ -49,6 +49,7 @@ function clickRank() {document.getElementById("borrowRank").style.display = "blo
 function clickRegister() {document.getElementById("registerModal").style.display = "block";}
 function clickWithdraw(){document.getElementById("withdrawUser").style.display = "block"}
 function clickBook() {document.getElementById("modifyBook").style.display = "block";}
+function clickAdmin() {document.getElementById("modifyAdmin").style.display = "block";}
 function clickUser() {
     document.getElementById("modifyUser").style.display = "block";
     let userid = (event.target.parentElement).parentElement;
@@ -64,3 +65,11 @@ function closeUser() {
 }
 function closeRank() {document.getElementById("borrowRank").style.display = "none";}
 function closeWithdraw(){document.getElementById("withdrawUser").style.display = "none";}
+function closeAdmin() {document.getElementById("modifyAdmin").style.display = "none";}
+
+function modifyUser() {} // 유저 테이블 유저 관리자 정보 수정
+function modifyAdmin() {} // 관리자 테이블 관리자들 정보 수정
+function modifySelf() {} // 자기 자신 정보 수정
+function bookReturn() {} // 책 반납
+function bookRegist() {} // 책 등록
+function withdrawUser() {} // 유저 탈퇴
