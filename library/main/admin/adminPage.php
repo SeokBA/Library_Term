@@ -14,13 +14,13 @@
     session_start();
     $_SESSION['id'] = $_REQUEST['id'];
     $_SESSION['conn'] = mysqli_connect('112.166.141.161', 'root', 'kylin1q2w3e4r', 'LB_DB');
-    echo "<p align='right'>id : " . $_SESSION['id'] . " <input type='button' value='정보수정'></p>";
+    echo "<p align='right'>id : " . $_SESSION['id'] . " <input type='button' value='정보수정' onclick='clickWithdraw()'></p>";
     ?>
 </div>
 <div class="sideBar" style="width:13%">
-    <input type="button" class="barItem" value="도서목록" id="bookListSideBar" onclick="OnChange()">
-    <input type="button" class="barItem" value="도서반납" id="returnBookSideBar" onclick="OnChange()">
-    <input type="button" class="barItem" value="회원관리" id="userManageSideBar" onclick="OnChange()">
+    <input type="button" class="barItem" value="도서목록" id="bookListSideBar" onclick="changeTable()">
+    <input type="button" class="barItem" value="도서반납" id="returnBookSideBar" onclick="changeTable()">
+    <input type="button" class="barItem" value="회원관리" id="userManageSideBar" onclick="changeTable()">
 </div>
 <div id="bookList" style="margin-left:15%">
     <input type="button" value="등록" onclick="clickRegister()">
@@ -50,8 +50,8 @@
                     <td>{$bookInformation['ISBN']}</td>
                     <td>{$bookInformation['author']}</td>
                     <td>{$bookInformation['publisher']}</td>
-                    <td class='button-td'><input type='button' value='수정'></td>
-                    <td class='button-td'><input type='button' value='삭제' onclick='bookRemove(" . $bookStateRow['book_id'] . ")'></td>
+                    <td class='button-td'><input type='button' value='수정' onclick='updateBook()'></td>
+                    <td class='button-td'><input type='button' value='삭제' onclick='removeBook(" . $bookStateRow['book_id'] . ")'></td>
                 </tr>";
             }
         }
@@ -134,7 +134,7 @@
                     <td>{$userRow['phone']}</td>
                     <td>{$userRow['classification']}</td>
                     <td>{$userRow['total_borrow']}</td>
-                    <td class='button-td'><input type='button' value='수정'></td>
+                    <td class='button-td'><input type='button' value='수정' onclick='clickModify()'></td>
                     <td></td>
                 </tr>";
         }
@@ -219,7 +219,7 @@
 </div>
 
 
-<div id="modifyUser" class="modal">
+<div id="modifyModal" class="modal">
     <form id="User" class="modal-content" method="get">
         <h2>Modify Account</h2>
         <br><br>
@@ -243,10 +243,10 @@
     </form>
 </div>
 
-<div id="accountWithdrawal" class="modal">
+<div id="withdrawalModal" class="modal">
     <div id="withdraw" class="modal-content">
         <p>탈퇴 시키겠습니까?</p>
-        <input type="button" value="OK" id="withdraw">
+        <input type="button" value="OK" id="withdraw" onclick="withdraw()">
         <input type="button" value="Cancle" onclick="closeWithdraw()">
     </div>
 </div>
