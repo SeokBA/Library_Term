@@ -173,7 +173,7 @@
                     <td>{$userRow['phone']}</td>
                     <td>{$userRow['classification']}</td>
                     <td>{$userRow['total_borrow']}</td>
-                    <td class='button-td'><input type='button' value='수정' onclick='clickModify()'></td>
+                    <td class='button-td'><input type='button' value='수정' onclick='clickModify(".$userRow['id'].")'></td>
                     <td class='button-td'><input type='button' value='탈퇴' onclick='clickWithdraw(".$userRow['id'].")'></td>
                 </tr>";
         }
@@ -244,7 +244,7 @@
             <option value="교직원"></option>
         </datalist>
         <br><br><br>
-        <input type="button" value="sumbit" onclick="clickModify()">
+        <input type="button" value="sumbit" onclick="modifyAccount()">
         <input type="button" value="cancle" onclick="closeModify()">
     </form>
 </div>
