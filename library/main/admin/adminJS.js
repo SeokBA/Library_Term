@@ -6,6 +6,7 @@ let userManage = document.getElementById("userManage");
 let withdrawalModal = document.getElementById("withdrawalModal");
 let modifyModal = document.getElementById("modifyModal");
 
+let modifyId = null;
 let delId = null;
 
 function updateBook(name, isbn, author, publisher) {
@@ -65,7 +66,8 @@ function closeWithdraw() {
 }
 
 // 회원 정보 수정 관련
-function clickModify() {
+function clickModify(id) {
+    modifyId = id;
     document.getElementById("modifyID").value = null;
     document.getElementById("modifyPW").value = null;
     document.getElementById("modifyName").value = null;
@@ -85,26 +87,31 @@ function modifyAccount() {
     let sqlStr = "";
 
     if (id !== "") {
-        sqlStr += "id=" + id;
-    } else if (pw !== "") {
+        sqlStr += "&newId=" + id;
+    }
+    if (pw !== "") {
         sqlStr += "&pw=" + pw;
-    } else if (name !== "") {
+    }
+    if (name !== "") {
         sqlStr += "&name=" + name;
-    } else if (email !== "") {
+    }
+    if (email !== "") {
         if (email.match(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i) == null)
             sqlStr += "&email=" + email;
         else {
             alert("incorrect E-Mail");
             return;
         }
-    } else if (phone !== "") {
+    }
+    if (phone !== "") {
         if (phone.match(/^[0-9][0-9]?([0-9])-[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$/) == null)
             sqlStr += "&phone=" + phone;
         else {
             alert("incorrect Phone Number");
             return;
         }
-    } else if (classification !== "") {
+    }
+    if (classification !== "") {
         if (!(classification.match("학부") || classification.match("대학원") || classification.match("교직원")))
             sqlStr += "&classification=" + classification;
         else {
@@ -113,8 +120,13 @@ function modifyAccount() {
         }
     }
 
+    if(sqlStr === ""){
+        alert("변경할 내용을 입력해주세요.");
+        return;
+    }
+
     let xhttp = new XMLHttpRequest();
-    xhttp.open("GET", adminStr + "signUp.php?" + sqlStr, true);
+    xhttp.open("GET", adminStr + "updateUser.php?id=" + modifyId + sqlStr, true);
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
@@ -129,11 +141,9 @@ function modifyAccount() {
 }
 
 function closeModify() {
+    modifyId = null;
     modifyModal.style.display = "none";
 }
-
-
-
 
 
 function clickRank() {

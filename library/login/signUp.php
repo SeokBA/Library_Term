@@ -4,7 +4,7 @@ $pw = $_REQUEST["pw"];
 $name = $_REQUEST["name"];
 $email = $_REQUEST["email"];
 $phone = $_REQUEST["phone"];
-$classification = $_GET["classification"];
+$classification = $_REQUEST["classification"];
 
 $conn = mysqli_connect('112.166.141.161', 'root', 'kylin1q2w3e4r', 'LB_DB');
 $sql = "SELECT * FROM User_Account WHERE id = '{$id}';";
