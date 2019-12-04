@@ -14,7 +14,7 @@
     session_start();
     $_SESSION['id'] = $_REQUEST['id'];
     $_SESSION['conn'] = mysqli_connect('112.166.141.161', 'root', 'kylin1q2w3e4r', 'LB_DB');
-    echo "<p align='right'>id : " . $_SESSION['id'] . " <input type='button' value='정보수정' onclick='clickUser()'></p>";
+    echo "<p align='right'>id : " . $_SESSION['id'] . " <input type='button' value='정보수정'></p>";
     ?>
 </div>
 <div class="sideBar" style="width:13%">
@@ -173,7 +173,7 @@
                     <td>{$userRow['phone']}</td>
                     <td>{$userRow['classification']}</td>
                     <td>{$userRow['total_borrow']}</td>
-                    <td class='button-td'><input type='button' value='수정'></td>
+                    <td class='button-td'><input type='button' value='수정' onclick='clickModify()'></td>
                     <td class='button-td'><input type='button' value='탈퇴' onclick='clickWithdraw()'></td>
                 </tr>";
         }
@@ -222,24 +222,24 @@
 <div id="modifyUser" class="modal">
     <form id="User" class="modal-content" method="get">
         <h2>Modify Account</h2>
-        <br>
+        <br><br>
         <p>ID</p>
         <input type="text" id="modifyID" placeholder="modify id">
-        <br>
+        <br><br>
         <p>password</p>
         <input type="text" id="modifyPassword" placeholder="modify pw">
-        <br>
+        <br><br>
         <p>Name</p>
         <input type="text" id="modifyName" placeholder="modify name">
-        <br>
+        <br><br>
         <p>E-Mail</p>
         <input type="email" id="modifyEmail" placeholder="modify email">
-        <br>
+        <br><br>
         <p>Phone Number</p>
         <input type="text" id="modifyPhone" placeholder="modify phone">
-        <br>
+        <br><br><br>
         <input type="button" value="sumbit">
-        <input type="button" value="cancle" onclick="closeUser()">
+        <input type="button" value="cancle" onclick="closeModify()">
     </form>
 </div>
 

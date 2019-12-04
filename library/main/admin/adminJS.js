@@ -114,18 +114,26 @@ function clickRank() {document.getElementById("borrowRank").style.display = "blo
 function clickRegister() {document.getElementById("registerModal").style.display = "block";}
 function clickWithdraw(){document.getElementById("accountWithdrawal").style.display = "block"}
 function clickBook() {document.getElementById("modifyBook").style.display = "block";}
-function clickUser() {
+function clickModify() {
     document.getElementById("modifyUser").style.display = "block";
-    let userid = (document.getElementById(event.target).parentElement).parentElement;
-    document.getElementById("userID").value = userid.childNodes[3].textContent;
-    document.getElementById("userID").readOnly = true;
+    // let userid = (document.getElementById(event.target).parentElement).parentElement;
+    // document.getElementById("userID").value = userid.childNodes[3].textContent;
+    // document.getElementById("userID").readOnly = true;
 }
+
 function closeRegister() {document.getElementById("registerModal").style.display = "none";}
 function closeBook() {document.getElementById("modifyBook").style.display = "none";}
-function closeUser() {
+function closeModify() {
     document.getElementById("modifyUser").style.display = "none";
-    document.getElementById("userID").value = "";
-    document.getElementById("userID").readOnly = false;
+    // document.getElementById("userID").value = "";
+    // document.getElementById("userID").readOnly = false;
 }
 function closeRank() {document.getElementById("borrowRank").style.display = "none";}
 function closeWithdraw(){document.getElementById(withdrawUser).style.display = "none";}
+
+window.onclick = function (event) {
+    if (event.target === document.getElementById("accountWithdrawal"))
+        closeWithdraw();
+    if (event.target === document.getElementById("modifyUser"))
+        closeModify();
+};
