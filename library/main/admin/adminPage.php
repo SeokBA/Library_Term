@@ -222,7 +222,6 @@
 <div id="modifyModal" class="modal">
     <form id="User" class="modal-content" method="get">
         <h2>Modify Account</h2>
-        <br><br>
         <p>ID</p>
         <input type="text" id="modifyID" placeholder="modify id">
         <br><br>
