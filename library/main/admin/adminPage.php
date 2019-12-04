@@ -243,11 +243,11 @@
     </form>
 </div>
 
-<div id="withdrawUser" class="modal">
+<div id="accountWithdrawal" class="modal">
     <div id="withdraw" class="modal-content">
-        <p>탈퇴 하겠습니까?</p>
+        <p>탈퇴 시키겠습니까?</p>
         <input type="button" value="OK" id="withdraw">
-        <input type="button" value="Cancle" onclick="close()">
+        <input type="button" value="Cancle" onclick="closeWithdraw()">
     </div>
 </div>
 <script src="adminJS.js"></script>

@@ -112,7 +112,7 @@ function OnChange(){
 
 function clickRank() {document.getElementById("borrowRank").style.display = "block"}
 function clickRegister() {document.getElementById("registerModal").style.display = "block";}
-function clickWithdraw(){document.getElementById("withdrawUser").style.display = "block"}
+function clickWithdraw(){document.getElementById("accountWithdrawal").style.display = "block"}
 function clickBook() {document.getElementById("modifyBook").style.display = "block";}
 function clickUser() {
     document.getElementById("modifyUser").style.display = "block";
