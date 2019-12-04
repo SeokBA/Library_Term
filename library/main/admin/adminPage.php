@@ -174,7 +174,7 @@
                     <td>{$userRow['classification']}</td>
                     <td>{$userRow['total_borrow']}</td>
                     <td class='button-td'><input type='button' value='수정' onclick='clickModify()'></td>
-                    <td class='button-td'><input type='button' value='탈퇴' onclick='clickWithdraw()'></td>
+                    <td class='button-td'><input type='button' value='탈퇴' onclick='clickWithdraw(".$userRow['id'].")'></td>
                 </tr>";
         }
         ?>
@@ -223,21 +223,28 @@
     <form id="User" class="modal-content" method="get">
         <h2>Modify Account</h2>
         <p>ID</p>
-        <input type="text" id="modifyID" placeholder="modify id">
+        <input type="text" id="modifyID" placeholder="input id">
         <br><br>
         <p>password</p>
-        <input type="text" id="modifyPassword" placeholder="modify pw">
+        <input type="text" id="modifyPW" placeholder="input pw">
         <br><br>
         <p>Name</p>
-        <input type="text" id="modifyName" placeholder="modify name">
+        <input type="text" id="modifyName" placeholder="input name">
         <br><br>
         <p>E-Mail</p>
-        <input type="email" id="modifyEmail" placeholder="modify email">
+        <input type="email" id="modifyEmail" placeholder="input email">
         <br><br>
         <p>Phone Number</p>
-        <input type="text" id="modifyPhone" placeholder="modify phone">
+        <input type="text" id="modifyPhone" placeholder="input phone num">
+        <p>Classification</p>
+        <input type="text" id="modifyClassification" placeholder="input Classification" list="choices">
+        <datalist id="choices">
+            <option value="학부"></option>
+            <option value="대학원"></option>
+            <option value="교직원"></option>
+        </datalist>
         <br><br><br>
-        <input type="button" value="sumbit">
+        <input type="button" value="sumbit" onclick="clickModify()">
         <input type="button" value="cancle" onclick="closeModify()">
     </form>
 </div>

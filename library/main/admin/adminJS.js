@@ -36,57 +36,9 @@ function removeBook(bookId) {
     };
 }
 
-function modifyAccount() {
-    let id = document.getElementById("idSignUpBox").value;
-    let pw = document.getElementById("pwSignUpBox").value;
-    let name = document.getElementById("nameSignUpBox").value;
-    let email = document.getElementById("emailSignUpBox").value;
-    let phone = document.getElementById("phoneSignUpBox").value;
-    let classification = document.getElementById("classificationSignUpBox").value;
-
-    if (id === "") {
-        alert("Enter your ID");
-        return;
-    } else if (pw === "") {
-        alert("Enter your Password");
-        return;
-    } else if (name === "") {
-        alert("Enter your Name");
-        return;
-    } else if (email === "" || email.match(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i) == null) {
-        alert("Incorrect your E-mail");
-        return;
-    } else if (phone === "" || phone.match(/^[0-9][0-9]?([0-9])-[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$/) == null) {
-        alert("Incorrect your Phone Number");
-        return;
-    } else if (classification === "" || !(classification.match("학부") || classification.match("대학원") || classification.match("교직원"))) {
-        alert("Incorrect your Classification");
-        return;
-    }
-
-    let xhttp = new XMLHttpRequest();
-    xhttp.open("GET", adminStr + "signUp.php?" +
-        "id=" + id
-        + "&pw=" + pw
-        + "&name=" + name
-        + "&email=" + email
-        + "&phone=" + phone
-        + "&classification=" + classification, true);
-    xhttp.send();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            let chk = this.responseText;
-            if (chk === "1") {
-                alert("complete");
-                closeSignUp();
-            } else
-                alert("Duplication ID");
-        }
-    };
-}
-
 // 회원 탈퇴 관련
-function clickWithdraw() {
+function clickWithdraw(id) {
+    delId = id;
     withdrawalModal.style.display = "block"
 }
 
@@ -98,31 +50,88 @@ function withdraw() {
         if (this.readyState === 4 && this.status === 200) {
             if (this.responseText === "1")
                 alert("Delete Complete");
+            else if (this.responseText === "2")
+                alert("해당 유저가 반납을 하지 않은 책이 있습니다.");
             else
                 alert("Delete Error");
         }
     };
-    delId = null;
+    closeWithdraw();
 }
 
-function closeWithdraw(id) {
+function closeWithdraw() {
+    delId = null;
     withdrawalModal.style.display = "none";
-    delId = id;
 }
 
 // 회원 정보 수정 관련
 function clickModify() {
+    document.getElementById("modifyID").value = null;
+    document.getElementById("modifyPW").value = null;
+    document.getElementById("modifyName").value = null;
+    document.getElementById("modifyEmail").value = null;
+    document.getElementById("modifyPhone").value = null;
+    document.getElementById("modifyClassification").value = null;
     modifyModal.style.display = "block";
-    // let userid = (document.getElementById(event.target).parentElement).parentElement;
-    // document.getElementById("userID").value = userid.childNodes[3].textContent;
-    // document.getElementById("userID").readOnly = true;
+}
+
+function modifyAccount() {
+    let id = document.getElementById("modifyID").value;
+    let pw = document.getElementById("modifyPW").value;
+    let name = document.getElementById("modifyName").value;
+    let email = document.getElementById("modifyEmail").value;
+    let phone = document.getElementById("modifyPhone").value;
+    let classification = document.getElementById("modifyClassification").value;
+    let sqlStr = "";
+
+    if (id !== "") {
+        sqlStr += "id=" + id;
+    } else if (pw !== "") {
+        sqlStr += "&pw=" + pw;
+    } else if (name !== "") {
+        sqlStr += "&name=" + name;
+    } else if (email !== "") {
+        if (email.match(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i) == null)
+            sqlStr += "&email=" + email;
+        else {
+            alert("incorrect E-Mail");
+            return;
+        }
+    } else if (phone !== "") {
+        if (phone.match(/^[0-9][0-9]?([0-9])-[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$/) == null)
+            sqlStr += "&phone=" + phone;
+        else {
+            alert("incorrect Phone Number");
+            return;
+        }
+    } else if (classification !== "") {
+        if (!(classification.match("학부") || classification.match("대학원") || classification.match("교직원")))
+            sqlStr += "&classification=" + classification;
+        else {
+            alert("incorrect Classification");
+            return;
+        }
+    }
+
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("GET", adminStr + "signUp.php?" + sqlStr, true);
+    xhttp.send();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            let chk = this.responseText;
+            if (chk === "1") {
+                alert("complete");
+                closeModify();
+            } else
+                alert("Modify Error");
+        }
+    };
 }
 
 function closeModify() {
     modifyModal.style.display = "none";
-    // document.getElementById("userID").value = "";
-    // document.getElementById("userID").readOnly = false;
 }
+
 
 
 
@@ -140,7 +149,6 @@ function clickBook() {
 }
 
 
-
 function closeRegister() {
     document.getElementById("registerModal").style.display = "none";
 }
@@ -152,7 +160,6 @@ function closeBook() {
 function closeRank() {
     document.getElementById("borrowRank").style.display = "none";
 }
-
 
 
 window.onclick = function (event) {
