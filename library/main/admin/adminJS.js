@@ -27,6 +27,71 @@ function bookRemove(bookId) {
         }
     };
 }
+
+function modifyAccount() {
+    let id = document.getElementById("idSignUpBox").value;
+    let pw = document.getElementById("pwSignUpBox").value;
+    let name = document.getElementById("nameSignUpBox").value;
+    let email = document.getElementById("emailSignUpBox").value;
+    let phone = document.getElementById("phoneSignUpBox").value;
+    let classification = document.getElementById("classificationSignUpBox").value;
+
+    if(id === ""){
+        alert("Enter your ID");
+        return;
+    }
+
+    else if(pw === ""){
+        alert("Enter your Password");
+        return;
+    }
+
+    else if(name === ""){
+        alert("Enter your Name");
+        return;
+    }
+
+    else if(email === "" || email.match(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i) == null){
+        alert("Incorrect your E-mail");
+        return;
+    }
+
+    else if(phone === "" || phone.match(/^[0-9][0-9]?([0-9])-[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$/) == null){
+        alert("Incorrect your Phone Number");
+        return;
+    }
+
+    else if(classification === "" || !(classification.match("학부") || classification.match("대학원") || classification.match("교직원"))){
+        alert("Incorrect your Classification");
+        return;
+    }
+
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("GET", loginStr + "signUp.php?" +
+        "id=" + id
+        + "&pw=" + pw
+        + "&name=" + name
+        + "&email=" + email
+        + "&phone=" + phone
+        + "&classification=" + classification, true);
+    xhttp.send();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            let chk = this.responseText;
+            if (chk === "1") {
+                alert("complete");
+                closeSignUp();
+            } else
+                alert("Duplication ID");
+        }
+    };
+}
+
+
+
+
+
+
 function OnChange(){
     if( event.target.id === "bookListSideBar" ){
         bookList.style.display = "block";

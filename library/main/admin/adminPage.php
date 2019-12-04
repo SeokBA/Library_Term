@@ -221,11 +221,23 @@
 
 <div id="modifyUser" class="modal">
     <form id="User" class="modal-content" method="get">
-        <p>ID<input type="text" id="userID"></p>
-        <p>password<input type="text" id="modifypassword" placeholder="modify pw" required></p>
-        <p>Name<input type="text" id="modifyName" placeholder="modify id" required></p>
-        <p>E-Mail<input type="email" id="modifyEmail" placeholder="modify email" required></p>
-        <p>Phone Number<input type="text" id="modifyPhone" placeholder="modify phone" required></p>
+        <h2>Modify Account</h2>
+        <br>
+        <p>ID</p>
+        <input type="text" id="modifyID" placeholder="modify id">
+        <br>
+        <p>password</p>
+        <input type="text" id="modifyPassword" placeholder="modify pw">
+        <br>
+        <p>Name</p>
+        <input type="text" id="modifyName" placeholder="modify name">
+        <br>
+        <p>E-Mail</p>
+        <input type="email" id="modifyEmail" placeholder="modify email">
+        <br>
+        <p>Phone Number</p>
+        <input type="text" id="modifyPhone" placeholder="modify phone">
+        <br>
         <input type="button" value="sumbit">
         <input type="button" value="cancle" onclick="closeUser()">
     </form>
@@ -235,7 +247,7 @@
     <div id="withdraw" class="modal-content">
         <p>탈퇴 하겠습니까?</p>
         <input type="button" value="OK" id="withdraw">
-        <input type="button" value="Cancle" onclick="closeWithdraw()">
+        <input type="button" value="Cancle" onclick="close()">
     </div>
 </div>
 <script src="adminJS.js"></script>

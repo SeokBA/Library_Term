@@ -51,7 +51,7 @@ caption {
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modal-content:not(#statOutput) {
+.modal-content {
     background-color: white;
     border: 1px solid black;
     position: fixed;
