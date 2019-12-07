@@ -21,7 +21,10 @@
     <?php
     session_start();
     $_SESSION['id'] = $_REQUEST['id'];
-    echo "<p id='userName' align='right'>id : {$_SESSION['id']} <input type='button' value='정보수정' onclick='clickinfo()'> </p>";
+    echo "<p id='userName' align='right'>id : {$_SESSION['id']}
+    <input type='button' value='정보수정' onclick='clickInfo()'>
+    <input type= 'button' value= '회원탈퇴' onclick='clickWithdraw()'>
+    </p>";
     ?>
 </div>
 <div class = "sidebar" style="width:13%">
@@ -33,10 +36,17 @@
 <div id="borrowList" style="margin-left:15%">
     <table id ="borrowTable">
         <caption align="center"> 대출 목록 </caption>
+        <thead>
         <tr>
-            <td width="10%">책 번호 </td><td width="30%">책 이름</td> <td width="25%">예약일</td> <td width="25%"> 반납일 </td> <td width="10%"> 반납 </td>
+            <td width="25%"> ISBN </td>
+            <td width="35%"> 책 제목 </td>
+            <td width="20%"> 대출일 </td>
+            <td width="20%"> 반납예정일 </td>
+            <td width="10%"> 반납 </td>
         </tr>
-	    <?php
+        </thead>
+        <tbody>
+        <?php
         #	$db_conn = mysqli_connect( '112.166.141.161', 'root', 'kylin1q2w3e4r', 'LB_DB');
         $db_sql = "SELECT * FROM Borrow_Information WHERE id = \"". $_SESSION['id'] ."\";";
         $db_result = mysqli_query( $db_conn, $db_sql );
@@ -47,50 +57,93 @@
             $book_row = mysqli_fetch_array( $book_result);
             echo "<tr> <td>".$db_row['book_id'] ."</td> <td>". $book_row[ 'name'] ."</td><td>".$db_row['start_date']."</td><td>".$db_row['end_date']."</td><td onclick='returnRequest()'>반납</td>"; #반납시 onclick으로 호출하는부분
         }
-	    ?>
-
-
+        ?>
+        </tbody>
     </table>
 </div>
 
 <div id ="reserveBook" style="margin-left: 15%">
     <table>
         <caption align="center"> 예약 현황 </caption>
+        <thead>
         <tr>
-            <td width="50%"> 책 제목 </td> <td width="15%"> 대기 인원</td>
-            <td width="25%"> 대출 가능일 </td> <td width="10%">예약 취소</td>
+            <td width="25%"> ISBN </td>
+            <td width="25%"> 책 제목 </td>
+            <td width="15%"> 대기 인원 </td>
+            <td width="25%"> 대출 가능일 </td>
+            <td width="10%"> 예약 취소 </td>
         </tr>
+        </thead>
+        <tbody></tbody>
+
     </table>
 </div>
 
 <div id ="searchBook" style="margin-left: 15%">
-                <form>
-                    <p>ISBN: <input type="text"> </p>
-                    <p>도서이름: <input type="text"> </p>
-                    <p> <input type="button" value="검색"></p>
-                </form>
-                <table>
-                    <caption align="center"> 검색 결과 </caption>
-                    <tr>
-                        <td width="30%">ISBN </td> <td width="30%"> 책 제목 </td>
-                        <td width="15%"> 작가</td> <td width="10%"> 출판사</td>
-            <td width="10%"> 대출 여부</td> <td width="5%">예약</td>
+    <form>
+        <p>ISBN: <input type="text" id="ISBN" placeholder="input ISBN" required> </p>
+        <p>도서이름: <input type="text" id="bookName" placeholder="input password" required> </p>
+        <p> <input type="button" id="search" value="검색" onclick=""></p>
+    </form>
+    <table>
+        <caption align="center"> 검색 결과 </caption>
+        <thead>
+        <tr>
+            <td width="30%"> ISBN </td>
+            <td width="20%"> 책 제목 </td>
+            <td width="15%"> 작가 </td>
+            <td width="15%"> 출판사 </td>
+            <td width="10%"> 대출 여부 </td>
+            <td width="5%"> 대출 </td>
+            <td width="5%"> 예약 </td>
         </tr>
+        </thead>
+        <tbody></tbody>
+
     </table>
 </div>
 
 
 <div id="infomodify" class="modal">
     <form id='modifyContent' class="modal-content" method="get">
-        <p>ID <input type="text" id="modifyid" name="id"></p>
-        <p>Password <input type="text" id="pwmodify" name="pwModify" placeholder="input password" required></p>
-        <p>Name <input type="text" id="namemodify" name="namemodify" placeholder="input name" required></p>
-        <p>E-Mail <input type="email" id="emailmodify" name="emailmodify" placeholder="input e-mail" required></p>
-        <p>Phone Number <input type="text" id="phonemodify" placeholder="000-0000-0000" name="phonemodify" required></p>
-        <input type="button" value="Done">
-        <input type="button" value="Cancel" onclick="closeInfo()">
+        <h2> 본인 정보 수정 </h2>
+        <p> ID </p>
+        <input type="text" id="modifyId">
+        <br><br>
+        <p>Password</p>
+        <input type="text" id="modifyPw" placeholder="input password" required>
+        <br><br>
+        <p>Name</p>
+        <input type="text" id="modifyName" placeholder="input name" required>
+        <br><br>
+        <p>E-Mail </p>
+        <input type="email" id="modifyEmail" placeholder="input e-mail" required>
+        <br><br>
+        <p>Phone Number</p>
+        <input type="text" id="phonemodify" placeholder="input phone" required>
+        <br><br>
+        <p>Classification</p>
+        <input type="text" id="modifyClassification" placeholder="input Classification" list="choices">
+        <datalist id="choices">
+            <option value="학부"></option>
+            <option value="대학원"></option>
+            <option value="교직원"></option>
+        </datalist>
+        <br><br><br>
+        <input type="button" value="submit" onclick="">
+        <input type="button" value="cancel" onclick="closeInfo()">
     </form>
 </div>
+
+<div id="withdrawalModal" class="modal">
+    <div id="withdraw" class="modal-content p">
+        <p>탈퇴 하시겠습니까?</p>
+        <input type="button" value="OK" id="withdraw" onclick="">
+        <input type="button" value="Cancle" onclick="closeWithdraw()">
+    </div>
+</div>
+
+
 
 <script src="userJS.js"></script>
 </body>

@@ -31,6 +31,14 @@ function closeInfo() {
     document.getElementById("infomodify").style.display = "none";
 }
 
+function clickWithdraw(){
+    document.getElementById("withdrawalModal").style.display = "block";
+}
+
+function closeWithdraw(){
+    document.getElementById("withdrawalModal").style.display = "none";
+}
+
 function returnRequest() {
     var tr = (event.target).parentElement;
     var bookId = tr.childNodes[1].textContent; // 책 번호
