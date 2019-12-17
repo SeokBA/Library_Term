@@ -88,7 +88,7 @@ function openReserveModal() { // 클릭시 예약 모달 출력
     document.getElementById("reserveBookName").value = BookName;
     document.getElementById("reserveBookId").value = BookId;
     document.getElementById("reserveBookISBN").value = BookISBN;
-    document.getElementById("reserveModal").style = "block";
+    document.getElementById("reserveModal").style.display = "block";
 }
 
 function reserveBook() { //
@@ -100,7 +100,7 @@ function reserveBook() { //
     xhttp.onreadystatechange = function () {
         if(this.readyState === 4 && this.status === 200){
             chk = this.responseText;
-            document.getElementById("reserveModal").style = "none";
+            document.getElementById("reserveModal").style.display = "none";
             searchBook();
         }
     }
@@ -116,7 +116,7 @@ function openBorrowModal() { // 클릭시 대출 모달 출력
     document.getElementById("borrowBookName").value = BookName;
     document.getElementById("borrowBookId").value = BookId;
     document.getElementById("borrowBookISBN").value = BookISBN;
-    document.getElementById("borrowModal").style = "block";
+    document.getElementById("borrowModal").style.display = "block";
 }
 
 
@@ -129,7 +129,7 @@ function borrowBook(){
     xhttp.onreadystatechange = function () {
         if(this.readyState === 4 && this.status === 200){
             chk = this.responseText;
-            document.getElementById("borrowModal").style = "none";
+            document.getElementById("borrowModal").style.display = "none";
             searchBook(); // 예약도 똑같이
         }
     }

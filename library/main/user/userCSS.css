@@ -47,6 +47,13 @@ caption{
     display: none;
 }
 
+#reserveModal{
+    display:none;
+}
+
+#borrowModal{
+    display: none;
+}
 .modal-caption{
     font-size: 20px;
     font-weight: bold;
