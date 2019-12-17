@@ -32,6 +32,10 @@ caption{
     font-weight: bold;
 }
 
+#infoModify{
+    display: none
+}
+
 #borrowList{
     display: block;
 }
@@ -53,6 +57,10 @@ caption{
 
 #borrowModal{
     display: none;
+}
+
+#rreserveCancelModal{
+    dispaly: none;
 }
 .modal-caption{
     font-size: 20px;

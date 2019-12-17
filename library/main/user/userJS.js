@@ -11,6 +11,8 @@ function OnChange(){
     }
     else if( event.target.id == "search"){
         Borrowlist.style.display = "none";
+        document.getElementById("ISBN").value = "";
+        document.getElementById("bookName").value = ""; // 창 들어갈시 이전에 있던 기록들 초기화
         Searchbook.style.display = "block";
         Reservebook.style.display ="none";
     }
@@ -22,10 +24,9 @@ function OnChange(){
 }
 
 function clickInfo() {
-    document.getElementById("infomodify").style.display = "block";
-    var idtext = document.getElementById("userName").textContent.split(":")[1];
-    document.getElementById("modifyid").value = idtext.trim();
+    document.getElementById("modifyid").value = username.innerHTML.split(" ")[2];
     document.getElementById("modifyid").readOnly = true;
+    document.getElementById("infoModify").style.display = "block";
 }
 
 function closeInfo() {
@@ -80,13 +81,13 @@ function searchBook() {
 
 function openReserveModal() { // 클릭시 예약 모달 출력
     var tr = (event.target).parentElement;
-    var BookId = tr.childNodes[0].textContent;
-    var BookISBN = tr.childNodes[1].textContent;
-    var BookName = tr.childNodes[2].textContent;
+    var bookId = tr.childNodes[0].textContent;
+    var bookISBN = tr.childNodes[1].textContent;
+    var bookName = tr.childNodes[2].textContent;
     var username = document.getElementById("userName");
-    document.getElementById("reserveBookName").value = BookName;
-    document.getElementById("reserveBookId").value = BookId;
-    document.getElementById("reserveBookISBN").value = BookISBN;
+    document.getElementById("reserveBookName").value = bookName;
+    document.getElementById("reserveBookId").value = bookId;
+    document.getElementById("reserveBookISBN").value = bookISBN;
     document.getElementById("reserveModal").style.display = "block";
 }
 
@@ -108,12 +109,12 @@ function reserveBook() { //
 
 function openBorrowModal() { // 클릭시 대출 모달 출력
     var tr = (event.target).parentElement;
-    var BookId = tr.childNodes[0].textContent;
-    var BookISBN = tr.childNodes[1].textContent;
-    var BookName = tr.childNodes[2].textContent;
-    document.getElementById("borrowBookName").value = BookName;
-    document.getElementById("borrowBookId").value = BookId;
-    document.getElementById("borrowBookISBN").value = BookISBN;
+    var bookId = tr.childNodes[0].textContent;
+    var bookISBN = tr.childNodes[1].textContent;
+    var bookName = tr.childNodes[2].textContent;
+    document.getElementById("borrowBookName").value = bookName;
+    document.getElementById("borrowBookId").value = bookId;
+    document.getElementById("borrowBookISBN").value = bookISBN;
     document.getElementById("borrowModal").style.display = "block";
 }
 
@@ -134,3 +135,44 @@ function borrowBook(){
         }
     }
 }
+
+function openCancelReserve() {
+    var tr = (event.target).parentElement;
+    var bookId = tr.childNodes[0].textContent;
+    var bookISBN = tr.childNodes[1].textContent;
+
+    document.getElementById("cancelReserveName").value = bookId;
+    document.getElementById("cancelReserveISBN").value = bookISBN;
+    document.getElementById("reserveCancelModal").style.display = "block"
+}
+
+function cancleReserve() {
+    var bookId = document.getElementById("cancelReserveName").value;
+    var bookISBN = document.getElementById("cancelReserveISBN").value;
+    var id = username.innerHTML.split(" ")[2];
+    xhttp.open("GET", , true); // 요기 전달할거 넣으면 될거같고
+    xhttp.send();
+    xhttp.onreadystatechange = function () {
+        if(this.readyState === 4 && this.status === 200){
+            chk = this.responseText;
+            document.getElementById("reserveCancelModal").style.display = "none";
+            // 이거 재갱신을 어떻게 해줄까ㅣ?
+        }
+    }
+}
+
+
+function requestWithdraw() {
+    var id = username.innerHTML.split(" ")[2];
+    xhttp.open("GET","",true);
+    xhttp.send();
+    xhttp.onreadystatechange = function () {
+        if(this.readyState === 4 && this.status === 200){
+            chk = this.responseText;
+            location.href="../../login/login.html"
+            // 탈퇴 했으므로 로그인 html 이동
+        }
+    }
+
+}
+

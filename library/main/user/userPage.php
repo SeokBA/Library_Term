@@ -79,9 +79,7 @@
         <tbody>
 		<?php
 			$db_sql = "select * from Book_Information where ISBN = ( select ISBN FROM Book_Statement where book_id = (select book_id FROM LB_DB.Reservation_Information where id = '{$_SESSION['id']}'));";
-
 		?>
-
 	</tbody>
 
     </table>
@@ -115,7 +113,7 @@
 </div>
 
 
-<div id="infomodify" class="modal">
+<div id="infoModify" class="modal">
     <form id='modifyContent' class="modal-content" method="get">
         <h2> 본인 정보 수정 </h2>
         <p> ID </p>
@@ -150,21 +148,21 @@
     <div id="withdraw" class="modal-content p">
         <h2>회원 탈퇴</h2>
         <p>탈퇴 하시겠습니까?</p>
-        <p>
-            <input type="button" value="OK" id="withdraw" onclick=""><br>
-            <input type="button" value="Cancle" onclick="closeWithdraw()"><br>
-        </p>
-
-    </div>
+        <input type="button" value="OK" id="withdraw" onclick="requestWithdraw()">
+        <input type="button" value="Cancle" onclick="closeWithdraw()">
+</div>
 </div>
 
 <div id="borrowModal" class="modal">
     <div class="modal-content">
         <h2>도서 대출</h2>
         <p>대출 하시겠습니까?</p>
-        <p> 책 이름: <input type="text" id = "borrowBookName"><br>
-        책 ID: <input type="text" id = "borrowBookId"><br>
-        책 ISBN: <input type="text" id ="borrowBookISBN"></p>
+        책 이름: <input type="text" id = "borrowBookName">
+        <br>
+        책 ID: <input type="text" id = "borrowBookId">
+        <br>
+        책 ISBN: <input type="text" id ="borrowBookISBN">
+        <br>
         <p>
             <input type="button" value="OK" onclick="borrowBook()">
             <input type="button" value="Cancle" onclick="closeBorrow()">
@@ -177,17 +175,29 @@
     <div class="modal-content">
         <h2>도서 예약</h2>
         <p>예약 하시겠습니까?</p>
-        <p> 책 이름: <input type="text" id = "reserveBookName"><br>
-            책 ID: <input type="text" id = "reserveBookId"><br>
-            책 ISBN: <input type="text" id ="reserveBookISBN"></p>
-        <p>
-            <input type="button" value="OK" onclick="reserveBook()">
-            <input type="button" value="Cancle" onclick="closeReserve()">
-        </p>
+        책 이름: <input type="text" id = "reserveBookName">
+        <br>
+        책 ID: <input type="text" id = "reserveBookId">
+        <br>
+        책 ISBN: <input type="text" id ="reserveBookISBN">
+        <br>
+        <p><input type="button" value="OK" onclick="reserveBook()">
+            <input type="button" value="Cancle" onclick="closeReserve()"></p>
     </div>
 </div>
 
-
+<div id="reserveCancelModal" class="modal">
+    <div class="modal-content">
+        <h2>도서 예약 취소</h2>
+        <p>예약을 취소하시겠습니까?</p>
+        책 이름: <input type="text" id = "cancelReserveName">
+        <br>
+        책 ISBN: <input type="text" id ="cancelReserveISBN">
+        <br>
+        <p><input type="button" value="OK" onclick="cancelReserve()">
+            <input type="button" value="Cancle" onclick="closeCancelReserve()"></p>
+    </div>
+</div>
 
 <script src="userJS.js?ver=1"></script>
 </body>
