@@ -7,6 +7,7 @@ function OnChange(){
         Borrowlist.style.display = "block";
         Searchbook.style.display = "none";
         Reservebook.style.display ="none";
+        location.reload();
     }
     else if( event.target.id == "search"){
         Borrowlist.style.display = "none";
@@ -48,9 +49,9 @@ function returnRequest() {
     xhttp.onreadystatechange = function () {
         if(this.readyState === 4 && this.status === 200){
             let chk = this.responseText;
-	    console.log( chk );
+    	    console.log( chk );
             if(chk === "1"){
-                alert("complete")
+             location.reload();
             }
         }
     }
@@ -76,7 +77,7 @@ function borrowBook(){
     var id = username.innerHTML.split(' ')[2] // id;
 
     let xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "borrowBook.php?"+"id="+id+"&bookid="+bookId , true);
+    xhttp.open("GET", "reservationBook.php?"+"id="+id+"&bookid="+bookId , true);
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if(this.readyState === 4 && this.status === 200){

@@ -52,10 +52,11 @@
         $db_result = mysqli_query( $db_conn, $db_sql );
 
         while( $db_row = mysqli_fetch_array( $db_result) ){
-            $book_sql = "SELECT * FROM Book_Information where ISBN = (select ISBN from Book_Statement where book_id = ". $db_row['book_id'] .");" ;
+            $book_sql = "SELECT * FROM Book_Information where ISBN = (select ISBN from Book_Statement where book_id = ". $db_row['book_id'] ." and reservation_chk < 2 );";
             $book_result = mysqli_query( $db_conn, $book_sql);
             $book_row = mysqli_fetch_array( $book_result);
-            echo "<tr> <td>".$db_row['book_id'] ."</td> <td>". $book_row[ 'name'] ."</td><td>".$db_row['start_date']."</td><td>".$db_row['end_date']."</td><td onclick='returnRequest()'>반납</td>"; #반납시 onclick으로 호출하는부분
+            if( isset($book_row) )
+                echo "<tr> <td>".$db_row['book_id'] ."</td> <td>". $book_row[ 'name'] ."</td><td>".$db_row['start_date']."</td><td>".$db_row['end_date']."</td><td onclick='returnRequest()'>반납</td>"; #반납시 onclick으로 호출하는부분
         }
 
         ?>
@@ -155,6 +156,6 @@
 
 
 
-<script src="userJS.js?ver=2"></script>
+<script src="userJS.js?ver=1"></script>
 </body>
 </html>
