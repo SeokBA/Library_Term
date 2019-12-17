@@ -149,8 +149,35 @@
 <div id="withdrawalModal" class="modal">
     <div id="withdraw" class="modal-content p">
         <p>탈퇴 하시겠습니까?</p>
-        <input type="button" value="OK" id="withdraw" onclick="">
-        <input type="button" value="Cancle" onclick="closeWithdraw()">
+        <p>
+            <input type="button" value="OK" id="withdraw" onclick=""><br>
+            <input type="button" value="Cancle" onclick="closeWithdraw()"><br>
+        </p>
+
+    </div>
+</div>
+
+<div id="borrowModal" class="modal">
+    <div class="modal-content p">
+        <p>대출 하시겠습니까?</p>
+        <p> 책 이름: <input type="text" id = "borrowBookName"><br>
+        책 ID: <input type="text" id = "borrowBookId"><br>
+        책 ISBN: <input type="text" id ="borrowBookISBN"></p>
+        <input type="button" value="OK" id="withdraw" onclick="borrowBook()">
+        <input type="button" value="Cancle" onclick="closeBorrow()">
+    </div>
+</div>
+
+<div id="reserveModal" class="modal">
+    <div class="modal-content p">
+        <p>예약 하시겠습니까?</p>
+        <p> 책 이름: <input type="text" id = "reserveBookName"><br>
+            책 ID: <input type="text" id = "reserveBookId"><br>
+            책 ISBN: <input type="text" id ="reserveBookISBN"></p>
+        <p>
+            <input type="button" value="OK" id="withdraw" onclick="reserveBook()">
+            <input type="button" value="Cancle" onclick="closeReserve()">
+        </p>
     </div>
 </div>
 
