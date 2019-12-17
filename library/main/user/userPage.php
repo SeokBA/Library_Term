@@ -148,6 +148,7 @@
 
 <div id="withdrawalModal" class="modal">
     <div id="withdraw" class="modal-content p">
+        <h2>회원 탈퇴</h2>
         <p>탈퇴 하시겠습니까?</p>
         <p>
             <input type="button" value="OK" id="withdraw" onclick=""><br>
@@ -159,6 +160,7 @@
 
 <div id="borrowModal" class="modal">
     <div class="modal-content">
+        <h2>도서 대출</h2>
         <p>대출 하시겠습니까?</p>
         <p> 책 이름: <input type="text" id = "borrowBookName"><br>
         책 ID: <input type="text" id = "borrowBookId"><br>
@@ -173,6 +175,7 @@
 
 <div id="reserveModal" class="modal">
     <div class="modal-content">
+        <h2>도서 예약</h2>
         <p>예약 하시겠습니까?</p>
         <p> 책 이름: <input type="text" id = "reserveBookName"><br>
             책 ID: <input type="text" id = "reserveBookId"><br>
