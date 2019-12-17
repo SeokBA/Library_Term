@@ -50,7 +50,7 @@
                     <td>{$bookInformation['author']}</td>
                     <td>{$bookInformation['publisher']}</td>
                     <td class='button-td'><input type='button' value='수정' onclick='updateBook()'></td>";
-                    if( $bookStateRow['reservation_chk'] == 0 ){
+                    if( $bookStateRow['reservation_chk'] == 4 ){
                         echo "<td class='button-td'><input type='button' value='삭제' onclick='removeBook(" . $bookStateRow['book_id'] . ")'></td>";
                     }
                     else{
@@ -93,6 +93,8 @@
             $sql = "SELECT * FROM User_Account WHERE id = '{$borrowRow['id']}';";
             $userRow = mysqli_query($_SESSION['conn'], $sql);
             $userRow = mysqli_fetch_array($userRow);
+
+            if( isset($borrowRow) ){
             echo "<tr>
                     <td id='return_bookid'>{$bookStateRow['book_id']}</td>
                     <td>{$bookRow['name']}</td>
@@ -101,6 +103,7 @@
                     <td>{$borrowRow['end_date']}</td>
                     <td class='button-td'><input type='button' value='반납' onclick='returnBook_manage()'></td>
                 </tr>";
+            }
         }
         ?>
         </tbody>

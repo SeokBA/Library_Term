@@ -2,7 +2,7 @@
 $book_id = $_REQUEST["bookId"];
 echo $book_id;
 $db_conn = mysqli_connect('112.166.141.161', 'root', 'kylin1q2w3e4r', 'LB_DB');
-$db_sql = "delete from Borrow_information where book_id = {$book_id};"; # 빌린 책 목록에서 지우기
+$db_sql = "delete from Borrow_Information where book_id = {$book_id};"; # 빌린 책 목록에서 지우기
 $db_result = mysqli_query($db_conn, $db_sql);
 $db_sql = "select id from Reservation_Information where book_id = {$book_id};"; #book_id 가져오기
 $db_result = mysqli_query($db_conn, $db_sql);
@@ -29,6 +29,6 @@ if (mysqli_num_rows($db_result) == 3) {
     $db_result = mysqli_query($db_conn, $db_sql);
 }
 else {
-    $db_sql = "UPDATE Book_Statement SET reservation_chk = 0 WHERE (book_id = {$book_id}); ";
+    $db_sql = "UPDATE Book_Statement SET reservation_chk = 4 WHERE (book_id = {$book_id}); ";
     $db_result = mysqli_query($db_conn, $db_sql);
 }
