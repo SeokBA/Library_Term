@@ -31,12 +31,12 @@
                                 echo "<td>"  .  $db_row['author']  .  "</td>";
                                 echo "<td>"  .  $db_row['publisher']  .  "</td>";
                                 if( $db_row['reservation_chk'] >1 ){
-                                        echo "<td>"  .  '대출중/예약가능'  .  "</td>";
+                                        echo "<td>"  .  '반납중'  .  "</td>";
                                         echo "<td>"  .  '대출'  .  "</td>";
                                         echo "<td onclick=\"temp()\">"  .  '예약'  .  "</td>";
                                 }
                                 else if( $db_row['reseration_chk'] == 1 ){
-                                        echo "<td>"  .  '대출중/ 예약있음'  .  "</td>";
+                                        echo "<td>"  .  '예약됨'  .  "</td>";
                                         echo "<td>"  .  '대출'  .  "</td>";
                                         echo "<td onclick=\"temp()\">"  .  '예약'  .  "</td>";
                                 }
@@ -73,12 +73,12 @@
                                 echo "<td>"  .  $db_row['author']  .  "</td>";
                                 echo "<td>"  .  $db_row['publisher']  .  "</td>";
                                 if( $db_row['reservation_chk'] >1 ){
-                                        echo "<td>"  .  '대출중/예약가능'  .  "</td>";
+                                        echo "<td>"  .  '반납중'  .  "</td>";
                                 	echo "<td>"  .  '대출'  .  "</td>";
                                 	echo "<td onclick=\"temp()\">"  .  '예약'  .  "</td>";
 				}
                                 else if( $db_row['reseration_chk'] == 1 ){
-                                        echo "<td>"  .  '대출중/ 예약있음'  .  "</td>";
+                                        echo "<td>"  .  '예약됨'  .  "</td>";
 	                                echo "<td>"  .  '대출'  .  "</td>";
 	                                echo "<td onclick=\"temp()\">"  .  '예약'  .  "</td>";
 				}
