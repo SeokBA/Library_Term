@@ -123,8 +123,10 @@ function openBorrowModal() { // 클릭시 대출 모달 출력
 function borrowBook(){
     var bookId = document.getElementById("borrowBookId").value;
     var bookISBN = document.getElementById("borrowBookISBN").value;
+    console.log(bookId);
+    console.log(bookISBN);
     let xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "returnBook.php?bookId=" + bookid , true); // 요기 전달할거 넣으면 될거같고
+    xhttp.open("GET", "returnBook.php?bookId=" + bookId , true); // 요기 전달할거 넣으면 될거같고
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if(this.readyState === 4 && this.status === 200){
