@@ -163,8 +163,11 @@
         <p> 책 이름: <input type="text" id = "borrowBookName"><br>
         책 ID: <input type="text" id = "borrowBookId"><br>
         책 ISBN: <input type="text" id ="borrowBookISBN"></p>
-        <input type="button" value="OK" id="withdraw" onclick="borrowBook()">
-        <input type="button" value="Cancle" onclick="closeBorrow()">
+        <p>
+            <input type="button" value="OK" id="withdraw" onclick="borrowBook()">
+            <input type="button" value="Cancle" onclick="closeBorrow()">
+        </p>
+
     </div>
 </div>
 
