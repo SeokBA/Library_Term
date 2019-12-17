@@ -56,7 +56,7 @@
             $book_result = mysqli_query( $db_conn, $book_sql);
             $book_row = mysqli_fetch_array( $book_result);
             if( isset($book_row) )
-                echo "<tr> <td>".$db_row['book_id'] ."</td> <td>". $book_row[ 'name'] ."</td><td>".$db_row['start_date']."</td><td>".$db_row['end_date']."</td><td onclick='returnRequest()'>반납</td>"; #반납시 onclick으로 호출하는부분
+                echo "<tr> <td>".$db_row['book_id'] ."</td> <td>". $book_row[ 'name'] ."</td><td>".$db_row['start_date']."</td><td>".$db_row['end_date']."</td><td><input type='button' value='반납' onclick='returnRequest()'></td>"; #반납시 onclick으로 호출하는부분
         }
 
         ?>
@@ -90,7 +90,7 @@
 <div id ="searchBook" style="margin-left: 15%">
     <form>
         <p>ISBN: <input type="text" id="ISBN" placeholder="input ISBN" required> </p>
-        <p>도서이름: <input type="text" id="bookName" placeholder="input password" required> </p>
+        <p>도서이름: <input type="text" id="bookName" placeholder="input Book Name" required> </p>
         <p> <input type="button" id="search" value="검색" onclick="searchBook()"></p>
 
 

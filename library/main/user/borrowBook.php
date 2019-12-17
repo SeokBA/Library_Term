@@ -17,7 +17,7 @@
 	$db_sql = "insert into Borrow_Information ( id, book_id, start_date, end_date)";
 	$db_sql = $db_sql."value ( \"{$id}\" , {$book_id} , from_unixtime(unix_timestamp()), from_unixtime(unix_timestamp() + {$borrow_date} ));";
 	$db_result = mysqli_query( $db_conn, $db_sql );
-	$db_sql = "update Book_Statement set reservation_chk = 4 where book_id = {$book_id};";
+	$db_sql = "update Book_Statement set reservation_chk = 0 where book_id = {$book_id};";
 	$db_result = mysqli_query( $db_conn, $db_sql );
 	echo $db_sql;
 	echo "1";

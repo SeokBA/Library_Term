@@ -7,7 +7,7 @@ function OnChange(){
         Borrowlist.style.display = "block";
         Searchbook.style.display = "none";
         Reservebook.style.display ="none";
-
+        location.reload();
     }
     else if( event.target.id == "search"){
         Borrowlist.style.display = "none";
@@ -49,7 +49,7 @@ function closeReserve() {
 }
 
 function returnRequest() {
-    var tr = (event.target).parentElement;
+    var tr = (event.target).parentElement.parentElement;
     var bookId = tr.childNodes[1].textContent; // 책 번호
     let xhttp = new XMLHttpRequest();
     xhttp.open("GET", "returnBook.php?"+"bookId="+bookId, true);
@@ -57,8 +57,9 @@ function returnRequest() {
     xhttp.onreadystatechange = function () {
         if(this.readyState === 4 && this.status === 200){
             let chk = this.responseText;
+            console.log(chk);
             if(chk === "1"){
-                alert("complete")
+                location.reload();
             }
         }
     }
@@ -73,10 +74,9 @@ function searchBook() {
 		chk = this.responseText;
 		var x = document.getElementById('searchTable');		
 		x.innerHTML = chk;
-	}
+		}
     }
 }
-
 
 function openReserveModal() { // 클릭시 예약 모달 출력
     var tr = (event.target).parentElement;
@@ -84,7 +84,6 @@ function openReserveModal() { // 클릭시 예약 모달 출력
     var BookISBN = tr.childNodes[1].textContent;
     var BookName = tr.childNodes[2].textContent;
     var username = document.getElementById("userName");
-    var id = username.innerHTML.split(" ")[2];
     document.getElementById("reserveBookName").value = BookName;
     document.getElementById("reserveBookId").value = BookId;
     document.getElementById("reserveBookISBN").value = BookISBN;
@@ -93,9 +92,10 @@ function openReserveModal() { // 클릭시 예약 모달 출력
 
 function reserveBook() { //
     var bookId = document.getElementById("reserveBookId").value;
-    var bookISBN = document.getElementById("reserveBookISBN").value;
+    var username = document.getElementById("userName");
+    var id = username.innerHTML.split(" ")[2];
     let xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "reservationBook.php?"+id+"&bookid="+bookId, true);
+    xhttp.open("GET", "reservationBook.php?id="+id+"&bookid="+bookId, true);
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if(this.readyState === 4 && this.status === 200){
@@ -111,8 +111,6 @@ function openBorrowModal() { // 클릭시 대출 모달 출력
     var BookId = tr.childNodes[0].textContent;
     var BookISBN = tr.childNodes[1].textContent;
     var BookName = tr.childNodes[2].textContent;
-    var username = document.getElementById("userName");
-    var id = username.innerHTML.split(" ")[2];
     document.getElementById("borrowBookName").value = BookName;
     document.getElementById("borrowBookId").value = BookId;
     document.getElementById("borrowBookISBN").value = BookISBN;
@@ -123,8 +121,10 @@ function openBorrowModal() { // 클릭시 대출 모달 출력
 function borrowBook(){
     var bookId = document.getElementById("borrowBookId").value;
     var bookISBN = document.getElementById("borrowBookISBN").value;
+    var username = document.getElementById("userName");
+    var id = username.innerHTML.split(" ")[2];
     let xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "returnBook.php?bookId=" + bookid , true); // 요기 전달할거 넣으면 될거같고
+    xhttp.open("GET", "borrowBook.php?id="+id+"&bookid="+bookId , true); // 요기 전달할거 넣으면 될거같고
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if(this.readyState === 4 && this.status === 200){
