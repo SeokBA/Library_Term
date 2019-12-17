@@ -158,7 +158,7 @@
 </div>
 
 <div id="borrowModal" class="modal">
-    <div class="modal-content p">
+    <div class="modal-content">
         <p>대출 하시겠습니까?</p>
         <p> 책 이름: <input type="text" id = "borrowBookName"><br>
         책 ID: <input type="text" id = "borrowBookId"><br>
@@ -169,7 +169,7 @@
 </div>
 
 <div id="reserveModal" class="modal">
-    <div class="modal-content p">
+    <div class="modal-content">
         <p>예약 하시겠습니까?</p>
         <p> 책 이름: <input type="text" id = "reserveBookName"><br>
             책 ID: <input type="text" id = "reserveBookId"><br>
