@@ -12,6 +12,7 @@ let delId = null;
 function updateBook(name, isbn, author, publisher) {
     // onclick='bookUpdate(\"" . $bookInformation['name'] . "\", \"" . $bookInformation['ISBN'] . "\", \"" . $bookInformation['author'] . "\", \"" . $bookInformation['publisher'] . "\");'
     let xhttp = new XMLHttpRequest();
+    var id = "abcdefghijklmn" //temp id
     xhttp.open("GET", adminStr + "updateBook.php?id=" + id, true);
     xhttp.send();
     xhttp.onreadystatechange = function () {
@@ -194,3 +195,18 @@ function changeTable() {
         userManage.style.display = "block";
     }
 }
+
+function returnBook_manage(){
+    var bookId = document.getElementById('return_bookid');
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "returnManage.php?"+"bookId="+bookId.innerHTML, true);
+    xhttp.send();
+    xhttp.onreadystatechange = function () {
+        if(this.readyState === 4 && this.status === 200){
+            let chk = this.responseText;
+        }
+    }
+
+}
+
+

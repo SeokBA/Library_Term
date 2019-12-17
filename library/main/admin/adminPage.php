@@ -51,7 +51,6 @@
                     <td>{$bookInformation['publisher']}</td>
                     <td class='button-td'><input type='button' value='수정' onclick='updateBook()'></td>";
                     if( $bookStateRow['reservation_chk'] == 0 ){
-                        echo "hi";
                         echo "<td class='button-td'><input type='button' value='삭제' onclick='removeBook(" . $bookStateRow['book_id'] . ")'></td>";
                     }
                     else{
@@ -70,7 +69,8 @@
         <caption align="center">도서 반납</caption>
         <thead>
         <tr>
-            <td width="40%">책 이름</td>
+            <td width="5%">책 번호</td>
+            <td width="35%">책 이름</td>
             <td width="25%">예약자(id)</td>
             <td width="15%">대출일</td>
             <td width="15%">반납일</td>
@@ -94,11 +94,12 @@
             $userRow = mysqli_query($_SESSION['conn'], $sql);
             $userRow = mysqli_fetch_array($userRow);
             echo "<tr>
+                    <td id='return_bookid'>{$bookStateRow['book_id']}</td>
                     <td>{$bookRow['name']}</td>
                     <td>{$userRow['id']}</td>
                     <td>{$borrowRow['start_date']}</td>
                     <td>{$borrowRow['end_date']}</td>
-                    <td class='button-td'><input type='button' value='반납'></td>
+                    <td class='button-td'><input type='button' value='반납' onclick='returnBook_manage()'></td>
                 </tr>";
         }
         ?>
@@ -261,6 +262,6 @@
         <input type="button" value="Cancle" onclick="closeWithdraw()">
     </div>
 </div>
-<script src="adminJS.js"></script>
+<script src="adminJS.js?ver=2"></script>
 </body>
 </html>
