@@ -12,7 +12,8 @@
                         echo "<caption aligh='center'> 검색 결과 </caption>";
 				echo "<thead>";
 				echo "<tr>";
-	                                echo "<td width='30%'>"  . 'ISBN'    .  "</td>";
+					echo "<td width='5%'>" . '책 번호' . "</td>";
+	                                echo "<td width='25%'>"  . 'ISBN'    .  "</td>";
         	                        echo "<td width='20%'>"  . '책 제목'   .  "</td>";
                 	                echo "<td width='15%'>"  . '작가'    .  "</td>";
                         	        echo "<td width='15%'>"  . '출판사'   .  "</td>";
@@ -24,6 +25,7 @@
 			echo "<tbody>";
                 while( $db_row =  mysqli_fetch_array ( $db_result ) ){
                         echo "<tr>";
+				echo "<td>"  .  $db_row['book_id'] . "</td>";
                                 echo "<td>"  .  $db_row['ISBN']  .  "</td>";
                                 echo "<td>"  .  $db_row['name']  .  "</td>";
                                 echo "<td>"  .  $db_row['author']  .  "</td>";
@@ -54,7 +56,8 @@
 	        $db_result = mysqli_query( $db_conn, $db_sql );
 		echo "<table id='searchTable'>";
 			echo "<tr>";
-				echo "<td width='30%'>"  . 'ISBN'    .  "</td>";
+				echo "<td width='5%'>"  .  '책 번호' . "</td>";
+				echo "<td width='25%'>"  . 'ISBN'    .  "</td>";
 				echo "<td width='20%'>"  . '책 제목'   .  "</td>";
 				echo "<td width='15%'>"  . '작가'    .  "</td>";
 				echo "<td width='15%'>"  . '출판사'   .  "</td>";
@@ -64,6 +67,7 @@
 			echo "</tr>";
 		while( $db_row =  mysqli_fetch_array ( $db_result ) ){
                         echo "<tr>";
+				echo "<td>"  .  $db_row['book_id'] . "</td>";
                                 echo "<td>"  .  $db_row['ISBN']  .  "</td>";
                                 echo "<td>"  .  $db_row['name']  .  "</td>";
                                 echo "<td>"  .  $db_row['author']  .  "</td>";

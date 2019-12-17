@@ -97,7 +97,8 @@
         <caption align="center"> 검색 결과 </caption>
         <thead>
         <tr>
-            <td width="30%"> ISBN </td>
+	    <td width="5%"> 책 번호</td>
+            <td width="25"> ISBN </td>
             <td width="20%"> 책 제목 </td>
             <td width="15%"> 작가 </td>
             <td width="15%"> 출판사 </td>
