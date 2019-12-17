@@ -42,11 +42,9 @@ function closeWithdraw(){
 function returnRequest() {
     var tr = (event.target).parentElement;
     var bookId = tr.childNodes[1].textContent; // 책 번호
-    document.getElementById("borrowTable").removeChild(tr);
     let xhttp = new XMLHttpRequest();
     xhttp.open("GET", "returnBook.php?"+"bookId="+bookId, true);
     xhttp.send();
-
     xhttp.onreadystatechange = function () {
         if(this.readyState === 4 && this.status === 200){
             let chk = this.responseText;
@@ -56,3 +54,19 @@ function returnRequest() {
         }
     }
 }
+
+function searchBook() {
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "searchBook.php?"+"ISBN="+document.getElementById("ISBN").value+"&bookname="+document.getElementById("bookName").value , true);
+    xhttp.send();
+    xhttp.onreadystatechange = function () {
+	if(this.readyState === 4 && this.status === 200){
+		chk = this.responseText;
+		var x = document.getElementById('searchTable');		
+		x.innerHTML = chk;
+	}
+    }
+}
+
+
+

@@ -38,7 +38,7 @@
         <caption align="center"> 대출 목록 </caption>
         <thead>
         <tr>
-            <td width="25%"> ISBN </td>
+            <td width="25%"> 책 번호 </td>
             <td width="35%"> 책 제목 </td>
             <td width="20%"> 대출일 </td>
             <td width="20%"> 반납예정일 </td>
@@ -74,7 +74,13 @@
             <td width="10%"> 예약 취소 </td>
         </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+		<?php
+			$db_sql = "select * from Book_Information where ISBN = ( select ISBN FROM Book_Statement where book_id = (select book_id FROM LB_DB.Reservation_Information where id = '{$_SESSION['id']}'));";
+
+		?>
+
+	</tbody>
 
     </table>
 </div>
@@ -83,9 +89,11 @@
     <form>
         <p>ISBN: <input type="text" id="ISBN" placeholder="input ISBN" required> </p>
         <p>도서이름: <input type="text" id="bookName" placeholder="input password" required> </p>
-        <p> <input type="button" id="search" value="검색" onclick=""></p>
+        <p> <input type="button" id="search" value="검색" onclick="searchBook()"></p>
+
+
     </form>
-    <table>
+    <table id='searchTable'>
         <caption align="center"> 검색 결과 </caption>
         <thead>
         <tr>
@@ -145,6 +153,6 @@
 
 
 
-<script src="userJS.js"></script>
+<script src="userJS.js?ver=1"></script>
 </body>
 </html>
