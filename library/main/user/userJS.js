@@ -7,10 +7,11 @@ function OnChange(){
         Borrowlist.style.display = "block";
         Searchbook.style.display = "none";
         Reservebook.style.display ="none";
-        location.reload();
     }
     else if( event.target.id == "search"){
         Borrowlist.style.display = "none";
+        document.getElementById("ISBN").value = " ";
+        document.getElementById("bookName").value =" ";
         Searchbook.style.display = "block";
         Reservebook.style.display ="none";
     }
@@ -40,6 +41,14 @@ function closeWithdraw(){
     document.getElementById("withdrawalModal").style.display = "none";
 }
 
+function closeBorrow() {
+    document.getElementById("borrowModal").style.display = "none";
+}
+
+function closeReserve() {
+    document.getElementById("reserveModal").style.display = "none";
+}
+
 function returnRequest() {
     var tr = (event.target).parentElement;
     var bookId = tr.childNodes[1].textContent; // 책 번호
@@ -49,9 +58,8 @@ function returnRequest() {
     xhttp.onreadystatechange = function () {
         if(this.readyState === 4 && this.status === 200){
             let chk = this.responseText;
-    	    console.log( chk );
             if(chk === "1"){
-             location.reload();
+                alert("complete")
             }
         }
     }
@@ -70,28 +78,60 @@ function searchBook() {
     }
 }
 
-function borrowBook(){
-    var tr = (event.target).parentElement;
-    var bookId = tr.childNodes[0].textContent; // 책 번호
-    var username = document.getElementById('userName');
-    var id = username.innerHTML.split(' ')[2] // id;
 
+function openReserveModal() { // 클릭시 예약 모달 출력
+    var tr = (event.target).parentElement;
+    var BookId = tr.childNodes[0].textContent;
+    var BookISBN = tr.childNodes[1].textContent;
+    var BookName = tr.childNodes[2].textContent;
+    var username = document.getElementById("userName");
+    var id = username.innerHTML.split(" ")[2];
+    document.getElementById("reserveBookName").value = BookName;
+    document.getElementById("reserveBookId").value = BookId;
+    document.getElementById("reserveBookISBN").value = BookISBN;
+    document.getElementById("reserveModal").style = "block";
+}
+
+function reserveBook() { //
+    var bookId = document.getElementById("reserveBookId").value;
+    var bookISBN = document.getElementById("reserveBookISBN").value;
     let xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "reservationBook.php?"+"id="+id+"&bookid="+bookId , true);
+    xhttp.open("GET", "reservationBook.php?"+id+"&bookid="+bookId, true);
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if(this.readyState === 4 && this.status === 200){
             chk = this.responseText;
-            console.log(chk);
+            document.getElementById("reserveModal").style = "none";
             searchBook();
         }
     }
 }
 
-
-  
-
-function temp(){
-	alert("hi");
+function openBorrowModal() { // 클릭시 대출 모달 출력
+    var tr = (event.target).parentElement;
+    var BookId = tr.childNodes[0].textContent;
+    var BookISBN = tr.childNodes[1].textContent;
+    var BookName = tr.childNodes[2].textContent;
+    var username = document.getElementById("userName");
+    var id = username.innerHTML.split(" ")[2];
+    document.getElementById("borrowBookName").value = BookName;
+    document.getElementById("borrowBookId").value = BookId;
+    document.getElementById("borrowBookISBN").value = BookISBN;
+    document.getElementById("borrowModal").style = "block";
 }
 
+
+function borrowBook(){
+    var bookId = document.getElementById("borrowBookId").value;
+    var bookISBN = document.getElementById("borrowBookISBN").value;
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "reservationBook.php?"+"id="+id+"&bookid="+bookId , true); // 요기 전달할거 넣으면 될거같고
+    xhttp.send();
+    xhttp.onreadystatechange = function () {
+        if(this.readyState === 4 && this.status === 200){
+            chk = this.responseText;
+            document.getElementById("borrowModal").style = "none";
+            searchBook(); // 예약도 똑같이
+        }
+    }
+}

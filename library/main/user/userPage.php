@@ -52,13 +52,11 @@
         $db_result = mysqli_query( $db_conn, $db_sql );
 
         while( $db_row = mysqli_fetch_array( $db_result) ){
-            $book_sql = "SELECT * FROM Book_Information where ISBN = (select ISBN from Book_Statement where book_id = ". $db_row['book_id'] ." and reservation_chk < 2 );";
+            $book_sql = "SELECT * FROM Book_Information where ISBN = (select ISBN from Book_Statement where book_id = ". $db_row['book_id'] .");" ;
             $book_result = mysqli_query( $db_conn, $book_sql);
             $book_row = mysqli_fetch_array( $book_result);
-            if( isset($book_row) )
-                echo "<tr> <td>".$db_row['book_id'] ."</td> <td>". $book_row[ 'name'] ."</td><td>".$db_row['start_date']."</td><td>".$db_row['end_date']."</td><td onclick='returnRequest()'>반납</td>"; #반납시 onclick으로 호출하는부분
+            echo "<tr> <td>".$db_row['book_id'] ."</td> <td>". $book_row[ 'name'] ."</td><td>".$db_row['start_date']."</td><td>".$db_row['end_date']."</td><td onclick='returnRequest()'>반납</td>"; #반납시 onclick으로 호출하는부분
         }
-
         ?>
         </tbody>
     </table>
@@ -79,7 +77,6 @@
         <tbody>
 		<?php
 			$db_sql = "select * from Book_Information where ISBN = ( select ISBN FROM Book_Statement where book_id = (select book_id FROM LB_DB.Reservation_Information where id = '{$_SESSION['id']}'));";
-
 		?>
 
 	</tbody>
@@ -99,8 +96,7 @@
         <caption align="center"> 검색 결과 </caption>
         <thead>
         <tr>
-	    <td width="5%"> 책 번호</td>
-            <td width="25"> ISBN </td>
+            <td width="30%"> ISBN </td>
             <td width="20%"> 책 제목 </td>
             <td width="15%"> 작가 </td>
             <td width="15%"> 출판사 </td>
@@ -110,7 +106,6 @@
         </tr>
         </thead>
         <tbody></tbody>
-
     </table>
 </div>
 
@@ -149,8 +144,35 @@
 <div id="withdrawalModal" class="modal">
     <div id="withdraw" class="modal-content p">
         <p>탈퇴 하시겠습니까?</p>
-        <input type="button" value="OK" id="withdraw" onclick="">
-        <input type="button" value="Cancle" onclick="closeWithdraw()">
+        <p>
+            <input type="button" value="OK" id="withdraw" onclick=""><br>
+            <input type="button" value="Cancle" onclick="closeWithdraw()"><br>
+        </p>
+
+    </div>
+</div>
+
+<div id="borrowModal" class="modal">
+    <div class="modal-content p">
+        <p>대출 하시겠습니까?</p>
+        <p> 책 이름: <input type="text" id = "borrowBookName"><br>
+        책 ID: <input type="text" id = "borrowBookId"><br>
+        책 ISBN: <input type="text" id =" borrowBookISBN"></p>
+        <input type="button" value="OK" id="withdraw" onclick="borrowBook()">
+        <input type="button" value="Cancle" onclick="closeBorrow()">
+    </div>
+</div>
+
+<div id="reserveModal" class="modal">
+    <div class="modal-content p">
+        <p>예약 하시겠습니까?</p>
+        <p> 책 이름: <input type="text" id = "reserveBookName"><br>
+            책 ID: <input type="text" id = "reserveBookId"><br>
+            책 ISBN: <input type="text" id ="reserveBookISBN"></p>
+        <p>
+            <input type="button" value="OK" id="withdraw" onclick="reserveBook()">
+            <input type="button" value="Cancle" onclick="closeReserve()">
+        </p>
     </div>
 </div>
 
