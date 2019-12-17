@@ -164,7 +164,7 @@
         책 ID: <input type="text" id = "borrowBookId"><br>
         책 ISBN: <input type="text" id ="borrowBookISBN"></p>
         <p>
-            <input type="button" value="OK" id="withdraw" onclick="borrowBook()">
+            <input type="button" value="OK" onclick="borrowBook()">
             <input type="button" value="Cancle" onclick="closeBorrow()">
         </p>
 
@@ -178,7 +178,7 @@
             책 ID: <input type="text" id = "reserveBookId"><br>
             책 ISBN: <input type="text" id ="reserveBookISBN"></p>
         <p>
-            <input type="button" value="OK" id="withdraw" onclick="reserveBook()">
+            <input type="button" value="OK" onclick="reserveBook()">
             <input type="button" value="Cancle" onclick="closeReserve()">
         </p>
     </div>
