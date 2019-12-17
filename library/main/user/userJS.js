@@ -69,6 +69,27 @@ function searchBook() {
     }
 }
 
+function borrowBook(){
+    var tr = (event.target).parentElement;
+    var bookId = tr.childNodes[0].textContent; // 책 번호
+    var username = document.getElementById('userName');
+    var id = username.innerHTML.split(' ')[2] // id;
+
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "reservationBook.php?"+"id="+id+"&bookid="+bookId , true);
+    xhttp.send();
+    xhttp.onreadystatechange = function () {
+        if(this.readyState === 4 && this.status === 200){
+            chk = this.responseText;
+            console.log(chk);
+            searchBook();
+        }
+    }
+}
+
+
+  
+
 function temp(){
 	alert("hi");
 }

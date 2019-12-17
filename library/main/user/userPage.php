@@ -57,6 +57,7 @@
             $book_row = mysqli_fetch_array( $book_result);
             echo "<tr> <td>".$db_row['book_id'] ."</td> <td>". $book_row[ 'name'] ."</td><td>".$db_row['start_date']."</td><td>".$db_row['end_date']."</td><td onclick='returnRequest()'>반납</td>"; #반납시 onclick으로 호출하는부분
         }
+
         ?>
         </tbody>
     </table>
