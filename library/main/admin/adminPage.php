@@ -38,10 +38,9 @@
         </thead>
         <tbody>
         <?php
-        $sql = "SELECT ISBN, book_id FROM Book_Statement WHERE reservation_chk = 0;";
+        $sql = "SELECT * FROM Book_Statement";
         $result = mysqli_query($_SESSION['conn'], $sql);
         while (($bookStateRow = mysqli_fetch_array($result)) != null) {
-            if ($bookStateRow['reservation_id'] == 0) {
                 $sql = "SELECT * FROM Book_Information WHERE ISBN = {$bookStateRow['ISBN']};";
                 $bookInformation = mysqli_query($_SESSION['conn'], $sql);
                 $bookInformation = mysqli_fetch_array($bookInformation);
@@ -50,10 +49,16 @@
                     <td>{$bookInformation['ISBN']}</td>
                     <td>{$bookInformation['author']}</td>
                     <td>{$bookInformation['publisher']}</td>
-                    <td class='button-td'><input type='button' value='수정' onclick='updateBook()'></td>
-                    <td class='button-td'><input type='button' value='삭제' onclick='removeBook(" . $bookStateRow['book_id'] . ")'></td>
-                </tr>";
-            }
+                    <td class='button-td'><input type='button' value='수정' onclick='updateBook()'></td>";
+                    if( $bookStateRow['reservation_chk'] == 0 ){
+                        echo "hi";
+                        echo "<td class='button-td'><input type='button' value='삭제' onclick='removeBook(" . $bookStateRow['book_id'] . ")'></td>";
+                    }
+                    else{
+                        echo "<td class='button-td'>대출중</td>";
+                    }
+                echo "</tr>";
+
         }
         ?>
         </tbody>
