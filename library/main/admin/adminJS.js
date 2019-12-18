@@ -97,7 +97,7 @@ function modifyAccount() {
         sqlStr += "&name=" + name;
     }
     if (email !== "") {
-        if (email.match(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i) == null)
+        if (email.match(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i))
             sqlStr += "&email=" + email;
         else {
             alert("incorrect E-Mail");
@@ -105,7 +105,7 @@ function modifyAccount() {
         }
     }
     if (phone !== "") {
-        if (phone.match(/^[0-9][0-9]?([0-9])-[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$/) == null)
+        if (phone.match(/^[0-9][0-9]?([0-9])-[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$/))
             sqlStr += "&phone=" + phone;
         else {
             alert("incorrect Phone Number");
@@ -113,7 +113,7 @@ function modifyAccount() {
         }
     }
     if (classification !== "") {
-        if (!(classification.match("학부") || classification.match("대학원") || classification.match("교직원")))
+        if ((classification.match("학부") || classification.match("대학원") || classification.match("교직원")))
             sqlStr += "&classification=" + classification;
         else {
             alert("incorrect Classification");
@@ -146,19 +146,15 @@ function closeModify() {
     modifyModal.style.display = "none";
 }
 
-
-function clickRank() {
-    document.getElementById("borrowRank").style.display = "block"
-}
-
 function clickRegister() {
     document.getElementById("registerModal").style.display = "block";
 }
-
 function clickBook() {
     document.getElementById("modifyBook").style.display = "block";
 }
-
+function clickRank() {
+    document.getElementById("borrowRank").style.display = "block"
+}
 
 function closeRegister() {
     document.getElementById("registerModal").style.display = "none";
@@ -167,17 +163,19 @@ function closeRegister() {
 function closeBook() {
     document.getElementById("modifyBook").style.display = "none";
 }
-
 function closeRank() {
     document.getElementById("borrowRank").style.display = "none";
 }
-
 
 window.onclick = function (event) {
     if (event.target === document.getElementById("accountWithdrawal"))
         closeWithdraw();
     if (event.target === document.getElementById("modifyUser"))
         closeModify();
+    if (event.target === document.getElementById("modifyBook"))
+        closeBook();
+    if (event.target === document.getElementById("borrowRank"))
+        closeRank();
 };
 
 function changeTable() {

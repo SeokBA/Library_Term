@@ -14,7 +14,7 @@
     session_start();
     $_SESSION['id'] = $_REQUEST['id'];
     $_SESSION['conn'] = mysqli_connect('112.166.141.161', 'root', 'kylin1q2w3e4r', 'LB_DB');
-    echo "<p align='right'>id : " . $_SESSION['id'] . " <input type='button' value='정보수정' onclick='clickWithdraw()'></p>";
+    echo "<p align='right'>id : " . $_SESSION['id'] . " <input type='button' value='정보수정' onclick='clickModify(\"" . $_SESSION['id'] . "\")'></p>";
     ?>
 </div>
 <div class="sideBar" style="width:13%">
@@ -41,22 +41,21 @@
         $sql = "SELECT * FROM Book_Statement";
         $result = mysqli_query($_SESSION['conn'], $sql);
         while (($bookStateRow = mysqli_fetch_array($result)) != null) {
-                $sql = "SELECT * FROM Book_Information WHERE ISBN = {$bookStateRow['ISBN']};";
-                $bookInformation = mysqli_query($_SESSION['conn'], $sql);
-                $bookInformation = mysqli_fetch_array($bookInformation);
-                echo "<tr>
+            $sql = "SELECT * FROM Book_Information WHERE ISBN = {$bookStateRow['ISBN']};";
+            $bookInformation = mysqli_query($_SESSION['conn'], $sql);
+            $bookInformation = mysqli_fetch_array($bookInformation);
+            echo "<tr>
                     <td>{$bookInformation['name']}</td>
                     <td>{$bookInformation['ISBN']}</td>
                     <td>{$bookInformation['author']}</td>
                     <td>{$bookInformation['publisher']}</td>
-                    <td class='button-td'><input type='button' value='수정' onclick='updateBook()'></td>";
-                    if( $bookStateRow['reservation_chk'] == 4 ){
-                        echo "<td class='button-td'><input type='button' value='삭제' onclick='removeBook(" . $bookStateRow['book_id'] . ")'></td>";
-                    }
-                    else{
-                        echo "<td class='button-td'>대출중</td>";
-                    }
-                echo "</tr>";
+                    <td class='button-td'><input type='button' value='수정' onclick='updateBook(\"" . $bookInformation['ISBN'] . "\")'></td>";
+            if ($bookStateRow['reservation_chk'] == 4) {
+                echo "<td class='button-td'><input type='button' value='삭제' onclick='removeBook(\"" . $bookStateRow['book_id'] . "\")'></td>";
+            } else {
+                echo "<td class='button-td'>대출중</td>";
+            }
+            echo "</tr>";
 
         }
         ?>
@@ -94,14 +93,14 @@
             $userRow = mysqli_query($_SESSION['conn'], $sql);
             $userRow = mysqli_fetch_array($userRow);
 
-            if( isset($borrowRow) ){
-            echo "<tr>
+            if (isset($borrowRow)) {
+                echo "<tr>
                     <td id='return_bookid'>{$bookStateRow['book_id']}</td>
                     <td>{$bookRow['name']}</td>
                     <td>{$userRow['id']}</td>
                     <td>{$borrowRow['start_date']}</td>
                     <td>{$borrowRow['end_date']}</td>
-                    <td class='button-td'><input type='button' value='반납' onclick='returnBook_manage()'></td>
+                    <td class='button-td'><input type='button' value='반납' onclick='returnBook_manage(\"" . $bookStateRow['book_id'] . "\")'></td>
                 </tr>";
             }
         }
@@ -143,7 +142,7 @@
                     <td>{$userRow['phone']}</td>
                     <td>{$userRow['classification']}</td>
                     <td>{$userRow['total_borrow']}</td>
-                    <td class='button-td'><input type='button' value='수정' onclick='clickModify()'></td>
+                    <td class='button-td'><input type='button' value='수정' onclick='clickModify(\"" . $userRow['id'] . "\")'></td>
                     <td></td>
                 </tr>";
         }
@@ -182,8 +181,8 @@
                     <td>{$userRow['phone']}</td>
                     <td>{$userRow['classification']}</td>
                     <td>{$userRow['total_borrow']}</td>
-                    <td class='button-td'><input type='button' value='수정' onclick='clickModify(".$userRow['id'].")'></td>
-                    <td class='button-td'><input type='button' value='탈퇴' onclick='clickWithdraw(".$userRow['id'].")'></td>
+                    <td class='button-td'><input type='button' value='수정' onclick='clickModify(\"" . $userRow['id'] . "\")'></td>
+                    <td class='button-td'><input type='button' value='탈퇴' onclick='clickWithdraw(\"" . $userRow['id'] . "\")'></td>
                 </tr>";
         }
         ?>
@@ -218,10 +217,30 @@
     <div id="Rank" class="modal-content">
         <table>
             <caption class="modal-caption" align="center">대출 TOP 10</caption>
+            <thead>
             <tr>
+                <td>ID</td>
                 <td>이름</td>
                 <td>대출 수</td>
             </tr>
+            </thead>
+            <tbody>
+            <?php
+            $sql = "SELECT * FROM User_Account ORDER BY total_borrow DESC";
+            $result = mysqli_query($_SESSION['conn'], $sql);
+            $size = 0;
+            while (($userRow = mysqli_fetch_array($result)) != null && $size < 10) {
+                if ($userRow['name'] != "admin") {
+                    echo "<tr>
+                    <td>{$userRow['id']}</td>
+                    <td>{$userRow['name']}</td>
+                    <td>{$userRow['total_borrow']}</td>
+                </tr>";
+                    $size++;
+                }
+            }
+            ?>
+            </tbody>
         </table>
         <input type="button" value="Close" onclick="closeRank()">
     </div>

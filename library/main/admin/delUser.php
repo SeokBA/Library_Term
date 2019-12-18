@@ -8,7 +8,7 @@ $result = mysqli_query($conn, $sql);
 if($result->num_rows != 0)
     echo 2;
 else{
-    $sql = "DELETE FROM User_Account WHERE id = {$id};";
+    $sql = "DELETE FROM User_Account WHERE id = '{$id}';";
     $result = mysqli_query($conn, $sql);
     echo 1;
 }
