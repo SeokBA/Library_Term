@@ -36,7 +36,6 @@ caption {
 #bookList{display: block;}
 #returnBook{display: none;}
 #userManage{display: none;}
-#rankUser{width: 100px;height: 50px;}
 
 .modal {
     display: none;

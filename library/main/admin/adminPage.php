@@ -14,7 +14,7 @@
     session_start();
     $_SESSION['id'] = $_REQUEST['id'];
     $_SESSION['conn'] = mysqli_connect('112.166.141.161', 'root', 'kylin1q2w3e4r', 'LB_DB');
-    echo "<p align='right'>id : " . $_SESSION['id'] . " <input type='button' value='정보수정' onclick='clickModify(\"" . $_SESSION['id'] . "\")'></p>";
+    echo "<p align='right'>id : " . $_SESSION['id'] . " <input type='button' value='정보수정' onclick='clickModifyUser(\"" . $_SESSION['id'] . "\")'></p>";
     ?>
 </div>
 <div class="sideBar" style="width:13%">
@@ -23,7 +23,7 @@
     <input type="button" class="barItem" value="회원관리" id="userManageSideBar" onclick="changeTable()">
 </div>
 <div id="bookList" style="margin-left:15%">
-    <input type="button" value="등록" onclick="clickRegister()">
+    <input type="button" value="등록" onclick="clickAddBook()">
     <table>
         <caption align="center">도서 목록</caption>
         <thead>
@@ -142,7 +142,7 @@
                     <td>{$userRow['phone']}</td>
                     <td>{$userRow['classification']}</td>
                     <td>{$userRow['total_borrow']}</td>
-                    <td class='button-td'><input type='button' value='수정' onclick='clickModify(\"" . $userRow['id'] . "\")'></td>
+                    <td class='button-td'><input type='button' value='수정' onclick='clickModifyUser(\"" . $userRow['id'] . "\")'></td>
                     <td></td>
                 </tr>";
         }
@@ -181,7 +181,7 @@
                     <td>{$userRow['phone']}</td>
                     <td>{$userRow['classification']}</td>
                     <td>{$userRow['total_borrow']}</td>
-                    <td class='button-td'><input type='button' value='수정' onclick='clickModify(\"" . $userRow['id'] . "\")'></td>
+                    <td class='button-td'><input type='button' value='수정' onclick='clickModifyUser(\"" . $userRow['id'] . "\")'></td>
                     <td class='button-td'><input type='button' value='탈퇴' onclick='clickWithdraw(\"" . $userRow['id'] . "\")'></td>
                 </tr>";
         }
@@ -191,34 +191,35 @@
     <input type="button" id="rankUser" value="대출 TOP 10 회원" onclick="clickRank()">
 </div>
 
-<div id="registerModal" class="modal">
-    <form id='registerContent' class="modal-content" method="get">
+<div id="addBookModal" class="modal">
+    <form id='addBookContent' class="modal-content" method="get">
         <p>제목<input type="text" id="title"></p>
         <p>ISBN<input type="text" id="ISBN"></p>
         <p>저자<input type="text" id="author"></p>
         <p>출판사<input type="text" id="publisher"></p>
-        <input type="button" value="Done" onclick="clickRegister()">
-        <input type="button" value="Cancel" onclick="closeRegister()">
+        <input type="button" value="Done" onclick="addBook()">
+        <input type="button" value="Cancel" onclick="closeAddBook()">
     </form>
 </div>
 
-<div id="modifyBook" class="modal">
-    <form id='Book' class="modal-content" method="get">
-        <p>제목<input type="text" id="title"></p>
-        <p>ISBN<input type="text" id="ISBN"></p>
-        <p>저자<input type="text" id="author"></p>
-        <p>출판사<input type="text" id="publisher"></p>
-        <input type="button" value="Done" onclick="clickBook()">
-        <input type="button" value="Cancel" onclick="closeBook()">
+<div id="modifyBookModal" class="modal">
+    <form id='modifyBookContent' class="modal-content" method="get">
+        <p>제목<input type="text" id="addTitle"></p>
+        <p>ISBN<input type="text" id="addISBN"></p>
+        <p>저자<input type="text" id="addAuthor"></p>
+        <p>출판사<input type="text" id="addPublisher"></p>
+        <input type="button" value="Done" onclick="modifyBook()">
+        <input type="button" value="Cancel" onclick="closeModifyBook()">
     </form>
 </div>
 
-<div id="borrowRank" class="modal">
-    <div id="Rank" class="modal-content">
+<div id="borrowRankModal" class="modal">
+    <div id="borrowRankContent" class="modal-content">
         <table>
             <caption class="modal-caption" align="center">대출 TOP 10</caption>
             <thead>
             <tr>
+                <td>순위</td>
                 <td>ID</td>
                 <td>이름</td>
                 <td>대출 수</td>
@@ -231,12 +232,13 @@
             $size = 0;
             while (($userRow = mysqli_fetch_array($result)) != null && $size < 10) {
                 if ($userRow['name'] != "admin") {
+                    $size++;
                     echo "<tr>
+                    <td>{$size}</td>
                     <td>{$userRow['id']}</td>
                     <td>{$userRow['name']}</td>
                     <td>{$userRow['total_borrow']}</td>
                 </tr>";
-                    $size++;
                 }
             }
             ?>
@@ -246,9 +248,8 @@
     </div>
 </div>
 
-
-<div id="modifyModal" class="modal">
-    <form id="User" class="modal-content" method="get">
+<div id="modifyUserModal" class="modal">
+    <form id="modifyUserContent" class="modal-content" method="get">
         <h2>Modify Account</h2>
         <p>ID</p>
         <input type="text" id="modifyID" placeholder="input id">
@@ -273,12 +274,12 @@
         </datalist>
         <br><br><br>
         <input type="button" value="sumbit" onclick="modifyAccount()">
-        <input type="button" value="cancle" onclick="closeModify()">
+        <input type="button" value="cancle" onclick="closeModifyUser()">
     </form>
 </div>
 
-<div id="withdrawalModal" class="modal">
-    <div id="withdraw" class="modal-content">
+<div id="withdrawUserModal" class="modal">
+    <div id="withdrawUserContent" class="modal-content">
         <p>탈퇴 시키겠습니까?</p>
         <input type="button" value="OK" id="withdraw" onclick="withdraw()">
         <input type="button" value="Cancle" onclick="closeWithdraw()">
