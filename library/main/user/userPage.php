@@ -129,7 +129,7 @@
         <input type="email" id="modifyEmail" placeholder="input e-mail" required>
         <br><br>
         <p>Phone Number</p>
-        <input type="text" id="phonemodify" placeholder="input phone" required>
+        <input type="text" id="phoneModify" placeholder="input phone" required>
         <br><br>
         <p>Classification</p>
         <input type="text" id="modifyClassification" placeholder="input Classification" list="choices">
@@ -139,7 +139,7 @@
             <option value="교직원"></option>
         </datalist>
         <br><br><br>
-        <input type="button" value="submit" onclick="">
+        <input type="button" value="submit" onclick="modifyUserInfo()">
         <input type="button" value="cancel" onclick="closeInfo()">
     </form>
 </div>

@@ -38,6 +38,13 @@ function clickWithdraw(){
 }
 
 function closeWithdraw(){
+    document.getElementById("modifyId").value = "";
+    document.getElementById("modifyPw").value = "";
+    document.getElementById("modifyName").value = "";
+    document.getElementById("modifyEmail").value = "";
+    document.getElementById("phoneModify").value = "";
+    document.getElementById("modifyClassification").value = "";
+    // 적혀있는 내용들 초기화
     document.getElementById("withdrawalModal").style.display = "none";
 }
 
@@ -150,7 +157,7 @@ function cancleReserve() {
     var bookId = document.getElementById("cancelReserveName").value;
     var bookISBN = document.getElementById("cancelReserveISBN").value;
     var id = username.innerHTML.split(" ")[2];
-    xhttp.open("GET", , true); // 요기 전달할거 넣으면 될거같고
+    xhttp.open("GET","", true); // 요기 전달할거 넣으면 될거같고
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if(this.readyState === 4 && this.status === 200){
@@ -173,6 +180,24 @@ function requestWithdraw() {
             // 탈퇴 했으므로 로그인 html 이동
         }
     }
-
 }
+
+function modifyUserInfo() {
+    var userId = document.getElementById("modifyId").value;
+    var userPw = document.getElementById("modifyPw").value;
+    var userName = document.getElementById("modifyName").value;
+    var userEmail = document.getElementById("modifyEmail").value;
+    var userPhone = document.getElementById("phoneModify").value;
+    var classfication = document.getElementById("modifyClassification").value;
+    xhttp.open("GET","", true);
+    xhttp.send();
+    xhttp.onreadystatechange = function () {
+        if(this.readyState === 4 && this.status === 200){
+            chk = this.responseText;
+
+        }
+    }
+}
+
+
 
