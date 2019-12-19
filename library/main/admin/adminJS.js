@@ -1,20 +1,16 @@
 let adminStr = "http://112.166.141.161/library/main/admin/";
 
-let bookList = document.getElementById("bookList");
-let returnBook = document.getElementById("returnBook");
-let userManage = document.getElementById("userManage");
+let bookListTable = document.getElementById("bookListTable");
+let returnBookTable = document.getElementById("returnBookTable");
+let userManageTable = document.getElementById("userManageTable");
 
 let addBookModal = document.getElementById("addBookModal");
 let modifyBookModal = document.getElementById("modifyBookModal");
-let removeBookModal = document.getElementById("removeBookModal")
-let modifyUserModal = document.getElementById("modifyUserModal")
+let modifyUserModal = document.getElementById("modifyUserModal");
 let borrowRankModal = document.getElementById("borrowRankModal");
-let withdrawUserModal = document.getElementById("withdrawUserModal");
 
 let modifyISBN = null;
 let modifyId = null;
-let delBookId = null;
-let delId = null;
 
 // 회원 정보 수정 => 완료
 function clickModifyUser(id) {
@@ -154,8 +150,10 @@ function addBook() {
             if (chk === "1") {
                 alert("complete");
                 closeAddBook();
-            } else
+            } else {
+                alert(chk);
                 alert("Add Book Error");
+            }
         }
     };
 }
@@ -231,14 +229,9 @@ function closeRank() {
 }
 
 // 회원 탈퇴 => 완료
-function clickWithdraw(id) {
-    delId = id;
-    withdrawUserModal.style.display = "block"
-}
-
-function withdraw() {
+function withdraw(id) {
     let xhttp = new XMLHttpRequest();
-    xhttp.open("GET", adminStr + "delUser.php?id=" + delId, true);
+    xhttp.open("GET", adminStr + "delUser.php?id=" + id, true);
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
@@ -253,20 +246,12 @@ function withdraw() {
     closeWithdraw();
 }
 
-function closeWithdraw() {
-    delId = null;
-    withdrawUserModal.style.display = "none";
-}
-
 // 책 삭제 => 완료
-function clickRemoveBook(bookid) {
-    delBookId = bookid;
-    removeBookModal.style.display = "block"
-}
-
-function removeBook() {
+function removeBook(bookid) {
+    if(!confirm("삭제하시겠습니까?"))
+        return;
     let xhttp = new XMLHttpRequest();
-    xhttp.open("GET", adminStr + "removeBook.php?book_id=" + delBookId, true);
+    xhttp.open("GET", adminStr + "removeBook.php?book_id=" + bookid, true);
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
@@ -278,20 +263,21 @@ function removeBook() {
     };
 }
 
-function closeRemoveBook() {
-    delBookId = null;
-    removeBookModal.style.display = "none"
-}
-
 // 책 반납
-function returnBook() {
+function returnBook(bookId) {
+    if(!confirm("반납하시겠습니까?"))
+        return;
     var bookId = document.getElementById('return_bookid');
     let xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "returnManage.php?" + "bookId=" + bookId.innerHTML, true);
+    xhttp.open("GET", "returnManage.php?" + "bookId=" + bookId, true);
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             let chk = this.responseText;
+            if (this.responseText === "1")
+                alert("Return Complete");
+            else
+                alert("Return Error");
         }
     }
 }
@@ -301,28 +287,24 @@ window.onclick = function (event) {
         closeAddBook();
     if (event.target === modifyBookModal)
         closeModifyBook();
-    if (event.target === removeBookModal)
-        closeRemoveBook();
     if (event.target === modifyUserModal)
         closeModifyUser();
     if (event.target === borrowRankModal)
         closeRank();
-    if (event.target === withdrawUserModal)
-        closeWithdraw();
 };
 
 function changeTable() {
     if (event.target.id === "bookListSideBar") {
-        bookList.style.display = "block";
-        returnBook.style.display = "none";
-        userManage.style.display = "none";
+        bookListTable.style.display = "block";
+        returnBookTable.style.display = "none";
+        userManageTable.style.display = "none";
     } else if (event.target.id === "returnBookSideBar") {
-        bookList.style.display = "none";
-        returnBook.style.display = "block";
-        userManage.style.display = "none";
+        bookListTable.style.display = "none";
+        returnBookTable.style.display = "block";
+        userManageTable.style.display = "none";
     } else if (event.target.id === "userManageSideBar") {
-        bookList.style.display = "none";
-        returnBook.style.display = "none";
-        userManage.style.display = "block";
+        bookListTable.style.display = "none";
+        returnBookTable.style.display = "none";
+        userManageTable.style.display = "block";
     }
 }

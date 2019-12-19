@@ -22,7 +22,7 @@
     <input type="button" class="barItem" value="도서반납" id="returnBookSideBar" onclick="changeTable()">
     <input type="button" class="barItem" value="회원관리" id="userManageSideBar" onclick="changeTable()">
 </div>
-<div id="bookList" style="margin-left:15%">
+<div id="bookListTable" style="margin-left:15%">
     <input type="button" value="등록" onclick="clickAddBook()">
     <table>
         <caption align="center">도서 목록</caption>
@@ -51,10 +51,10 @@
                     <td>{$bookInformation['publisher']}</td>
                     <td class='button-td'><input type='button' value='수정' onclick='clickModifyBook(\"" . $bookInformation['ISBN'] . "\")'></td>";
 
-            $sql = "SELECT * FROM Borrow_Information WHERE ISBN = {$bookStateRow['book_id']};";
+            $sql = "SELECT * FROM Borrow_Information WHERE book_id = {$bookStateRow['book_id']};";
             $borrowInformation = mysqli_query($_SESSION['conn'], $sql);
             if ($borrowInformation->num_rows == 0) {
-                echo "<td class='button-td'><input type='button' value='삭제' onclick='clickRemoveBook(\"" . $bookStateRow['book_id'] . "\")'></td>";
+                echo "<td class='button-td'><input type='button' value='삭제' onclick='removeBook(\"" . $bookStateRow['book_id'] . "\")'></td>";
             }
             else {
                 echo "<td class='button-td'>대출중</td>";
@@ -67,14 +67,13 @@
     </table>
 </div>
 
-<div id="returnBook" style="margin-left:15%">
+<div id="returnBookTable" style="margin-left:15%">
     <table>
         <caption align="center">도서 반납</caption>
         <thead>
         <tr>
-            <td width="5%">책 번호</td>
             <td width="35%">책 이름</td>
-            <td width="25%">예약자(id)</td>
+            <td width="25%">예약자 id</td>
             <td width="15%">대출일</td>
             <td width="15%">반납일</td>
             <td width="5% ">반납</td>
@@ -88,23 +87,19 @@
             $sql = "SELECT * FROM Borrow_Information WHERE book_id = {$bookStateRow['book_id']}";
             $borrowRow = mysqli_query($_SESSION['conn'], $sql);
             $borrowRow = mysqli_fetch_array($borrowRow);
-
             $sql = "SELECT * FROM Book_Information WHERE ISBN = {$bookStateRow['ISBN']};";
             $bookRow = mysqli_query($_SESSION['conn'], $sql);
             $bookRow = mysqli_fetch_array($bookRow);
-
             $sql = "SELECT * FROM User_Account WHERE id = '{$borrowRow['id']}';";
             $userRow = mysqli_query($_SESSION['conn'], $sql);
             $userRow = mysqli_fetch_array($userRow);
-
-            if (isset($borrowRow)) {
+            if(isset($borrowRow) ){
                 echo "<tr>
-                    <td id='return_bookid'>{$bookStateRow['book_id']}</td>
                     <td>{$bookRow['name']}</td>
                     <td>{$userRow['id']}</td>
                     <td>{$borrowRow['start_date']}</td>
                     <td>{$borrowRow['end_date']}</td>
-                    <td class='button-td'><input type='button' value='반납' onclick='returnBook(\"" . $bookStateRow['book_id'] . "\")'></td>
+                    <td class='button-td'><input type='button' value='반납' onclick='returnBook(\"".$bookStateRow['book_id']."\")'></td>
                 </tr>";
             }
         }
@@ -113,7 +108,7 @@
     </table>
 </div>
 
-<div id="userManage" style="margin-left:15%">
+<div id="userManageTable" style="margin-left:15%">
     <table>
         <caption align="center">회원관리</caption>
         <thead>
@@ -186,7 +181,7 @@
                     <td>{$userRow['classification']}</td>
                     <td>{$userRow['total_borrow']}</td>
                     <td class='button-td'><input type='button' value='수정' onclick='clickModifyUser(\"" . $userRow['id'] . "\")'></td>
-                    <td class='button-td'><input type='button' value='탈퇴' onclick='clickWithdraw(\"" . $userRow['id'] . "\")'></td>
+                    <td class='button-td'><input type='button' value='탈퇴' onclick='withdraw(\"" . $userRow['id'] . "\")'></td>
                 </tr>";
         }
         ?>
@@ -215,14 +210,6 @@
         <input type="button" value="Done" onclick="modifyBook()">
         <input type="button" value="Cancel" onclick="closeModifyBook()">
     </form>
-</div>
-
-<div id="removeBookModal" class="modal">
-    <div id="removeBookContent" class="modal-content">
-        <p>삭제 시키겠습니까?</p>
-        <input type="button" value="OK" id="removeBookBtn" onclick="removeBook()">
-        <input type="button" value="Cancel" onclick="closeRemoveBook()">
-    </div>
 </div>
 
 <div id="borrowRankModal" class="modal">
@@ -288,14 +275,6 @@
         <input type="button" value="submit" onclick="modifyAccount()">
         <input type="button" value="Cancel" onclick="closeModifyUser()">
     </form>
-</div>
-
-<div id="withdrawUserModal" class="modal">
-    <div id="withdrawUserContent" class="modal-content">
-        <p>탈퇴 시키겠습니까?</p>
-        <input type="button" value="OK" id="withdraw" onclick="withdraw()">
-        <input type="button" value="Cancel" onclick="closeWithdraw()">
-    </div>
 </div>
 <script src="adminJS.js?ver=2"></script>
 </body>

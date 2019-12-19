@@ -33,9 +33,9 @@ caption {
     font-weight: bold;
 }
 
-#bookList{display: block;}
-#returnBook{display: none;}
-#userManage{display: none;}
+#bookListTable{display: block;}
+#returnBookTable{display: none;}
+#userManageTable{display: none;}
 
 .modal {
     display: none;
