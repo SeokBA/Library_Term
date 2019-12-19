@@ -49,10 +49,14 @@
                     <td>{$bookInformation['ISBN']}</td>
                     <td>{$bookInformation['author']}</td>
                     <td>{$bookInformation['publisher']}</td>
-                    <td class='button-td'><input type='button' value='수정' onclick='updateBook(\"" . $bookInformation['ISBN'] . "\")'></td>";
-            if ($bookStateRow['reservation_chk'] == 4) {
-                echo "<td class='button-td'><input type='button' value='삭제' onclick='removeBook(\"" . $bookStateRow['book_id'] . "\")'></td>";
-            } else {
+                    <td class='button-td'><input type='button' value='수정' onclick='clickModifyBook(\"" . $bookInformation['ISBN'] . "\")'></td>";
+
+            $sql = "SELECT * FROM Borrow_Information WHERE ISBN = {$bookStateRow['book_id']};";
+            $borrowInformation = mysqli_query($_SESSION['conn'], $sql);
+            if ($borrowInformation->num_rows == 0) {
+                echo "<td class='button-td'><input type='button' value='삭제' onclick='clickRemoveBook(\"" . $bookStateRow['book_id'] . "\")'></td>";
+            }
+            else {
                 echo "<td class='button-td'>대출중</td>";
             }
             echo "</tr>";
@@ -100,7 +104,7 @@
                     <td>{$userRow['id']}</td>
                     <td>{$borrowRow['start_date']}</td>
                     <td>{$borrowRow['end_date']}</td>
-                    <td class='button-td'><input type='button' value='반납' onclick='returnBook_manage(\"" . $bookStateRow['book_id'] . "\")'></td>
+                    <td class='button-td'><input type='button' value='반납' onclick='returnBook(\"" . $bookStateRow['book_id'] . "\")'></td>
                 </tr>";
             }
         }
@@ -193,10 +197,10 @@
 
 <div id="addBookModal" class="modal">
     <form id='addBookContent' class="modal-content" method="get">
-        <p>제목<input type="text" id="title"></p>
-        <p>ISBN<input type="text" id="ISBN"></p>
-        <p>저자<input type="text" id="author"></p>
-        <p>출판사<input type="text" id="publisher"></p>
+        <p>제목<input type="text" id="addTitle"></p>
+        <p>ISBN<input type="text" id="addISBN"></p>
+        <p>저자<input type="text" id="addAuthor"></p>
+        <p>출판사<input type="text" id="addPublisher"></p>
         <input type="button" value="Done" onclick="addBook()">
         <input type="button" value="Cancel" onclick="closeAddBook()">
     </form>
@@ -204,13 +208,21 @@
 
 <div id="modifyBookModal" class="modal">
     <form id='modifyBookContent' class="modal-content" method="get">
-        <p>제목<input type="text" id="addTitle"></p>
-        <p>ISBN<input type="text" id="addISBN"></p>
-        <p>저자<input type="text" id="addAuthor"></p>
-        <p>출판사<input type="text" id="addPublisher"></p>
+        <p>제목<input type="text" id="modifyTitle"></p>
+        <p>ISBN<input type="text" id="modifyISBN"></p>
+        <p>저자<input type="text" id="modifyAuthor"></p>
+        <p>출판사<input type="text" id="modifyPublisher"></p>
         <input type="button" value="Done" onclick="modifyBook()">
         <input type="button" value="Cancel" onclick="closeModifyBook()">
     </form>
+</div>
+
+<div id="removeBookModal" class="modal">
+    <div id="removeBookContent" class="modal-content">
+        <p>삭제 시키겠습니까?</p>
+        <input type="button" value="OK" id="removeBookBtn" onclick="removeBook()">
+        <input type="button" value="Cancel" onclick="closeRemoveBook()">
+    </div>
 </div>
 
 <div id="borrowRankModal" class="modal">
@@ -273,8 +285,8 @@
             <option value="교직원"></option>
         </datalist>
         <br><br><br>
-        <input type="button" value="sumbit" onclick="modifyAccount()">
-        <input type="button" value="cancle" onclick="closeModifyUser()">
+        <input type="button" value="submit" onclick="modifyAccount()">
+        <input type="button" value="Cancel" onclick="closeModifyUser()">
     </form>
 </div>
 
@@ -282,7 +294,7 @@
     <div id="withdrawUserContent" class="modal-content">
         <p>탈퇴 시키겠습니까?</p>
         <input type="button" value="OK" id="withdraw" onclick="withdraw()">
-        <input type="button" value="Cancle" onclick="closeWithdraw()">
+        <input type="button" value="Cancel" onclick="closeWithdraw()">
     </div>
 </div>
 <script src="adminJS.js?ver=2"></script>
