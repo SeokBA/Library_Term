@@ -14,7 +14,6 @@
     session_start();
     $_SESSION['id'] = $_REQUEST['id'];
     $_SESSION['conn'] = mysqli_connect('112.166.141.161', 'root', 'kylin1q2w3e4r', 'LB_DB');
-    echo "<p align='right'>id : " . $_SESSION['id'] . " <input type='button' value='정보수정' onclick='clickModifyUser(\"" . $_SESSION['id'] . "\")'></p>";
     ?>
 </div>
 <div class="sideBar" style="width:13%">

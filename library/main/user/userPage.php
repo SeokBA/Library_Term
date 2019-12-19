@@ -69,8 +69,9 @@
         <caption align="center"> 예약 현황 </caption>
         <thead>
         <tr>
-            <td width="25%"> ISBN </td>
-            <td width="25%"> 책 제목 </td>
+            <td width="10%"> 책 ID </td>
+            <td width="20%"> ISBN </td>
+            <td width="20%"> 책 제목 </td>
             <td width="15%"> 대기 인원 </td>
             <td width="25%"> 대출 가능일 </td>
             <td width="10%"> 예약 취소 </td>
@@ -78,8 +79,27 @@
         </thead>
         <tbody>
 		<?php
-			$db_sql = "select * from Book_Information where ISBN = ( select ISBN FROM Book_Statement where book_id = (select book_id FROM LB_DB.Reservation_Information where id = '{$_SESSION['id']}'));";
-
+            $db_sql = "select book_id from Reservation_Information where id = \"{$_SESSION['id']}\";";
+            $db_resultBook = mysqli_query( $db_conn, $db_sql );
+	        while( $db_rowBook = mysqli_fetch_array( $db_resultBook) ){
+				$book = $db_rowBook['book_id'];
+                echo "<tr><td>{$db_rowBook['book_id']}</td>";
+				$db_sql = "select ISBN, name from Book_Information where ISBN = ( select ISBN FROM Book_Statement where book_id = \"{$book}\");";
+				$db_result = mysqli_query( $db_conn, $db_sql );
+				$db_row = mysqli_fetch_array( $db_result );
+				echo "<td>{$db_row['ISBN']}</td>";
+			    echo "<td>{$db_row['name']}</td>";
+				$db_sql = "select count(book_id) from Reservation_Information where book_id = \"{$book}\";";
+            	$db_result = mysqli_query( $db_conn, $db_sql );
+				$db_row = mysqli_fetch_array( $db_result );
+				echo "<td>{$db_row['count(book_id)']}</td>";
+				$db_sql = "select reservation_date from Reservation_Information where book_id = $book order by reservation_date desc limit 1;";
+            	$db_result = mysqli_query( $db_conn, $db_sql );
+				$db_row = mysqli_fetch_array( $db_result );
+				echo "<td>{$db_row['reservation_date']}</td>";
+			    echo "<td onclick = 'openCancelReserve()'>예약 취소</td></tr>";	
+                
+			}
 		?>
 
 	</tbody>
@@ -115,7 +135,7 @@
 </div>
 
 
-<div id="infomodify" class="modal">
+<div id="infoModify" class="modal">
     <form id='modifyContent' class="modal-content" method="get">
         <h2> 본인 정보 수정 </h2>
         <p> ID </p>
@@ -131,7 +151,7 @@
         <input type="email" id="modifyEmail" placeholder="input e-mail" required>
         <br><br>
         <p>Phone Number</p>
-        <input type="text" id="phonemodify" placeholder="input phone" required>
+        <input type="text" id="phoneModify" placeholder="input phone" required>
         <br><br>
         <p>Classification</p>
         <input type="text" id="modifyClassification" placeholder="input Classification" list="choices">
@@ -141,7 +161,7 @@
             <option value="교직원"></option>
         </datalist>
         <br><br><br>
-        <input type="button" value="submit" onclick="">
+        <input type="button" value="submit" onclick="modifyUserInfo()">
         <input type="button" value="cancel" onclick="closeInfo()">
     </form>
 </div>
@@ -150,21 +170,20 @@
     <div id="withdraw" class="modal-content p">
         <h2>회원 탈퇴</h2>
         <p>탈퇴 하시겠습니까?</p>
-        <p>
-            <input type="button" value="OK" id="withdraw" onclick=""><br>
-            <input type="button" value="Cancle" onclick="closeWithdraw()"><br>
-        </p>
-
+        <br>
+        <input type="button" value="OK" id="withdraw" onclick="requestWithdraw()">
+        <input type="button" value="Cancle" onclick="closeWithdraw()"><br>
     </div>
 </div>
 
 <div id="borrowModal" class="modal">
-    <div class="modal-content">
+    <div class="modal-content p">
         <h2>도서 대출</h2>
         <p>대출 하시겠습니까?</p>
-        <p> 책 이름: <input type="text" id = "borrowBookName"><br>
+        <br>
+        책 이름: <input type="text" id = "borrowBookName"><br>
         책 ID: <input type="text" id = "borrowBookId"><br>
-        책 ISBN: <input type="text" id ="borrowBookISBN"></p>
+        책 ISBN: <input type="text" id ="borrowBookISBN"><br>
         <p>
             <input type="button" value="OK" onclick="borrowBook()">
             <input type="button" value="Cancle" onclick="closeBorrow()">
@@ -174,16 +193,30 @@
 </div>
 
 <div id="reserveModal" class="modal">
-    <div class="modal-content">
+    <div class="modal-content p">
         <h2>도서 예약</h2>
         <p>예약 하시겠습니까?</p>
-        <p> 책 이름: <input type="text" id = "reserveBookName"><br>
-            책 ID: <input type="text" id = "reserveBookId"><br>
-            책 ISBN: <input type="text" id ="reserveBookISBN"></p>
+        <br>
+        책 이름: <input type="text" id = "reserveBookName"><br>
+        책 ID: <input type="text" id = "reserveBookId"><br>
+        책 ISBN: <input type="text" id ="reserveBookISBN"><br>
         <p>
             <input type="button" value="OK" onclick="reserveBook()">
             <input type="button" value="Cancle" onclick="closeReserve()">
         </p>
+    </div>
+</div>
+
+
+<div id="reserveCancelModal" class="modal">
+    <div class="modal-content p">
+        <h2>도서 예약 취소</h2>
+        <p>예약을 취소하시겠습니까?</p>
+        <br>
+        책 이름: <input type="text" id = "cancelReserveName"><br>
+        책 ISBN: <input type="text" id ="cancelReserveISBN"><br>
+        <p><input type="button" value="OK" onclick="cancelReserve()">
+           <input type="button" value="Cancle" onclick="closeCancelReserve()"></p>
     </div>
 </div>
 

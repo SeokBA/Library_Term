@@ -25,7 +25,7 @@ if($len == 0){
     $sql = "INSERT INTO Book_Information(ISBN, name, author, publisher) VALUES ({$isbn}, '{$name}', '{$author}', '{$publisher}');";
     $result = mysqli_query($conn, $sql);
 }
-$sql = "INSERT INTO Book_Statement(book_id, ISBN, reservation_chk) VALUES ({$book_id}, {$isbn}, 0);";
+$sql = "INSERT INTO Book_Statement(book_id, ISBN, reservation_chk) VALUES ({$book_id}, {$isbn}, 4);";
 $result = mysqli_query($conn, $sql);
 echo $sql;
 echo 1;
