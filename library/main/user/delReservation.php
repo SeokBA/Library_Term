@@ -1,16 +1,18 @@
 <?php
+$id = $_REQUEST["id"];
 $book_id = $_REQUEST["bookId"];
 
 $conn = mysqli_connect('112.166.141.161', 'root', 'kylin1q2w3e4r', 'LB_DB');
-$sql = "select * from Reservation_Information;";
+$sql = "select * from Reservation_Information where book_id = {$book_id}";
 $result = mysqli_query($conn, $sql);
-
-
-$sql = "select id from Reservation_Information where book_id = {$book_id};"; #book_id 가져오기
+if($result->num_rows == 1){
+    $sql = "select * from Book_Statement where book_id = {$book_id}";
+    $result = mysqli_query($conn, $sql);
+    $result = mysqli_fetch_array($result);
+    $reservation = $result['reservation_chk'] - 1;
+    $sql = "UPDATE Book_Statement SET reservation_chk = {$result} WHERE book_id = {$book_id}";
+    $result = mysqli_query($conn, $sql);
+}
+$sql = "delete from Reservation_Information where id = {$id} and book_id = {$book_id}";;
 $result = mysqli_query($conn, $sql);
-
-
-$sql = "UPDATE Book_Statement SET reservation_chk = 4 WHERE (book_id = {$book_id}); ";
-$result = mysqli_query($conn, $sql);
-
 echo 1;
