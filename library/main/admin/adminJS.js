@@ -177,7 +177,7 @@ function modifyBook() {
     let sqlStr = "";
 
     if (title !== "") {
-        sqlStr += "$name=" + title;
+        sqlStr += "&name=" + title;
     }
     if (isbn !== "") {
         if (!isNaN(isbn) && isbn.length == 13)
@@ -267,7 +267,6 @@ function removeBook(bookid) {
 function returnBook(bookId) {
     if(!confirm("반납하시겠습니까?"))
         return;
-    var bookId = document.getElementById('return_bookid');
     let xhttp = new XMLHttpRequest();
     xhttp.open("GET", "returnManage.php?" + "bookId=" + bookId, true);
     xhttp.send();
@@ -276,8 +275,9 @@ function returnBook(bookId) {
             let chk = this.responseText;
             if (this.responseText === "1")
                 alert("Return Complete");
-            else
+            else {
                 alert("Return Error");
+            }
         }
     }
 }

@@ -3,11 +3,7 @@ $isbn = $_REQUEST["isbn"];
 $name = $_REQUEST["name"];
 $author = $_REQUEST["author"];
 $publisher = $_REQUEST["publisher"];
-
-$book_id = $_REQUEST["book_id"];
-
 $new_isbn = $_REQUEST["new_isbn"];
-$new_book_id = $_REQUEST["new_book_id"];
 
 $conn = mysqli_connect('112.166.141.161', 'root', 'kylin1q2w3e4r', 'LB_DB');
 $sql = "UPDATE Book_Information SET ";
@@ -28,7 +24,6 @@ if($author != null) {
         $sql .= ", ";
     $sql .= "publisher = '{$publisher} '";
 }
-
 $sql .= "WHERE ISBN = '{$isbn}'";
 $result = mysqli_query($conn, $sql);
 echo 1;
