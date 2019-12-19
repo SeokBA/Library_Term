@@ -11,8 +11,8 @@ function OnChange(){
     }
     else if( event.target.id == "search"){
         Borrowlist.style.display = "none";
-        document.getElementById("ISBN").value = "";
-        document.getElementById("bookName").value = ""; // 창 들어갈시 이전에 있던 기록들 초기화
+        document.getElementById("ISBN").value ="";
+        document.getElementById("bookName").value ="";
         Searchbook.style.display = "block";
         Reservebook.style.display ="none";
     }
@@ -154,7 +154,6 @@ function borrowBook(){
     }
 }
 
-
 function openCancelReserve() {
     let tr = (event.target).parentElement;
     let bookId = tr.childNodes[0].textContent;
@@ -166,18 +165,18 @@ function openCancelReserve() {
 }
 
 
+
 function cancleReserve() {
     let bookId = document.getElementById("cancelReserveName").value;
     let bookISBN = document.getElementById("cancelReserveISBN").value;
     let id = username.innerHTML.split(" ")[2];
     let xhttp = new XMLHttpRequest();
-    xhttp.open("GET","cancelReservation.php?="+"id="+id+"&bookId="+bookId, true); // 요기 전달할거 넣으면 될
-    거같고
+    xhttp.open("GET","cancelReservation.php?="+"id="+id+"&bookId="+bookId, true); // 요기 전달할거 넣으면 될거같고
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if(this.readyState === 4 && this.status === 200){
             let chk = this.responseText;
-            document.getElementById("reserveCancelModal").style.display = "none";// 이거 재갱신을 어떻게 해줄까>ㅣ?
+            document.getElementById("reserveCancelModal").style.display = "none";// 이거 재갱신을 어떻게 해줄까ㅣ?
         }
     }
 }
@@ -185,16 +184,24 @@ function cancleReserve() {
 function requestWithdraw() {
     let id = username.innerHTML.split(" ")[2];
     let xhttp = new XMLHttpRequest();
-    xhttp.open("GET","",true);
+    xhttp.open("GET","withdrawUser.php?id="+id,true);
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if(this.readyState === 4 && this.status === 200){
             let chk = this.responseText;
-            location.href="../../login/login.html" // 탈퇴 했으므로 로그인 html 이동
+            if (chk == 1){
+                alert("탈퇴 완료");
+                location.href="../../login/login.html" // 탈퇴 했으므로 로그인 html 이동
+            }
+            else if (chk == 2){
+                alert("아직 반납하지 않은 책이 있습니다.");
+            }
+            else{
+                alert("탈퇴 에러");
+            }
         }
     }
 }
-
 
 function modifyUserInfo() {
     let userId = document.getElementById("modifyId").value;
@@ -214,7 +221,4 @@ function modifyUserInfo() {
         }
     }
 }
-
-
-
 

@@ -12,31 +12,31 @@ $conn = mysqli_connect('112.166.141.161', 'root', 'kylin1q2w3e4r', 'LB_DB');
 $sql = "UPDATE User_Account SET ";
 
 if($newId != null)
-    $sql .= "id = '{$newId}'";
+    $sql .= "id = '{$newId} '";
 if($pw != null) {
     if($sql != "UPDATE User_Account SET ")
         $sql .= ", ";
-    $sql .= "password = '{$pw}'";
+    $sql .= "password = '{$pw} '";
 }
 if($name != null) {
     if ($sql != "UPDATE User_Account SET ")
         $sql .= ", ";
-    $sql .= "name = '{$name}'";
+    $sql .= "name = '{$name} '";
 }
 if($email != null) {
     if ($sql != "UPDATE User_Account SET ")
         $sql .= ", ";
-    $sql .= "email = '{$email}'";
+    $sql .= "email = '{$email} '";
 }
 if($phone != null) {
     if ($sql != "UPDATE User_Account SET ")
         $sql .= ", ";
-    $sql .= "phone = '{$phone}'";
+    $sql .= "phone = '{$phone} '";
 }
 if($classification != null) {
     if ($sql != "UPDATE User_Account SET ")
         $sql .= ", ";
-    $sql .= "classification = '{$classification}'";
+    $sql .= "classification = '{$classification} '";
 }
 
 $sql .= "WHERE id = '{$id}'";
