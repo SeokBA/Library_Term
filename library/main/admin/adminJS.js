@@ -80,11 +80,12 @@ function modifyAccount() {
             let chk = this.responseText;
             if (chk === "1") {
                 alert("complete");
-                closeModify();
+                closeModifyUser();
             } else
                 alert("Modify Error");
         }
     };
+    location.reload()
 }
 
 function closeModifyUser() {
@@ -156,6 +157,7 @@ function addBook() {
             }
         }
     };
+    location.reload()
 }
 
 function closeAddBook() {
@@ -212,6 +214,8 @@ function modifyBook() {
                 alert("Add Book Error");
         }
     };
+    closeModifyBook();
+    location.reload()
 }
 
 function closeModifyBook() {
@@ -244,6 +248,7 @@ function withdraw(id) {
         }
     };
     closeWithdraw();
+    location.reload()
 }
 
 // 책 삭제 => 완료
@@ -261,9 +266,10 @@ function removeBook(bookid) {
                 alert("Remove Error");
         }
     };
+    location.reload()
 }
 
-// 책 반납
+// 책 반납 => 완료
 function returnBook(bookId) {
     if(!confirm("반납하시겠습니까?"))
         return;
@@ -279,7 +285,8 @@ function returnBook(bookId) {
                 alert("Return Error");
             }
         }
-    }
+    };
+    location.reload();
 }
 
 window.onclick = function (event) {
