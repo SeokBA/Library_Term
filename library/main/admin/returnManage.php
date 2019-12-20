@@ -3,11 +3,11 @@ $book_id = $_REQUEST["bookId"];
 $db_conn = mysqli_connect('112.166.141.161', 'root', 'kylin1q2w3e4r', 'LB_DB');
 $db_sql = "delete from Borrow_Information where book_id = {$book_id};"; # 빌린 책 목록에서 지우기
 $db_result = mysqli_query($db_conn, $db_sql);
-$db_sql = "select id from Reservation_Information where book_id = {$book_id};"; #book_id 가져오기
+$db_sql = "select * from Reservation_Information where book_id = {$book_id}; order by reservation_date asc"; #book_id 가져오기
 $db_result = mysqli_query($db_conn, $db_sql);
-if (mysqli_num_rows($db_result) == 3) {
-    $reservation_id = mysqli_fetch_array($db_result)[0];
-    $db_sql = "delete from Reservation_Information where book_id = {$book_id} order by reservation_date asc limit 1;";
+if ($db_result = mysqli_fetch_array($db_result)) {
+    $reservation_id = $db_result['id'];
+    $db_sql = "delete from Reservation_Information where id = '{$reservation_id}' and book_id = {$book_id};";
     $db_result = mysqli_query($db_conn, $db_sql);
     $db_sql = "select classification from User_Account where id = \"{$id}\";";
     $db_result = mysqli_query( $db_conn, $db_sql );
