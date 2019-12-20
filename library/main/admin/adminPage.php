@@ -92,15 +92,13 @@
             $sql = "SELECT * FROM User_Account WHERE id = '{$borrowRow['id']}';";
             $userRow = mysqli_query($_SESSION['conn'], $sql);
             $userRow = mysqli_fetch_array($userRow);
-            if(isset($borrowRow) ){
-                echo "<tr>
+            echo "<tr>
                     <td>{$bookRow['name']}</td>
                     <td>{$userRow['id']}</td>
                     <td>{$borrowRow['start_date']}</td>
                     <td>{$borrowRow['end_date']}</td>
                     <td class='button-td'><input type='button' value='반납' onclick='returnBook(\"".$bookStateRow['book_id']."\")'></td>
                 </tr>";
-            }
         }
         ?>
         </tbody>
