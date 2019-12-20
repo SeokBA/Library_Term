@@ -10,21 +10,20 @@ if ($db_result = mysqli_fetch_array($db_result)) {
     $db_sql = "delete from Reservation_Information where id = '{$reservation_id}' and book_id = {$book_id};";
     $db_result = mysqli_query($db_conn, $db_sql);
     $db_sql = "select classification from User_Account where id = \"{$id}\";";
-    $db_result = mysqli_query( $db_conn, $db_sql );
-    $db_row =  mysqli_fetch_array ( $db_result );
+    $db_result = mysqli_query($db_conn, $db_sql);
+    $db_row = mysqli_fetch_array($db_result);
     $borrow_date = '10';
-    if( $db_row['classification'] == "교직원" )
+    if ($db_row['classification'] == "교직원")
         $borrow_date = '30';
-    else if( $db_row['classification'] == "대학원" )
+    else if ($db_row['classification'] == "대학원")
         $borrow_date = '20';
     else
         $borrow_date = '10';
     $borrow_date = $borrow_date * 86400;
-    $db_sql = "insert into Borrow_Information ( id, book_id, start_date, end_date ) VALUES(\"". $reservation_id ."\" ,\"". 2 . "\" ,from_unixtime(unix_timestamp()), from_unixtime(unix_timestamp() + {$borrow_date} ))" ;
+    $db_sql = "insert into Borrow_Information (id, book_id, start_date, end_date) VALUES(\"" . $reservation_id . "\" ,\"" . $book_id . "\" ,from_unixtime(unix_timestamp()), from_unixtime(unix_timestamp() + {$borrow_date} ))";
     $db_sql = "UPDATE Book_Statement SET reservation_chk = 1 WHERE (book_id = {$book_id}); ";
     $db_result = mysqli_query($db_conn, $db_sql);
-}
-else {
+} else {
     $db_sql = "UPDATE Book_Statement SET reservation_chk = 4 WHERE (book_id = {$book_id}); ";
     $db_result = mysqli_query($db_conn, $db_sql);
 }
