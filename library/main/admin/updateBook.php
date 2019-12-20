@@ -9,21 +9,21 @@ $conn = mysqli_connect('112.166.141.161', 'root', 'kylin1q2w3e4r', 'LB_DB');
 $sql = "UPDATE Book_Information SET ";
 
 if($new_isbn != null)
-    $sql .= "ISBN = '{$new_isbn} '";
+    $sql .= "ISBN = {$new_isbn} ";
 if($name != null) {
     if($sql != "UPDATE Book_Information SET ")
         $sql .= ", ";
-    $sql .= "name = '{$name} '";
+    $sql .= "name = '{$name}' ";
 }
 if($author != null) {
     if($sql != "UPDATE Book_Information SET ")
         $sql .= ", ";
-    $sql .= "author = '{$author} '";
+    $sql .= "author = '{$author}' ";
 }if($publisher != null) {
     if($sql != "UPDATE Book_Information SET ")
         $sql .= ", ";
-    $sql .= "publisher = '{$publisher} '";
+    $sql .= "publisher = '{$publisher}' ";
 }
-$sql .= "WHERE ISBN = '{$isbn}'";
+$sql .= "WHERE ISBN = {$isbn}";
 $result = mysqli_query($conn, $sql);
 echo 1;

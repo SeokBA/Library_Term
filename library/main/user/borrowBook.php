@@ -20,7 +20,7 @@
 	$db_sql = "update Book_Statement set reservation_chk = 0 where book_id = {$book_id};";
 	$db_result = mysqli_query( $db_conn, $db_sql );
 
-    $db_sql = "update User_Account set total_borrow = total_borrow + 1 where id = {$id};";
+    $db_sql = "update User_Account set total_borrow = total_borrow + 1 where id = '{$id}';";
     $db_result = mysqli_query( $db_conn, $db_sql );
 
 

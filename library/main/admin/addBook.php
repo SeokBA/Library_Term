@@ -17,7 +17,7 @@ do{
     $size = $result->num_rows;
 } while($size != 0);
 
-$sql = "SELECT * FROM Book_Information WHERE ISBN = '{$isbn}';";
+$sql = "SELECT * FROM Book_Information WHERE ISBN = {$isbn};";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($result);
 $len = $result->num_rows;

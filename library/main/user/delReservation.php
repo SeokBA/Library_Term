@@ -18,7 +18,7 @@ if($result->num_rows == 1){
      $sql = "UPDATE Book_Statement SET reservation_chk = {$reservation} WHERE book_id = {$book_id}";
      $result = mysqli_query($conn, $sql);
 }
-$sql = "delete from Reservation_Information where id = \"{$id}\" and book_id = {$book_id}";;
+$sql = "delete from Reservation_Information where id = '{$id}' and book_id = {$book_id}";;
 $result = mysqli_query($conn, $sql);
 echo 1;
 ?>

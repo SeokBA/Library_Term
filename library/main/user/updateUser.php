@@ -13,27 +13,27 @@ $sql = "UPDATE User_Account SET ";
 if($pw != null) {
      if($sql != "UPDATE User_Account SET ")
          $sql .= ", ";
-         $sql .= "password = '{$pw} '";
+         $sql .= "password = '{$pw}' ";
 }
 if($name != null) {
       if ($sql != "UPDATE User_Account SET ")
          $sql .= ", ";
-      $sql .= "name = '{$name} '";
+      $sql .= "name = '{$name}' ";
 }
 if($email != null) {
        if ($sql != "UPDATE User_Account SET ")
           $sql .= ", ";
-       $sql .= "email = '{$email} '";
+       $sql .= "email = '{$email}' ";
 }
 if($phone != null) {
        if ($sql != "UPDATE User_Account SET ")
           $sql .= ", ";
-       $sql .= "phone = '{$phone} '";
+       $sql .= "phone = '{$phone}' ";
 }
 if($classification != null) {
         if ($sql != "UPDATE User_Account SET ")
            $sql .= ", ";
-        $sql .= "classification = '{$classification} '";
+        $sql .= "classification = '{$classification}' ";
 }
 $sql .= "WHERE id = '{$id}'";
 $result = mysqli_query($conn, $sql);
