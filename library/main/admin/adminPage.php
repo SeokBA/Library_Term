@@ -80,7 +80,7 @@
         </thead>
         <tbody>
         <?php
-        $sql = "SELECT * FROM Book_Statement WHERE reservation_chk > 1;";
+        $sql = "SELECT * FROM Book_Statement WHERE reservation_chk > 1 and reservation_chk != 4;";
         $result = mysqli_query($_SESSION['conn'], $sql);
         while (($bookStateRow = mysqli_fetch_array($result)) != null) {
             $sql = "SELECT * FROM Borrow_Information WHERE book_id = {$bookStateRow['book_id']}";
