@@ -7,7 +7,7 @@ $db_sql = "select id from Reservation_Information where book_id = {$book_id};"; 
 $db_result = mysqli_query($db_conn, $db_sql);
 if (mysqli_num_rows($db_result) == 3) {
     $reservation_id = mysqli_fetch_array($db_result)[0];
-    $db_sql = "delete from Reservation_information where book_id = {$book_id} order by reservation_date asc limit 1;";
+    $db_sql = "delete from Reservation_Information where book_id = {$book_id} order by reservation_date asc limit 1;";
     $db_result = mysqli_query($db_conn, $db_sql);
     $db_sql = "select classification from User_Account where id = \"{$id}\";";
     $db_result = mysqli_query( $db_conn, $db_sql );
